@@ -1,0 +1,6 @@
+[submodule "library/libhunspell"]
+	path = library/libhunspell
+	url = https://github.com/hunspell/hunspell.git
+[submodule "library/xerces-c"]
+	path = library/xerces-c
+	url = https://apache.googlesource.com/xerces-c
