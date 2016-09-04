@@ -66,19 +66,27 @@ safer.exe --erfile=./sample/bad-test.a5er --cofile=./sample/test-command.xml --o
     1. In the Add Existing Project dialog box, select Hunspell and Xerces-C++ project then click OK.
   1. Change the project Dependencies.
     1. In Solution Explorer, right-click the ER-StaticAnalysis solution , click Build Dependencies, and then click Project Dependencies.
+    ![ProjectDependencies](image/ProjectDependencies.png)
     1. In Project Dependencies window. To check a box libhunspell and XercesLib in "Depends on".
+    ![ProjectDependenciesMenu](image/ProjectDependenciesMenu.png)
   1. Add reference in ER-StaticAnalysis project.
     1. In Solution Explorer, right-click the "ER-StaticAnalysis project". And Click "Properties". 
+    ![ProjectReference](image/ProjectReference.png)
     1. In ER-StaticAnalysis Property Pages window, Click the "Reference" under "Common Properties".
+    ![ProjectReference2](image/ProjectReference2.png)
     1. And click "Add New Reference".
     1. In "Add Reference" window, To check a box libhunspell and XercesLib. And click "OK".
+    ![ProjectReference3](image/ProjectReference3.png)
     1. In ER-StaticAnalysis Property Pages window, Switch to "true" at "Copy Local Satellite Assemblies", "Reference Assembly Output", "Link Library Dependencies", "User Library Dependency Inputs"
       1. Perform the same step as described above to "libhunspell".
+    ![ProjectReference2](image/ProjectReference2.png)
 1. Rename file
   1. Change the file name "hunvisapi.h.in" to "hunvisapi.h" in libhunspell dir
 1. Change output dir on "XercesLib" project.
   1. In Solution Explorer, right-click the "XercesLib project". And Click "Properties". 
+  ![XercesProjectSetting1](image/XercesProjectSetting1.png)
   1. In "XercesLib Properties" window, Click "General" under the "Configuration Properties". And change the "Output Directory" value to "$(SolutionDir)$(Configuration)".
+  ![XercesProjectSetting2](image/XercesProjectSetting2.png)
 
 
 ## Licence
