@@ -32,7 +32,7 @@ Overview
 * boost_filesystem
 * boost_system
 
-## SYNOPSIS
+## Synopsis
 
 ```
 safer.exe [option]
