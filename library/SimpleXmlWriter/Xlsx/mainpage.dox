@@ -1,0 +1,13 @@
+/**
+\mainpage The mainpage documentation
+
+This library represents XLSX files writer. The main feature of this library is that it uses C++ standard file streams. On the one hand it results in almost unnoticeable memory and CPU resources consumption while processing (that may be very useful at saving a large data arrays), but on the other hand it makes unfeasible to edit data that were written down once.
+
+Hence, if using this library the structure of the future report should be known enough.
+
+The library is written in C++ with using STL functionality and based on the simple XML writer and ZIP library. Both of them have free licenses.
+
+http://www.codeproject.com/Articles/5588/Simple-C-class-for-XML-writing
+
+http://www.codeproject.com/Articles/7530/Zip-Utils-clean-elegant-simple-C-Win32
+*/

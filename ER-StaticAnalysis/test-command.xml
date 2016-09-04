@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Projects>
+  <Project id="1">
+	  <ProjectName>sample1</ProjectName>
+	  <Plan>
+		  <Command id="1">
+			  <CommandType>Comparison</CommandType>
+        <CommandName>カラム名定義有無チェック</CommandName>
+			  <Target>PhysicalColumnName</Target>
+        <TargetExtractionParam section="TABLE">.*</TargetExtractionParam>
+			  <Value></Value>
+			  <OutputMessage>カラム名が定義されておりません</OutputMessage>
+			  <OutputMessageAlertLevel>critical</OutputMessageAlertLevel>
+        <Enable>1</Enable>
+		  </Command>
+		  <Command id="2">
+			  <CommandType>Comparison</CommandType>
+        <CommandName>tblサフィックスチェック</CommandName>
+			  <Target>PhysicalTableName</Target>
+        <TargetExtractionParam section="TABLE">.*</TargetExtractionParam>
+			  <Value>.*_tbl</Value>
+        <Value>.*_mst</Value>
+			  <OutputMessage>.*_tbl又は.*mstとマッチしました。</OutputMessage>
+			  <OutputMessageAlertLevel>note</OutputMessageAlertLevel>
+        <Enable>0</Enable>
+		  </Command>
+      <Command id="3">
+        <CommandType>Comparison</CommandType>
+        <CommandName>テーブル名フォーマットチェック</CommandName>
+        <Target>PhysicalTableName</Target>
+        <TargetExtractionParam section="TABLE">.*</TargetExtractionParam>
+        <Value>^(?!.*(_tbl|_mst)$).*$</Value>
+        <OutputMessage>テーブル名がフォーマットと違います。</OutputMessage>
+        <OutputMessageAlertLevel>critical</OutputMessageAlertLevel>
+        <Enable>0</Enable>
+      </Command>
+	  </Plan>
+  </Project>
+  <Project id="2">
+    <ProjectName>sample2</ProjectName>
+    <Plan>
+      <Command id="1">
+        <CommandType>Comparison</CommandType>
+        <CommandName>カラム名定義有無チェック2</CommandName>
+        <Target>PhysicalColumnName</Target>
+        <TargetExtractionParam section="TABLE">.*</TargetExtractionParam>
+        <Value></Value>
+        <OutputMessage>カラム名が定義されておりません</OutputMessage>
+        <OutputMessageAlertLevel>critical</OutputMessageAlertLevel>
+        <Enable>1</Enable>
+      </Command>
+      <Command id="2">
+        <CommandType>Comparison</CommandType>
+        <CommandName>カラム名汎用物理名チェック(id)2</CommandName>
+        <Target>PhysicalColumnName</Target>
+        <TargetExtractionParam section="TABLE">.*</TargetExtractionParam>
+        <Value>id</Value>
+        <OutputMessage>idという名称は他のキーと区別が付かないため判別可能な名称に変更をしてください。</OutputMessage>
+        <OutputMessageAlertLevel>critical</OutputMessageAlertLevel>
+        <Enable>1</Enable>
+      </Command>
+      <Command id="3">
+        <CommandType>Comparison</CommandType>
+        <CommandName>アイテム関連抽出</CommandName>
+        <Target>LogicalTableName</Target>
+        <TargetExtractionParam section="TABLE">.*</TargetExtractionParam>
+        <Value>.*アイテム.*</Value>
+        <OutputMessage>アイテムという文字がテーブル名に含まれております</OutputMessage>
+        <OutputMessageAlertLevel>note</OutputMessageAlertLevel>
+        <Enable>1</Enable>
+      </Command>
+      <Command id="4">
+        <CommandType>TypeCheck</CommandType>
+        <CommandName>idチェック(Auto Increment)</CommandName>
+        <Target>PhysicalColumn</Target>
+        <TargetExtractionParam section="TABLE">.*_tbl</TargetExtractionParam>
+        <Value>.*id$</Value>
+        <TableOption logicalOperation="AND">AUTO_INCREMENT</TableOption>
+        <DataType logicalOperation="OR">@INT|INT</DataType>
+        <DataType logicalOperation="OR">SMALLINT</DataType>
+        <DataType logicalOperation="OR">TINYINT</DataType>
+        <OutputMessage>idが付く命名規則のカラムにてAUTO_INCREMENTが設定されたカラムのデータ型はBIGINTを推奨します。</OutputMessage>
+        <OutputMessageAlertLevel>warning</OutputMessageAlertLevel>
+        <Enable>1</Enable>
+      </Command>
+      <Command id="5">
+        <CommandType>TypeCheck</CommandType>
+        <CommandName>idチェック(BIGINT)</CommandName>
+        <Target>PhysicalColumn</Target>
+        <TargetExtractionParam section="TAG">tag_bad</TargetExtractionParam>
+        <Value>.*id$</Value>
+        <TableOption logicalOperation="NAND">AUTO_INCREMENT</TableOption>
+        <DataType logicalOperation="AND">BIGINT</DataType>
+        <OutputMessage>idが付く命名規則のカラムにてBIGINTを指定しています。AUTO_INCREMENTの付け忘れは無いでしょうか？</OutputMessage>
+        <OutputMessageAlertLevel>note</OutputMessageAlertLevel>
+        <Enable>1</Enable>
+      </Command>
+    </Plan>
+  </Project>
+  <SpellCheckConfig>
+    <DicPath>./</DicPath>
+    <Aff>
+      <AffFileName>en_US.aff</AffFileName>
+    </Aff>
+    <Dic>
+      <DicFileName>en_US.dic</DicFileName>
+    </Dic>
+    <SpellExclude>
+      <Value>mst</Value>
+      <Value>crs</Value>
+      <Value>tbl</Value>
+      <Value>gacha</Value>
+    </SpellExclude>
+  </SpellCheckConfig>
+</Projects>

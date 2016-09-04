@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>doxygen-method</Title>
+    </Header>
+    <Snippet>
+      <Code Language="">
+        <![CDATA[/**
+ * @fn
+ * ここに関数の説明を書く
+ * @breaf 要約説明
+ * @param (引数名) 引数の説明
+ * @param (引数名) 引数の説明
+ * @return 戻り値の説明
+ * @sa 参照すべき関数
+ * @detail 詳細説明
+ */]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

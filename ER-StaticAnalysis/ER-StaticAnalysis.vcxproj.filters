@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ER">
+      <UniqueIdentifier>{05be20f0-4b57-4928-9cf8-492639a1d1c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\reporter">
+      <UniqueIdentifier>{29a168a1-8bfa-4b91-843a-0e580d21dfbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\log">
+      <UniqueIdentifier>{b0266f77-7d76-4aa0-a3c4-417084d6426d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\static_analytics">
+      <UniqueIdentifier>{ce43c2cd-248d-4808-b2cd-9fedfc1383e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\analysis_command">
+      <UniqueIdentifier>{eeb155b4-63f9-44b6-96f4-a2ed30d101bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\parser">
+      <UniqueIdentifier>{5e1d9ffd-bcbf-4560-852a-7aea3078e2f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\parser">
+      <UniqueIdentifier>{72e9d5bc-dd37-4c55-abf1-f481d85392e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\parser\ER">
+      <UniqueIdentifier>{0a468608-6836-4f67-80cd-807b2fc22954}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\parser\command">
+      <UniqueIdentifier>{d57cd74e-8ab5-4a1a-b9ce-df4fbea63d8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\reporter">
+      <UniqueIdentifier>{ce50dd29-337f-4518-8c59-5949a2d9f69a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{ff4a7fee-cbf5-4863-981b-dbf3f800c887}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xml">
+      <UniqueIdentifier>{091eb279-fad0-4c95-9f3f-5901b9583635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\common">
+      <UniqueIdentifier>{28e9661e-e444-4c84-80e8-354e88ae2898}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ER">
+      <UniqueIdentifier>{50391a7f-ceb5-448b-814c-e5cb399ba9c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\common">
+      <UniqueIdentifier>{3092b93f-b633-4e4f-9112-8a9b7f68eec1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\static_analytics">
+      <UniqueIdentifier>{356e6aa0-18f4-48aa-ba7e-e222ac43d078}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\parser\command">
+      <UniqueIdentifier>{da70c1c3-a251-4659-b493-1317cb505ec4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\parser\ER">
+      <UniqueIdentifier>{198177ec-e7a2-4a8f-93c2-f11d79ccf649}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\analysis_command">
+      <UniqueIdentifier>{269dcc8a-e102-4f66-abb5-8ccf7ac3d00b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\config">
+      <UniqueIdentifier>{c46335b5-027d-433c-90f8-5ce7e60876df}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\library\SimpleXmlWriter\Zip\zip.cpp">
+      <Filter>xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\library\SimpleXmlWriter\Xlsx\Chartsheet.cpp">
+      <Filter>xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\library\SimpleXmlWriter\Xlsx\Workbook.cpp">
+      <Filter>xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\library\SimpleXmlWriter\Xlsx\Worksheet.cpp">
+      <Filter>xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\library\SimpleXmlWriter\Xlsx\XlsxHeaders.cpp">
+      <Filter>xml</Filter>
+    </ClCompile>
+    <ClCompile Include="source\main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\static_analytics\indexChecker.cpp">
+      <Filter>ソース ファイル\static_analytics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\static_analytics\relationChecker.cpp">
+      <Filter>ソース ファイル\static_analytics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\static_analytics\spellChecker.cpp">
+      <Filter>ソース ファイル\static_analytics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ER\er.cpp">
+      <Filter>ソース ファイル\ER</Filter>
+    </ClCompile>
+    <ClCompile Include="source\static_analytics\dBStaticAnalytics.cpp">
+      <Filter>ソース ファイル\static_analytics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\static_analytics\compRegularExpression.cpp">
+      <Filter>ソース ファイル\static_analytics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\static_analytics\columnDataTypeChecker.cpp">
+      <Filter>ソース ファイル\static_analytics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\common\commonXerces.cpp">
+      <Filter>ソース ファイル\common</Filter>
+    </ClCompile>
+    <ClCompile Include="source\parser\command\analysisCommandPaser.cpp">
+      <Filter>ソース ファイル\parser\command</Filter>
+    </ClCompile>
+    <ClCompile Include="source\parser\command\analysisCommandXmlParser.cpp">
+      <Filter>ソース ファイル\parser\command</Filter>
+    </ClCompile>
+    <ClCompile Include="source\reporter\analyticsReportXlsx.cpp">
+      <Filter>ソース ファイル\reporter</Filter>
+    </ClCompile>
+    <ClCompile Include="source\parser\ER\A5erParser.cpp">
+      <Filter>ソース ファイル\parser\ER</Filter>
+    </ClCompile>
+    <ClCompile Include="source\analysis_command\analysisProjects.cpp">
+      <Filter>ソース ファイル\analysis_command</Filter>
+    </ClCompile>
+    <ClCompile Include="source\reporter\reporter.cpp">
+      <Filter>ソース ファイル\reporter</Filter>
+    </ClCompile>
+    <ClCompile Include="test\testMain.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="source\parser\ER\ermErParser.cpp">
+      <Filter>ソース ファイル\parser\ER</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\library\SimpleXmlWriter\tchar.h">
+      <Filter>xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\library\SimpleXmlWriter\xmlwriter.h">
+      <Filter>xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\library\SimpleXmlWriter\Zip\zip.h">
+      <Filter>xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\library\SimpleXmlWriter\Xlsx\Chartsheet.h">
+      <Filter>xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\library\SimpleXmlWriter\Xlsx\SimpleXlsxDef.h">
+      <Filter>xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\library\SimpleXmlWriter\Xlsx\Workbook.h">
+      <Filter>xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\library\SimpleXmlWriter\Xlsx\Worksheet.h">
+      <Filter>xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\library\SimpleXmlWriter\Xlsx\XlsxHeaders.h">
+      <Filter>xml</Filter>
+    </ClInclude>
+    <ClInclude Include="source\main.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="source\analysis_command\analysisCommand.h">
+      <Filter>ヘッダー ファイル\analysis_command</Filter>
+    </ClInclude>
+    <ClInclude Include="source\analysis_command\analysisProject.h">
+      <Filter>ヘッダー ファイル\analysis_command</Filter>
+    </ClInclude>
+    <ClInclude Include="source\analysis_command\analysisProjects.h">
+      <Filter>ヘッダー ファイル\analysis_command</Filter>
+    </ClInclude>
+    <ClInclude Include="source\er\entity.h">
+      <Filter>ヘッダー ファイル\ER</Filter>
+    </ClInclude>
+    <ClInclude Include="source\er\er.h">
+      <Filter>ヘッダー ファイル\ER</Filter>
+    </ClInclude>
+    <ClInclude Include="source\er\relation.h">
+      <Filter>ヘッダー ファイル\ER</Filter>
+    </ClInclude>
+    <ClInclude Include="source\log\logger.h">
+      <Filter>ヘッダー ファイル\log</Filter>
+    </ClInclude>
+    <ClInclude Include="source\log\consoleLog.h">
+      <Filter>ヘッダー ファイル\log</Filter>
+    </ClInclude>
+    <ClInclude Include="source\parser\command\analysisCommandParser.h">
+      <Filter>ヘッダー ファイル\parser\command</Filter>
+    </ClInclude>
+    <ClInclude Include="source\parser\command\analysisCommandParserFactory.h">
+      <Filter>ヘッダー ファイル\parser\command</Filter>
+    </ClInclude>
+    <ClInclude Include="source\parser\command\analysisCommandXmlParser.h">
+      <Filter>ヘッダー ファイル\parser\command</Filter>
+    </ClInclude>
+    <ClInclude Include="source\parser\ER\ermErParser.h">
+      <Filter>ヘッダー ファイル\parser\ER</Filter>
+    </ClInclude>
+    <ClInclude Include="source\parser\ER\A5erParser.h">
+      <Filter>ヘッダー ファイル\parser\ER</Filter>
+    </ClInclude>
+    <ClInclude Include="source\parser\ER\erParser.h">
+      <Filter>ヘッダー ファイル\parser\ER</Filter>
+    </ClInclude>
+    <ClInclude Include="source\parser\ER\erParserFactory.h">
+      <Filter>ヘッダー ファイル\parser\ER</Filter>
+    </ClInclude>
+    <ClInclude Include="source\reporter\analyticsReport.h">
+      <Filter>ヘッダー ファイル\reporter</Filter>
+    </ClInclude>
+    <ClInclude Include="source\reporter\analyticsReportXlsx.h">
+      <Filter>ヘッダー ファイル\reporter</Filter>
+    </ClInclude>
+    <ClInclude Include="source\reporter\analyticsReportXml.h">
+      <Filter>ヘッダー ファイル\reporter</Filter>
+    </ClInclude>
+    <ClInclude Include="source\reporter\analyticsRowData.h">
+      <Filter>ヘッダー ファイル\reporter</Filter>
+    </ClInclude>
+    <ClInclude Include="source\static_analytics\columnDataTypeChecker.h">
+      <Filter>ヘッダー ファイル\static_analytics</Filter>
+    </ClInclude>
+    <ClInclude Include="source\static_analytics\compRegularExpression.h">
+      <Filter>ヘッダー ファイル\static_analytics</Filter>
+    </ClInclude>
+    <ClInclude Include="source\static_analytics\dBStaticAnalytics.h">
+      <Filter>ヘッダー ファイル\static_analytics</Filter>
+    </ClInclude>
+    <ClInclude Include="source\static_analytics\indexChecker.h">
+      <Filter>ヘッダー ファイル\static_analytics</Filter>
+    </ClInclude>
+    <ClInclude Include="source\static_analytics\relationChecker.h">
+      <Filter>ヘッダー ファイル\static_analytics</Filter>
+    </ClInclude>
+    <ClInclude Include="source\static_analytics\spellChecker.h">
+      <Filter>ヘッダー ファイル\static_analytics</Filter>
+    </ClInclude>
+    <ClInclude Include="source\static_analytics\tableChecker.h">
+      <Filter>ヘッダー ファイル\static_analytics</Filter>
+    </ClInclude>
+    <ClInclude Include="source\reporter\reporter.h">
+      <Filter>ヘッダー ファイル\reporter</Filter>
+    </ClInclude>
+    <ClInclude Include="source\common\common.h">
+      <Filter>ヘッダー ファイル\common</Filter>
+    </ClInclude>
+    <ClInclude Include="source\common\commonString.h">
+      <Filter>ヘッダー ファイル\common</Filter>
+    </ClInclude>
+    <ClInclude Include="source\common\commonXerces.h">
+      <Filter>ヘッダー ファイル\common</Filter>
+    </ClInclude>
+    <ClInclude Include="source\common\commonXml.h">
+      <Filter>ヘッダー ファイル\common</Filter>
+    </ClInclude>
+    <ClInclude Include="test\testCompRegularExpression.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="source\config\spellCheckConfigh.h">
+      <Filter>ヘッダー ファイル\config</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="test-command.xml">
+      <Filter>リソース ファイル</Filter>
+    </Xml>
+  </ItemGroup>
+</Project>
