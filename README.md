@@ -57,12 +57,12 @@ safer.exe --erfile=./sample/bad-test.a5er --cofile=./sample/test-command.xml --o
 
 ## Tutorial for build (for Windows)
 
-1. Get Sorce code
+1. Get source code
   1. Example command : ` git.exe clone --recursive https://github.com/asugeno/safer.git . `
-1. Open the "safer/safer.sln" by "Visual Stdio Express 2013 for Windows Desktop" 
+1. Open the "safer/safer.sln" by "Visual Studio Express 2013 for Windows Desktop" 
 1. Please step on following procedure below in Visual Studio.
-  1. Add libhunspell and XercesLib project to solution of Visual Stdio.
-    1. In Solution Explorer, right-click the safer solution, click Add, and then click Existing Project.
+  1. Add libhunspell and XercesLib project to solution of Visual Studio.
+    1. In Solution Explorer, right-click the "safer" solution, click Add, and then click Existing Project.
     1. In the Add Existing Project dialog box, select Hunspell and Xerces-C++ project then click OK.
   1. Change the project Dependencies.
     1. In Solution Explorer, right-click the ER-StaticAnalysis solution , click Build Dependencies, and then click Project Dependencies.
