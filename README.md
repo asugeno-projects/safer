@@ -12,7 +12,7 @@ Overview
 ## Compatible
 
 * OS
- * Windows OS(version 10 or 7)
+ * Windows 7 or later (Tested by 7 Professional and 10 Professional) 
  
 * ER design file's format
  * A5:SQL Mk-2
@@ -59,7 +59,7 @@ safer.exe --erfile=./sample/bad-test.a5er --cofile=./sample/test-command.xml --o
 
 1. Get source code
   1. Example command : ` git.exe clone --recursive https://github.com/asugeno/safer.git . `
-1. Open the "safer/safer.sln" by "Visual Studio Express 2013 for Windows Desktop" 
+1. Open the "safer/safer.sln" by "Visual Studio 2013" (e.g. "Visual Studio Express 2013 for Windows Desktop")
 1. Please step on following procedure below in Visual Studio.
   1. Add libhunspell and XercesLib project to solution of Visual Studio.
     1. In Solution Explorer, right-click the "safer" solution, click Add, and then click Existing Project.
