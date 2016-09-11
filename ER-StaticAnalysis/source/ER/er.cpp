@@ -19,8 +19,8 @@ ER::~ER()
 	std::for_each(this->entitys.begin(), this->entitys.end(), [](class Entity *p) { delete p; });
 	this->entitys.clear();
 
-	std::for_each(this->relations.begin(), this->relations.end(), [](class Relation *p) { delete p; });
-	this->relations.clear();
+	std::for_each(this->relationships.begin(), this->relationships.end(), [](class Relationship *p) { delete p; });
+	this->relationships.clear();
 
 	//entityMapのEntityポインタが指す実体は、entitysで管理しているため、entityMapの内部に格納しているポインタに対してはdelete命令を行わない。
 }

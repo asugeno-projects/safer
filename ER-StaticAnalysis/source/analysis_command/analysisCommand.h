@@ -49,8 +49,8 @@ enum TargetList{
 	//! インデックス
 	E_Index,
 
-	//! リレーション
-	E_Relation,
+	//! リレーションシップ
+	E_Relationship,
 
 	//! ターゲットタイプ最大数
 	E_TargetMax
@@ -70,8 +70,8 @@ enum CommandTypeList{
 	//! スペルチェック
 	E_SpellCheck,
 
-	//! リレーションチェック
-	E_RelationCheck,
+	//! リレーションシップチェック
+	E_RelationshipCheck,
 
 	//! インデックスチェック
 	E_IndexCheck,
@@ -254,7 +254,7 @@ static map<CommandTypeList, std::wstring> CommandTypeLogicalNameList = {
 	CommandTypeLogicalName(CommandTypeList::E_Comparison, L"正規表現"),
 	CommandTypeLogicalName(CommandTypeList::E_TypeCheck, L"データ型チェック"),
 	CommandTypeLogicalName(CommandTypeList::E_SpellCheck, L"スペルチェック"),
-	CommandTypeLogicalName(CommandTypeList::E_RelationCheck, L"リレーションチェック"),
+	CommandTypeLogicalName(CommandTypeList::E_RelationshipCheck, L"リレーションシップチェック"),
 	CommandTypeLogicalName(CommandTypeList::E_IndexCheck, L"インデックスチェック"),
 	CommandTypeLogicalName(CommandTypeList::E_ErDesignCheck, L"ER設計チェック")
 };
@@ -286,7 +286,7 @@ static map<std::string, TargetList> targetList = {
 	TargetListItem("TableComment", TargetList::E_TableComment),
 	TargetListItem("ColumnComment", TargetList::E_ColumnComment),
 	TargetListItem("Index", TargetList::E_Index),
-	TargetListItem("Relation", TargetList::E_Relation)
+	TargetListItem("Relationship", TargetList::E_Relationship)
 };
 
 const std::string PROJECT_TAG = "Project";

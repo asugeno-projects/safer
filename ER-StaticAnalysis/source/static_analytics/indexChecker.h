@@ -16,7 +16,7 @@
 
 #include <string>
 #include "../ER/entity.h"
-#include "../ER/relation.h"
+#include "../ER/relationship.h"
 
 /**
 * @class IndexChecker
@@ -33,7 +33,7 @@ private:
 	//! レポート出力用文字列 Primary Key不足指摘コメント
 	const std::wstring COMMENT_FOR_NO_PRIMARYKEY = L"Primary Keyの設定がありません。\nPrimary Keyの設定を推奨します。";
 	//! レポート出力用文字列 Index不足指摘コメント
-	const std::wstring COMMENT_FOR_NO_INDEX = L"リレーション情報には登録されていますが、Index情報がありません。\nリレーションが設定されている場合、SELECTなどで参照される可能性があるためIndexの設定をしたほうが良い可能性があります。";
+	const std::wstring COMMENT_FOR_NO_INDEX = L"リレーションシップ情報には登録されていますが、Index情報がありません。\nリレーションシップが設定されている場合、SELECTなどで参照される可能性があるためIndexの設定をしたほうが良い可能性があります。";
 	//! レポート出力用文字列 Indexの過剰設定の指摘コメント
 	const std::wstring COMMENT_FOR_TOO_MUCH_INDEX = L"Secondary Indexの数が規定値を超えています。\nSecondary Indexが多すぎる場合は、オプティマイザが正常に動かなくなる可能性があります。";
 	//! インデックス過剰判定用の定数 To Do:設定ファイルに移したい
@@ -52,7 +52,7 @@ public:
 	bool isSetColumnInIndex(const std::wstring columnName, const Entity::PK_MAP_TYPE pks, const Entity::INDEXS_LIST_TYPE indexs);
 	
 	//! 外部キー制約に設定されているカラムがIndexに登録されているかチェック
-	void checkForeignKeyIsInIndex(const Relation::DEPEND_KEY_LIST & dependKeyList, const Entity * const entity);
+	void checkForeignKeyIsInIndex(const Relationship::DEPEND_KEY_LIST & dependKeyList, const Entity * const entity);
 };
 
 #endif //RDS_ER_STATICANALYSIS_SOURCE_STATIC_ANALYTICS_INDEXCHECKER_H_

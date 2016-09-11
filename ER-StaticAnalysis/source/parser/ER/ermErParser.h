@@ -39,21 +39,21 @@ private:
 	/*! Entityクラスへのデータ投入関数群 */
 	typedef std::map <std::string, void(*)(class Entity *, struct NodeParams*, DOMNode*, ErmErParser*)> SetErmErFunc;
 
-	typedef std::map <std::string, void(*)(Relation *, NodeParams*, ErmErParser*)> SetErmRelationFunc;
+	typedef std::map <std::string, void(*)(Relationship *, NodeParams*, ErmErParser*)> SetErmRelationshipFunc;
 
 	typedef std::map <std::string, fieldParam *(*)(fieldParam *, NodeParams*, bool *, std::string *, Entity *, ErmErParser*)> SetErmFieldFunc;
 
 	typedef std::map <std::string, void(*)(Entity *, DOMNode*, ErmErParser*) > SetErmIndexFunc;
 
-	typedef std::map <std::string, Relation::CardinalityTypeList> CardinalityConverter;
+	typedef std::map <std::string, Relationship::CardinalityTypeList> CardinalityConverter;
 
 	std::map<std::string, fieldParam> wordsMap;
 	std::map<std::string, fieldParam*> fieldsMap;
-	std::map<std::string, std::list<std::wstring>> relationMap;
+	std::map<std::string, std::list<std::wstring>> relationshipMap;
 	std::map<std::string, Entity*> entitysMap;
 	std::map<std::string, Entity*> entitysIdMap;
 
-	std::list<std::string> relationId;
+	std::list<std::string> relationshipId;
 
 	const std::string TABLE = "table";
 	const std::string NORMAL_COLUMN = "normal_column";
@@ -65,8 +65,8 @@ private:
 	const std::string INDEXES = "indexes";
 
 	const std::string ID = "id";
-	const std::string RELATION_SOURCE = "source";
-	const std::string RELATION_TARGET = "target";
+	const std::string RELATIONSHIP_SOURCE = "source";
+	const std::string RELATIONSHIP_TARGET = "target";
 
 	const std::string PARENT_CARDINALITY = "parent_cardinality";
 	const std::string CHILD_CARDINALITY = "child_cardinality";
@@ -79,7 +79,7 @@ private:
 	const std::string WORD = "word";
 	const std::string WORD_ID = "word_id";
 	const std::string REFERENCED_COLUMN = "referenced_column";
-	const std::string RELATION = "relation";
+	const std::string RELATIONSHIP = "relationship";
 	const std::string NOT_NULL = "not_null";
 	const std::string NULL_STRING = "null";
 	const std::string DEFAULT_VALUE = "default_value";
@@ -119,44 +119,44 @@ public:
 	static void setColumnType(class fieldParam *field, struct NodeParams* param);
 	//! Columnコメント情報をColumnインスタンスににセットする
 	static void setColumnComment(class fieldParam *field, struct NodeParams* param);
-	//! リレーション情報生成関数
-	void createRelation(ER *er, DOMNodeList* relationObject);
+	//! リレーションシップ情報生成関数
+	void createRelationship(ER *er, DOMNodeList* relationshipObject);
 
-	//! リレーション関係にあるカラム名情報をリレーションインスタンスにセットする
-	static void setDependKeyList(Relation * relation, NodeParams* nodeParam, ErmErParser* instance);
-	//! リレーション関係にあるEntityインスタンスのポインタ情報をリレーションインスタンスにセットする
-	static void setEntityForRelation(Relation * relation, NodeParams* nodeParam, ErmErParser* instance);
-	//! Entity1のカーディナリティ(多重度)情報をリレーションインスタンスにセットする
-	static void setCardinality1(Relation * relation, NodeParams* nodeParam, ErmErParser* instance);
-	//! Entity2のカーディナリティ(多重度)情報をリレーションインスタンスにセットする
-	static void setCardinality2(Relation * relation, NodeParams* nodeParam, ErmErParser* instance);
+	//! リレーションシップ関係にあるカラム名情報をリレーションシップインスタンスにセットする
+	static void setDependKeyList(Relationship * relationship, NodeParams* nodeParam, ErmErParser* instance);
+	//! リレーションシップ関係にあるEntityインスタンスのポインタ情報をリレーションシップインスタンスにセットする
+	static void setEntityForRelationship(Relationship * relationship, NodeParams* nodeParam, ErmErParser* instance);
+	//! Entity1のカーディナリティ(多重度)情報をリレーションシップインスタンスにセットする
+	static void setCardinality1(Relationship * relationship, NodeParams* nodeParam, ErmErParser* instance);
+	//! Entity2のカーディナリティ(多重度)情報をリレーションシップインスタンスにセットする
+	static void setCardinality2(Relationship * relationship, NodeParams* nodeParam, ErmErParser* instance);
 
 	//! フィールドマップからフィールド情報を取得する
-	static fieldParam * getFieldForFieldsMap(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance);
-	//! リレーションIDをセットする関数
-	static fieldParam * addRelationId(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance);
+	static fieldParam * getFieldForFieldsMap(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance);
+	//! リレーションシップIDをセットする関数
+	static fieldParam * addRelationshipId(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance);
 	//! Column情報をセットする関数
-	static fieldParam * setColomnParam(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance);
+	static fieldParam * setColomnParam(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance);
 	//! Not Null制約のフラグをColumn情報にセットする
-	static fieldParam * setNotNullFlg(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance);
+	static fieldParam * setNotNullFlg(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance);
 	//! デフォルトパラメータのフラグをColumn情報にセットする
-	static fieldParam * setDefaultParam(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance);
+	static fieldParam * setDefaultParam(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance);
 	//! AUTO INCREMENT情報をColumn情報にセットする
-	static fieldParam * setAutoIncrement(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance);
+	static fieldParam * setAutoIncrement(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance);
 	//! Primary Key情報をEntityインスタンスにセットする
-	static fieldParam * setPrimaryKey(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance);
+	static fieldParam * setPrimaryKey(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance);
 
 	//! 参照関係にあるColumnをコピー作成し、新たにフィールドマップに登録し直す
 	void recursiveSetFieldMap(std::string originalId, std::string id, std::map<std::string, std::list<std::string>> * referenceFielsMap);
 	//! インデックス情報をセットする関数
 	static void setIndexColumns(Entity * entity, DOMNode* columnsNode, ErmErParser* instance);
 
-	std::list<std::wstring> getRelationMap(std::string name){ return relationMap[name]; };
+	std::list<std::wstring> getRelationshipMap(std::string name){ return relationshipMap[name]; };
 	fieldParam getWordMap(std::string name){ return wordsMap[name]; };
 	//! ER Master形式のER図ファイルをパースし、ERデータを生成する関数
 	class ER * parse(void);
 	SetErmErFunc setErmErFunc;
-	SetErmRelationFunc setErmRelationFunc;
+	SetErmRelationshipFunc setErmRelationshipFunc;
 	CardinalityConverter cardinalityConverter;
 	SetErmFieldFunc setErmFieldFunc;
 	SetErmIndexFunc setErmIndexFunc;
@@ -170,8 +170,8 @@ public:
 	void ErmErParser::setFieldsMap(DOMElement *domElement);
 	//! DOM Elementからカラムデータを取得し、カラム参照情報を元にカラム情報を合成する関数
 	void ErmErParser::mergeFieldsMapAndReferenceField(DOMElement *domElement);
-	//! Relation情報を生成関数
-	void ErmErParser::setRelation(DOMElement *domElement, class ER *er);
+	//! Relationship情報を生成関数
+	void ErmErParser::setRelationship(DOMElement *domElement, class ER *er);
 	//! カテゴリ(TAG)情報を登録関数
 	void ErmErParser::setTag(DOMElement *domElement);
 	//! Entity情報を生成関数

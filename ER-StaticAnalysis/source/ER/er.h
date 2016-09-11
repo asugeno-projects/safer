@@ -19,7 +19,7 @@
 #include <map>
 
 #include "./entity.h"
-#include "./relation.h"
+#include "./relationship.h"
 
 /*! @class ER
 ERクラス
@@ -32,7 +32,7 @@ public:
 	/*! @brief Entityマップ定義 */
 	typedef std::map<std::wstring, class Entity *> entity_map;
 	std::list <class Entity *> entitys;/*!< エンティティ(テーブル)リスト */
-	std::list <class Relation *> relations;/*!< リレーションリスト */
+	std::list <class Relationship *> relationships;/*!< リレーションシップリスト */
 	entity_map entityMap;/*!< テーブルマップ(Keyがエンティティ(テーブル)名) */
 	/*! ERクラスデストラクタ */
 	~ER();

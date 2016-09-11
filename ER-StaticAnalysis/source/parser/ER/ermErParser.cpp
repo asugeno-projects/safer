@@ -73,8 +73,8 @@ class ER * ErmErParser::parse(void)
 		//Entityにカラム情報をセットする
 		this->setEntity(root, er);
 
-		//relation情報の設定
-		this->setRelation(root, er);
+		//relationship情報の設定
+		this->setRelationship(root, er);
 
 		//カテゴリ(TAG)情報設定
 		this->setTag(root);
@@ -325,30 +325,30 @@ void ErmErParser::setEntity(DOMElement *domElement, ER *er)
 }
 
 /**
-* @fn void ErmErParser::setRelation(DOMElement *domElement, ER *er)
-* @brief Relation情報を生成関数
+* @fn void ErmErParser::setRelationship(DOMElement *domElement, ER *er)
+* @brief Relationship情報を生成関数
 * @param domElement ER MasterのER情報を格納したDOMオブジェクト
 * @param er ER図情報を格納するクラスのインスタンス
-* @details DOM ElementからRelation情報を抽出し、Relationの一覧を生成する関数
+* @details DOM ElementからRelationship情報を抽出し、Relationshipの一覧を生成する関数
 */
-void ErmErParser::setRelation(DOMElement *domElement, ER *er)
+void ErmErParser::setRelationship(DOMElement *domElement, ER *er)
 {
-	//Relation情報をDOMNodeリストとして取得
-	DOMNodeList* relationNodeList = getElementByCharTagName(domElement, ErmErParser::RELATION.c_str());
+	//Relationship情報をDOMNodeリストとして取得
+	DOMNodeList* relationshipNodeList = getElementByCharTagName(domElement, ErmErParser::RELATIONSHIP.c_str());
 
-	//Relationの数を取得する
-	int relationNum = (int)(relationNodeList->getLength());
+	//Relationshipの数を取得する
+	int relationshipNum = (int)(relationshipNodeList->getLength());
 
-	//Relationの数だけループ処理を行う
-	for (int i = 0; i < relationNum; i++)
+	//Relationshipの数だけループ処理を行う
+	for (int i = 0; i < relationshipNum; i++)
 	{
-		//Relationの要素とノードパラメータを取得する
-		NodeParams* param = getNodeDataString(relationNodeList->item(i));
+		//Relationshipの要素とノードパラメータを取得する
+		NodeParams* param = getNodeDataString(relationshipNodeList->item(i));
 		if (!std::all_of(param->param.cbegin(), param->param.cend(), isdigit))
 		{
 			//文字列情報が数字でなかった場合、
-			//下記のRelation情報インスタンス生成関数を実行する
-			this->createRelation(er, relationNodeList->item(i)->getChildNodes());
+			//下記のRelationship情報インスタンス生成関数を実行する
+			this->createRelationship(er, relationshipNodeList->item(i)->getChildNodes());
 		}
 
 		//パラメータ情報の持った変数のメモリを解放
@@ -511,8 +511,8 @@ void ErmErParser::setColumns(Entity *entity, struct NodeParams* param, DOMNode* 
 		fieldParam * field = NULL;
 		//Primary KeyIDを保持する変数
 		int pkId = 0;
-		//リレーション関係にあるカラム情報であるかを保持する変数
-		bool relationFlg = false;
+		//リレーションシップ関係にあるカラム情報であるかを保持する変数
+		bool relationshipFlg = false;
 		//ColumnID情報を保持する変数
 		std::string id;
 		//Columnパラメータの数を取得
@@ -529,7 +529,7 @@ void ErmErParser::setColumns(Entity *entity, struct NodeParams* param, DOMNode* 
 			if (it != instance->setErmFieldFunc.end())
 			{
 				//Columnのパラメータをセットする
-				field = it->second(field, param, &relationFlg, &id, entity, instance);
+				field = it->second(field, param, &relationshipFlg, &id, entity, instance);
 			}
 			//パラメータ情報のために確保したメモリを解放する
 			delete param;
@@ -539,40 +539,40 @@ void ErmErParser::setColumns(Entity *entity, struct NodeParams* param, DOMNode* 
 			//Column情報が生成された場合、EntityインスタンスのColumnリストに登録する
 			entity->setfields(*field);
 		}
-		if (relationFlg == true)
+		if (relationshipFlg == true)
 		{
-			//リレーション関係にあるColumnだった場合、リレーションマップ変数に物理カラム名をセットする
-			//リレーション定義の数だけループ処理を行う
-			for (auto relationIdIt = instance->relationId.begin(); relationIdIt != instance->relationId.end(); relationIdIt++)
+			//リレーションシップ関係にあるColumnだった場合、リレーションシップマップ変数に物理カラム名をセットする
+			//リレーションシップ定義の数だけループ処理を行う
+			for (auto relationshipIdIt = instance->relationshipId.begin(); relationshipIdIt != instance->relationshipId.end(); relationshipIdIt++)
 			{
-				//リレーションIDとColumn物理名を紐付ける
-				instance->relationMap[(*relationIdIt)].push_back(field->name.physicalName);
-				if (instance->entitysMap.find((*relationIdIt)) == instance->entitysMap.end())
+				//リレーションシップIDとColumn物理名を紐付ける
+				instance->relationshipMap[(*relationshipIdIt)].push_back(field->name.physicalName);
+				if (instance->entitysMap.find((*relationshipIdIt)) == instance->entitysMap.end())
 				{
 					//EntityインスタンスをEntityMapにセットする
-					instance->entitysMap.insert(make_pair((*relationIdIt), entity));
+					instance->entitysMap.insert(make_pair((*relationshipIdIt), entity));
 				}
 			}
 		}
-		//リレーションIDリストをクリアする
-		instance->relationId.clear();
+		//リレーションシップIDリストをクリアする
+		instance->relationshipId.clear();
 
 	}
 }
 
 /**
-* @fn fieldParam * ErmErParser::getFieldForFieldsMap(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
+* @fn fieldParam * ErmErParser::getFieldForFieldsMap(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
 * @brief フィールドマップからフィールド情報を取得する
 * @param field フィールドパラメータ
 * @param nodeParam ノードパラメータ
-* @param relationFlg リレーション判定フラグ
+* @param relationshipFlg リレーションシップ判定フラグ
 * @param fieldId フィールドID
 * @param entity Entityインスタンス
 * @param instance ErmErParserインスタンス
 * @return field Columnインスタンスのポインタ情報
 * @details フィールドマップからフィールド情報を取得する
 */
-fieldParam * ErmErParser::getFieldForFieldsMap(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
+fieldParam * ErmErParser::getFieldForFieldsMap(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
 {
 	if (instance->fieldsMap.find(nodeParam->param) != instance->fieldsMap.end())
 	{
@@ -586,39 +586,39 @@ fieldParam * ErmErParser::getFieldForFieldsMap(fieldParam * field, NodeParams* n
 }
 
 /**
-* @fn fieldParam * ErmErParser::addRelationId(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
-* @brief リレーションIDをセットする関数
+* @fn fieldParam * ErmErParser::addRelationshipId(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
+* @brief リレーションシップIDをセットする関数
 * @param field フィールドパラメータ
 * @param nodeParam ノードパラメータ
-* @param relationFlg リレーション判定フラグ
+* @param relationshipFlg リレーションシップ判定フラグ
 * @param fieldId フィールドID
 * @param entity Entityインスタンス
 * @param instance ErmErParserインスタンス
 * @return field Columnインスタンスのポインタ情報
-* @details リレーションIDをセットする関数
+* @details リレーションシップIDをセットする関数
 */
-fieldParam * ErmErParser::addRelationId(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
+fieldParam * ErmErParser::addRelationshipId(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
 {
-	//リレーションフラグをtrueにする
-	*relationFlg = true;
-	//リレーション関係候補リストにID情報をセットする
-	instance->relationId.push_back(nodeParam->param);
+	//リレーションシップフラグをtrueにする
+	*relationshipFlg = true;
+	//リレーションシップ関係候補リストにID情報をセットする
+	instance->relationshipId.push_back(nodeParam->param);
 	return field;
 }
 
 /**
-* @fn fieldParam * ErmErParser::setColomnParam(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
+* @fn fieldParam * ErmErParser::setColomnParam(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
 * @brief Column情報をセットする関数
 * @param field フィールドパラメータ
 * @param nodeParam ノードパラメータ
-* @param relationFlg リレーション判定フラグ
+* @param relationshipFlg リレーションシップ判定フラグ
 * @param fieldId フィールドID
 * @param entity Entityインスタンス
 * @param instance ErmErParserインスタンス
 * @return field Columnインスタンスのポインタ情報
 * @details Column情報をセットする関数
 */
-fieldParam * ErmErParser::setColomnParam(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
+fieldParam * ErmErParser::setColomnParam(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
 {
 	//Column情報セット関数を取得する
 	SetErmColumnFunc::iterator it = setErmColumnFunc.find(nodeParam->name);
@@ -631,18 +631,18 @@ fieldParam * ErmErParser::setColomnParam(fieldParam * field, NodeParams* nodePar
 }
 
 /**
-* @fn fieldParam * ErmErParser::setNotNullFlg(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
+* @fn fieldParam * ErmErParser::setNotNullFlg(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
 * @brief Not Null制約のフラグをColumn情報にセットする
 * @param field フィールドパラメータ
 * @param nodeParam ノードパラメータ
-* @param relationFlg リレーション判定フラグ
+* @param relationshipFlg リレーションシップ判定フラグ
 * @param fieldId フィールドID
 * @param entity Entityインスタンス
 * @param instance ErmErParserインスタンス
 * @return field Columnインスタンスのポインタ情報
 * @details Not Null制約のフラグをColumn情報にセットする
 */
-fieldParam * ErmErParser::setNotNullFlg(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
+fieldParam * ErmErParser::setNotNullFlg(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
 {
 	//Not Null制約
 	if (field != NULL)
@@ -654,18 +654,18 @@ fieldParam * ErmErParser::setNotNullFlg(fieldParam * field, NodeParams* nodePara
 }
 
 /**
-* @fn fieldParam * ErmErParser::setDefaultParam(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
+* @fn fieldParam * ErmErParser::setDefaultParam(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
 * @brief デフォルトパラメータのフラグをColumn情報にセットする
 * @param field フィールドパラメータ
 * @param nodeParam ノードパラメータ
-* @param relationFlg リレーション判定フラグ
+* @param relationshipFlg リレーションシップ判定フラグ
 * @param fieldId フィールドID
 * @param entity Entityインスタンス
 * @param instance ErmErParserインスタンス
 * @return field Columnインスタンスのポインタ情報
 * @details デフォルトパラメータのフラグをColumn情報にセットする
 */
-fieldParam * ErmErParser::setDefaultParam(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
+fieldParam * ErmErParser::setDefaultParam(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
 {
 	if (field != NULL)
 	{
@@ -676,18 +676,18 @@ fieldParam * ErmErParser::setDefaultParam(fieldParam * field, NodeParams* nodePa
 }
 
 /**
-* @fn fieldParam * ErmErParser::setAutoIncrement(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
+* @fn fieldParam * ErmErParser::setAutoIncrement(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
 * @brief AUTO INCREMENT情報をColumn情報にセットする
 * @param field フィールドパラメータ
 * @param nodeParam ノードパラメータ
-* @param relationFlg リレーション判定フラグ
+* @param relationshipFlg リレーションシップ判定フラグ
 * @param fieldId フィールドID
 * @param entity Entityインスタンス
 * @param instance ErmErParserインスタンス
 * @return field Columnインスタンスのポインタ情報
 * @details AUTO INCREMENT情報をColumn情報にセットする
 */
-fieldParam * ErmErParser::setAutoIncrement(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
+fieldParam * ErmErParser::setAutoIncrement(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
 {
 	if (field != NULL && boost::iequals(instance->BOOL_TRUE, nodeParam->param))
 	{
@@ -698,18 +698,18 @@ fieldParam * ErmErParser::setAutoIncrement(fieldParam * field, NodeParams* nodeP
 }
 
 /**
-* @fn fieldParam * ErmErParser::setPrimaryKey(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
+* @fn fieldParam * ErmErParser::setPrimaryKey(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
 * @brief Primary Key情報をEntityインスタンスにセットする
 * @param field フィールドパラメータ
 * @param nodeParam ノードパラメータ
-* @param relationFlg リレーション判定フラグ
+* @param relationshipFlg リレーションシップ判定フラグ
 * @param fieldId フィールドID
 * @param entity Entityインスタンス
 * @param instance ErmErParserインスタンス
 * @return field Columnインスタンスのポインタ情報
 * @details Primary Key情報をEntityインスタンスにセットする
 */
-fieldParam * ErmErParser::setPrimaryKey(fieldParam * field, NodeParams* nodeParam, bool *relationFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
+fieldParam * ErmErParser::setPrimaryKey(fieldParam * field, NodeParams* nodeParam, bool *relationshipFlg, std::string *fieldId, Entity * entity, ErmErParser* instance)
 {
 	if (field != NULL && boost::iequals(instance->BOOL_TRUE, nodeParam->param))
 	{
@@ -720,33 +720,33 @@ fieldParam * ErmErParser::setPrimaryKey(fieldParam * field, NodeParams* nodePara
 }
 
 /**
-* @fn void ErmErParser::createRelation(ER *er, DOMNodeList* relationObject)
-* @brief リレーション情報生成関数
+* @fn void ErmErParser::createRelationship(ER *er, DOMNodeList* relationshipObject)
+* @brief リレーションシップ情報生成関数
 * @param er フィールドパラメータ
-* @param relationObject ノードパラメータ
-* @details リレーション情報生成関数
+* @param relationshipObject ノードパラメータ
+* @details リレーションシップ情報生成関数
 */
-void ErmErParser::createRelation(ER *er, DOMNodeList* relationObject)
+void ErmErParser::createRelationship(ER *er, DOMNodeList* relationshipObject)
 {
-	//リレーションインスタンスを生成する
-	Relation *relation = new Relation();
-	//リレーションリストにリレーションインスタンスをセットする
-	er->relations.push_back(relation);
-	//リレーションパラメータ数を取得
-	int relationNum = relationObject->getLength();
-	//リレーションのパラメータの数だけループ処理
-	for (int j = 0; j < relationNum; j++)
+	//リレーションシップインスタンスを生成する
+	Relationship *relationship = new Relationship();
+	//リレーションシップリストにリレーションシップインスタンスをセットする
+	er->relationships.push_back(relationship);
+	//リレーションシップパラメータ数を取得
+	int relationshipNum = relationshipObject->getLength();
+	//リレーションシップのパラメータの数だけループ処理
+	for (int j = 0; j < relationshipNum; j++)
 	{
-		//リレーションのパラメータ情報を保持するDOMノードを取得する
-		DOMNode* node = relationObject->item(j);
-		//リレーションのパラメータ情報を文字列情報に変換する
+		//リレーションシップのパラメータ情報を保持するDOMノードを取得する
+		DOMNode* node = relationshipObject->item(j);
+		//リレーションシップのパラメータ情報を文字列情報に変換する
 		NodeParams* param = getNodeDataString(node);
-		//リレーションパラメータを処理する関数を取得する
-		SetErmRelationFunc::iterator it = this->setErmRelationFunc.find(param->name);
-		if (it != this->setErmRelationFunc.end())
+		//リレーションシップパラメータを処理する関数を取得する
+		SetErmRelationshipFunc::iterator it = this->setErmRelationshipFunc.find(param->name);
+		if (it != this->setErmRelationshipFunc.end())
 		{
-			//リレーションパラメータ名に従って処理を行う
-			it->second(relation, param, this);
+			//リレーションシップパラメータ名に従って処理を行う
+			it->second(relationship, param, this);
 		}
 		//一時的に確保されたパラメータのメモリを解放する
 		delete param;
@@ -818,75 +818,75 @@ void ErmErParser::setColumnComment(class fieldParam *field, struct NodeParams* p
 }
 
 /**
-* @fn void ErmErParser::setDependKeyList(Relation * relation, NodeParams* nodeParam, ErmErParser* instance)
-* @brief リレーション関係にあるカラム名情報をリレーションインスタンスにセットする
-* @param relation リレーションインスタンス
+* @fn void ErmErParser::setDependKeyList(Relationship * relationship, NodeParams* nodeParam, ErmErParser* instance)
+* @brief リレーションシップ関係にあるカラム名情報をリレーションシップインスタンスにセットする
+* @param relationship リレーションシップインスタンス
 * @param nodeParam ノードパラメータ
 * @param instance ErmErParserインスタンス
-* @details リレーション関係にあるカラム名情報をリレーションインスタンスにセットする
+* @details リレーションシップ関係にあるカラム名情報をリレーションシップインスタンスにセットする
 */
-void ErmErParser::setDependKeyList(Relation * relation, NodeParams* nodeParam, ErmErParser* instance)
+void ErmErParser::setDependKeyList(Relationship * relationship, NodeParams* nodeParam, ErmErParser* instance)
 {
-	//リレーションの依存Columnをセットする
+	//リレーションシップの依存Columnをセットする
 	//ER Masterの場合、依存Columnは同一Columnとして保持させるため、Column名が変わらない
 	//そのため、下記のように同じ名前がセットされている前提で処理を実装できる
-	std::list<std::wstring>dependKeyList = instance->getRelationMap(nodeParam->param);
+	std::list<std::wstring>dependKeyList = instance->getRelationshipMap(nodeParam->param);
 	for (auto keyIt = dependKeyList.begin(); keyIt != dependKeyList.end(); keyIt++)
 	{
-		relation->setEntity1DependKey(*keyIt);
-		relation->setEntity2DependKey(*keyIt);
+		relationship->setEntity1DependKey(*keyIt);
+		relationship->setEntity2DependKey(*keyIt);
 	}
 }
 
 /**
-* @fn void ErmErParser::setEntityForRelation(Relation * relation, NodeParams* nodeParam, ErmErParser* instance)
-* @brief リレーション関係にあるEntityインスタンスのポインタ情報をリレーションインスタンスにセットする
-* @param relation リレーションインスタンス
+* @fn void ErmErParser::setEntityForRelationship(Relationship * relationship, NodeParams* nodeParam, ErmErParser* instance)
+* @brief リレーションシップ関係にあるEntityインスタンスのポインタ情報をリレーションシップインスタンスにセットする
+* @param relationship リレーションシップインスタンス
 * @param nodeParam ノードパラメータ
 * @param instance ErmErParserインスタンス
-* @details リレーション関係にあるEntityインスタンスのポインタ情報をリレーションインスタンスにセットする
+* @details リレーションシップ関係にあるEntityインスタンスのポインタ情報をリレーションシップインスタンスにセットする
 */
-void ErmErParser::setEntityForRelation(Relation * relation, NodeParams* nodeParam, ErmErParser* instance)
+void ErmErParser::setEntityForRelationship(Relationship * relationship, NodeParams* nodeParam, ErmErParser* instance)
 {
-	//リレーション関係にありEntityのポインタをセットする
-	relation->setEntity(instance->entitysIdMap[nodeParam->param]);
+	//リレーションシップ関係にありEntityのポインタをセットする
+	relationship->setEntity(instance->entitysIdMap[nodeParam->param]);
 }
 
 /**
-* @fn void ErmErParser::setCardinality1(Relation * relation, NodeParams* nodeParam, ErmErParser* instance)
-* @brief Entity1のカーディナリティ(多重度)情報をリレーションインスタンスにセットする
-* @param relation リレーションインスタンス
+* @fn void ErmErParser::setCardinality1(Relationship * relationship, NodeParams* nodeParam, ErmErParser* instance)
+* @brief Entity1のカーディナリティ(多重度)情報をリレーションシップインスタンスにセットする
+* @param relationship リレーションシップインスタンス
 * @param nodeParam ノードパラメータ
 * @param instance ErmErParserインスタンス
-* @details Entity1のカーディナリティ(多重度)情報をリレーションインスタンスにセットする
+* @details Entity1のカーディナリティ(多重度)情報をリレーションシップインスタンスにセットする
 */
-void ErmErParser::setCardinality1(Relation * relation, NodeParams* nodeParam, ErmErParser* instance)
+void ErmErParser::setCardinality1(Relationship * relationship, NodeParams* nodeParam, ErmErParser* instance)
 {
 	//カーディナリティ(多重度)によってセットするパラメータを取得する
 	ErmErParser::CardinalityConverter::iterator it = instance->cardinalityConverter.find(nodeParam->param);
 	if (it != instance->cardinalityConverter.end())
 	{
 		//指定されたカーディナリティ(多重度)に沿ったパラメータをセットする
-		relation->setCardinalityType1(it->second);
+		relationship->setCardinalityType1(it->second);
 	}
 }
 
 /**
-* @fn void ErmErParser::setCardinality2(Relation * relation, NodeParams* nodeParam, ErmErParser* instance)
-* @brief Entity2のカーディナリティ(多重度)情報をリレーションインスタンスにセットする
-* @param relation リレーションインスタンス
+* @fn void ErmErParser::setCardinality2(Relationship * relationship, NodeParams* nodeParam, ErmErParser* instance)
+* @brief Entity2のカーディナリティ(多重度)情報をリレーションシップインスタンスにセットする
+* @param relationship リレーションシップインスタンス
 * @param nodeParam ノードパラメータ
 * @param instance ErmErParserインスタンス
-* @details Entity2のカーディナリティ(多重度)情報をリレーションインスタンスにセットする
+* @details Entity2のカーディナリティ(多重度)情報をリレーションシップインスタンスにセットする
 */
-void ErmErParser::setCardinality2(Relation * relation, NodeParams* nodeParam, ErmErParser* instance)
+void ErmErParser::setCardinality2(Relationship * relationship, NodeParams* nodeParam, ErmErParser* instance)
 {
 	//カーディナリティ(多重度)によってセットするパラメータを取得する
 	ErmErParser::CardinalityConverter::iterator it = instance->cardinalityConverter.find(nodeParam->param);
 	if (it != instance->cardinalityConverter.end())
 	{
 		//指定されたカーディナリティ(多重度)に沿ったパラメータをセットする
-		relation->setCardinalityType2(it->second);
+		relationship->setCardinalityType2(it->second);
 	}
 }
 
@@ -1012,33 +1012,33 @@ void ErmErParser::setParams()
 	//Columnコメントをセットする関数をセット
 	setErmColumnFunc.insert(make_pair(ErmErParser::COMMENT, ErmErParser::setColumnComment));
 
-	//リレーション関係のセット関数群
+	//リレーションシップ関係のセット関数群
 	//依存Columnセット関数をセット
-	setErmRelationFunc.insert(make_pair(ErmErParser::ID, ErmErParser::setDependKeyList));
-	//リレーション親情報のセット関数をセット
-	setErmRelationFunc.insert(make_pair(ErmErParser::RELATION_SOURCE, ErmErParser::setEntityForRelation));
-	//リレーション子情報のセット関数をセット
-	setErmRelationFunc.insert(make_pair(ErmErParser::RELATION_TARGET, ErmErParser::setEntityForRelation));
+	setErmRelationshipFunc.insert(make_pair(ErmErParser::ID, ErmErParser::setDependKeyList));
+	//リレーションシップ親情報のセット関数をセット
+	setErmRelationshipFunc.insert(make_pair(ErmErParser::RELATIONSHIP_SOURCE, ErmErParser::setEntityForRelationship));
+	//リレーションシップ子情報のセット関数をセット
+	setErmRelationshipFunc.insert(make_pair(ErmErParser::RELATIONSHIP_TARGET, ErmErParser::setEntityForRelationship));
 	//カーディナリティ(多重度)をセットする関数をセット(親)
-	setErmRelationFunc.insert(make_pair(ErmErParser::PARENT_CARDINALITY, ErmErParser::setCardinality1));
+	setErmRelationshipFunc.insert(make_pair(ErmErParser::PARENT_CARDINALITY, ErmErParser::setCardinality1));
 	//カーディナリティ(多重度)をセットする関数をセット(子)
-	setErmRelationFunc.insert(make_pair(ErmErParser::CHILD_CARDINALITY, ErmErParser::setCardinality2));
+	setErmRelationshipFunc.insert(make_pair(ErmErParser::CHILD_CARDINALITY, ErmErParser::setCardinality2));
 
 	//カーディナリティ(多重度)の文字列とIDを紐付ける関数群
 	//多関係のカーディナリティ(多重度)をセット
-	cardinalityConverter.insert(make_pair(ErmErParser::CARDINALITY_MORE, Relation::E_MORE));
+	cardinalityConverter.insert(make_pair(ErmErParser::CARDINALITY_MORE, Relationship::E_MORE));
 	//0、多のカーディナリティ(多重度)をセット
-	cardinalityConverter.insert(make_pair(ErmErParser::CARDINALITY_ZERO_OR_MORE, Relation::E_ZERO_OR_MORE));
+	cardinalityConverter.insert(make_pair(ErmErParser::CARDINALITY_ZERO_OR_MORE, Relationship::E_ZERO_OR_MORE));
 	//1のカーディナリティ(多重度)をセット
-	cardinalityConverter.insert(make_pair(ErmErParser::CARDINALITY_ONE, Relation::E_ONE));
+	cardinalityConverter.insert(make_pair(ErmErParser::CARDINALITY_ONE, Relationship::E_ONE));
 	//0、1のカーディナリティ(多重度)をセット
-	cardinalityConverter.insert(make_pair(ErmErParser::CARDINALITY_ZERO_ONE, Relation::E_ZERO_ONE));
+	cardinalityConverter.insert(make_pair(ErmErParser::CARDINALITY_ZERO_ONE, Relationship::E_ZERO_ONE));
 
 	//Columnパラメータをセットする関数群
 	//ColumnIDをセットする関数
 	setErmFieldFunc.insert(make_pair(ErmErParser::ID, ErmErParser::getFieldForFieldsMap));
 	//参照関係にあるColumn情報を処理する関数のセット
-	setErmFieldFunc.insert(make_pair(ErmErParser::RELATION, ErmErParser::addRelationId));
+	setErmFieldFunc.insert(make_pair(ErmErParser::RELATIONSHIP, ErmErParser::addRelationshipId));
 	//Column物理名をセットする関数をセット
 	setErmFieldFunc.insert(make_pair(ErmErParser::PHYSICAL_NAME, ErmErParser::setColomnParam));
 	//Column論理名をセットする関数をセット

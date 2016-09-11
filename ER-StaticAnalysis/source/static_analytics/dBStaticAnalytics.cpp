@@ -17,7 +17,7 @@
 #include "../static_analytics/compRegularExpression.h"
 #include "columnDataTypeChecker.h"
 #include "spellChecker.h"
-#include "relationChecker.h"
+#include "relationshipChecker.h"
 #include "indexChecker.h"
 #include "../log/logger.h"
 
@@ -37,12 +37,12 @@ void DBStaticAnalytics::run(AnalysisProjects *analysisProjects, ER *er)
 	CompRegularExpression compRegularExpression;
 	ColumnDataTypeChecker columnDataTypeChecker;
 	SpellChecker spellChecker;
-	RelationChecker relationChecker;
+	RelationshipChecker relationshipChecker;
 	IndexChecker indexChecker;
 
-	// Relation Check
-	logger::info() << logger::logPrefix("INFO") << "Relation check start" << endl;
-	relationChecker.run(analysisProjects, er);
+	// Relationship Check
+	logger::info() << logger::logPrefix("INFO") << "Relationship check start" << endl;
+	relationshipChecker.run(analysisProjects, er);
 
 	// Index Check
 	logger::info() << logger::logPrefix("INFO") << "Index check start" << endl;

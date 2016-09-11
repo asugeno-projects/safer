@@ -47,8 +47,8 @@ class ER * A5erParser::parse()
 			logger::info() << logger::logPrefix("INFO") << "parse start" << std::endl;
 
 			//行単位で回して、セクションごとにデータを格納する
-			//ER図情報を確認したところRelationがEntityより先に記述されていることと、
-			//Entityオブジェクトマップを作成してから、Relationに格納するEntityデータはポインタで紐付けたかったためEntity→Relationの順で処理している
+			//ER図情報を確認したところRelationshipがEntityより先に記述されていることと、
+			//Entityオブジェクトマップを作成してから、Relationshipに格納するEntityデータはポインタで紐付けたかったためEntity→Relationshipの順で処理している
 			for (const auto& option : parsedOptions.options) {
 
 				//Debugメッセージ Section表示
@@ -69,7 +69,7 @@ class ER * A5erParser::parse()
 
 			}
 
-			//Relationの解析
+			//Relationshipの解析
 			//行単位で回して、セクションごとにデータを格納する
 			for (const auto& option : parsedOptions.options) {
 
@@ -78,12 +78,12 @@ class ER * A5erParser::parse()
 
 				//Sectionを取得するための正規表現の設定
 				boost::smatch m;
-				boost::regex  rRelation(A5erParser::RELATION_REGEX);
+				boost::regex  rRelationship(A5erParser::RELATIONSHIP_REGEX);
 
-				if (boost::regex_search(option.string_key, m, rRelation))
+				if (boost::regex_search(option.string_key, m, rRelationship))
 				{
-					//Relation関連の処理
-					this->setRelation(er, option);
+					//Relationship関連の処理
+					this->setRelationship(er, option);
 				}
 
 				logger::debug() << std::endl;
@@ -306,51 +306,51 @@ void A5erParser::setParamFuc()
 	//エンティティのIndex情報をセットする関数
 	this->setSectionParamFunc.insert(make_pair(A5erParser::INDEX, A5erParser::setIndexForEntity));
 
-	/* リレーション情報 */
-	//リレーション情報に記録されているエンティティ情報を処理する関数
-	this->setRelationFunc.insert(make_pair(A5erParser::RELATION_ENTITY1_TAG, A5erParser::setRelationEntity));
-	this->setRelationFunc.insert(make_pair(A5erParser::RELATION_ENTITY2_TAG, A5erParser::setRelationEntity));
-	//リレーション情報に記載されている依存カラムを処理する関数
-	this->setRelationFunc.insert(make_pair(A5erParser::RELATION_FIELDS1_TAG, A5erParser::setEntity1DependKey));
-	this->setRelationFunc.insert(make_pair(A5erParser::RELATION_FIELDS2_TAG, A5erParser::setEntity2DependKey));
-	//リレーション情報に記載されているカーディナリティ(多重度)を処理する関数
-	this->setRelationFunc.insert(make_pair(A5erParser::CARDINALITY_TYPE1_TAG, A5erParser::setCardinalityType1));
-	this->setRelationFunc.insert(make_pair(A5erParser::CARDINALITY_TYPE2_TAG, A5erParser::setCardinalityType2));
+	/* リレーションシップ情報 */
+	//リレーションシップ情報に記録されているエンティティ情報を処理する関数
+	this->setRelationshipFunc.insert(make_pair(A5erParser::RELATIONSHIP_ENTITY1_TAG, A5erParser::setRelationshipEntity));
+	this->setRelationshipFunc.insert(make_pair(A5erParser::RELATIONSHIP_ENTITY2_TAG, A5erParser::setRelationshipEntity));
+	//リレーションシップ情報に記載されている依存カラムを処理する関数
+	this->setRelationshipFunc.insert(make_pair(A5erParser::RELATIONSHIP_FIELDS1_TAG, A5erParser::setEntity1DependKey));
+	this->setRelationshipFunc.insert(make_pair(A5erParser::RELATIONSHIP_FIELDS2_TAG, A5erParser::setEntity2DependKey));
+	//リレーションシップ情報に記載されているカーディナリティ(多重度)を処理する関数
+	this->setRelationshipFunc.insert(make_pair(A5erParser::CARDINALITY_TYPE1_TAG, A5erParser::setCardinalityType1));
+	this->setRelationshipFunc.insert(make_pair(A5erParser::CARDINALITY_TYPE2_TAG, A5erParser::setCardinalityType2));
 	//依存フラグを処理する関数
-	this->setRelationFunc.insert(make_pair(A5erParser::RELATION_DEPENDENCE_TAG, A5erParser::setDependenceFlg));
+	this->setRelationshipFunc.insert(make_pair(A5erParser::RELATIONSHIP_DEPENDENCE_TAG, A5erParser::setDependenceFlg));
 }
 
 /**
-* @fn void A5erParser::setRelation(ER * er, const boost::program_options::option & option)
-* @brief Relation情報のセット
+* @fn void A5erParser::setRelationship(ER * er, const boost::program_options::option & option)
+* @brief Relationship情報のセット
 * @param er ER情報格納インスタンス
 * @param option boostオプションインスタンス
-* @details ER図情報格納インスタンスにRelation情報を格納する処理を行う
+* @details ER図情報格納インスタンスにRelationship情報を格納する処理を行う
 */
-void A5erParser::setRelation(ER * er, const boost::program_options::woption & option)
+void A5erParser::setRelationship(ER * er, const boost::program_options::woption & option)
 {
-	std::list<Relation *>::reverse_iterator relationRIT;
+	std::list<Relationship *>::reverse_iterator relationshipRIT;
 
-	if (boost::iequals(option.string_key, A5erParser::RELATION_ENTITY1_TAG)) {
+	if (boost::iequals(option.string_key, A5erParser::RELATIONSHIP_ENTITY1_TAG)) {
 		//物理テーブル名が来た時に新しいEntityインスタンスを生成し、Entity配列に登録する
-		Relation *relation = new Relation();
-		er->relations.push_back(relation);
+		Relationship *relationship = new Relationship();
+		er->relationships.push_back(relationship);
 	}
 
 	//Entity配列の末端のオブジェクトを使用する。かなりの決め打ちであるが、いい感じに効率よくデータをオブジェクト化する方法も思いつかないので、コレで。
-	relationRIT = er->relations.rbegin();
+	relationshipRIT = er->relationships.rbegin();
 
 
 	// Option value is a vector of std::strings.
 	for (const auto& value : option.value)
 	{
 		//セクション名を用いて処理すべき関数情報を持ってくる
-		relation_funcs::iterator it = this->setRelationFunc.find(option.string_key);
-		if (it != this->setRelationFunc.end())
+		relationship_funcs::iterator it = this->setRelationshipFunc.find(option.string_key);
+		if (it != this->setRelationshipFunc.end())
 		{
 
 			//要素を登録する。
-			it->second((*relationRIT), er, value);
+			it->second((*relationshipRIT), er, value);
 			logger::debug() << " " << value;
 		}
 		else
@@ -364,83 +364,83 @@ void A5erParser::setRelation(ER * er, const boost::program_options::woption & op
 }
 
 /**
-* @fn void A5erParser::setRelationEntity(Relation *relation, ER *er, std::string name)
-* @brief RelationにEntity情報を紐付ける処理
-* @param relation Relationインスタンス
+* @fn void A5erParser::setRelationshipEntity(Relationship *relationship, ER *er, std::string name)
+* @brief RelationshipにEntity情報を紐付ける処理
+* @param relationship Relationshipインスタンス
 * @param er ER情報インスタンス
 * @param name Entity名
-* @details RelationにEntity情報を紐付ける処理を行う
+* @details RelationshipにEntity情報を紐付ける処理を行う
 */
-void A5erParser::setRelationEntity(Relation *relation, ER *er, std::wstring name)
+void A5erParser::setRelationshipEntity(Relationship *relationship, ER *er, std::wstring name)
 {
 	//該当するEntityオブジェクトのポインタを取得する
 	ER::entity_map::iterator entityData = er->entityMap.find(name);
-	relation->setEntity(entityData->second);
+	relationship->setEntity(entityData->second);
 }
 
 /**
-* @fn void A5erParser::setEntity1DependKey(Relation *relation, ER *er, std::string key)
-* @brief Relationに関係依存Column名を登録する
-* @param relation Relationインスタンス
+* @fn void A5erParser::setEntity1DependKey(Relationship *relationship, ER *er, std::string key)
+* @brief Relationshipに関係依存Column名を登録する
+* @param relationship Relationshipインスタンス
 * @param er ER情報インスタンス
 * @param key 関係依存Key名(Column名)
-* @details Relationに関係依存Column名を登録する<br>Entity1のColumn情報を格納しています。
+* @details Relationshipに関係依存Column名を登録する<br>Entity1のColumn情報を格納しています。
 */
-void A5erParser::setEntity1DependKey(Relation *relation, ER *er, std::wstring key)
+void A5erParser::setEntity1DependKey(Relationship *relationship, ER *er, std::wstring key)
 {
-	relation->setEntity1DependKey(key);
+	relationship->setEntity1DependKey(key);
 }
 
 /**
-* @fn void A5erParser::setEntity2DependKey(Relation *relation, ER *er, std::string key)
-* @brief Relationに関係依存Column名を登録する
-* @param relation Relationインスタンス
+* @fn void A5erParser::setEntity2DependKey(Relationship *relationship, ER *er, std::string key)
+* @brief Relationshipに関係依存Column名を登録する
+* @param relationship Relationshipインスタンス
 * @param er ER情報インスタンス
 * @param key 関係依存Key名(Column名)
-* @details Relationに関係依存Column名を登録する<br>Entity2のColumn情報を格納しています。
+* @details Relationshipに関係依存Column名を登録する<br>Entity2のColumn情報を格納しています。
 */
-void A5erParser::setEntity2DependKey(Relation *relation, ER *er, std::wstring key)
+void A5erParser::setEntity2DependKey(Relationship *relationship, ER *er, std::wstring key)
 {
-	relation->setEntity2DependKey(key);
+	relationship->setEntity2DependKey(key);
 }
 
 /**
-* @fn void A5erParser::setCardinalityType1(Relation *relation, ER *er, std::string type)
-* @brief Relationに多重度(カーディナリティ)を登録する
-* @param relation Relationインスタンス
+* @fn void A5erParser::setCardinalityType1(Relationship *relationship, ER *er, std::string type)
+* @brief Relationshipに多重度(カーディナリティ)を登録する
+* @param relationship Relationshipインスタンス
 * @param er ER情報インスタンス
 * @param type 多重度(カーディナリティ)
-* @details Relationに多重度(カーディナリティ)を登録する<br>Entity1側の多重度(カーディナリティ)を格納しています。
+* @details Relationshipに多重度(カーディナリティ)を登録する<br>Entity1側の多重度(カーディナリティ)を格納しています。
 */
-void A5erParser::setCardinalityType1(Relation *relation, ER *er, std::wstring type)
+void A5erParser::setCardinalityType1(Relationship *relationship, ER *er, std::wstring type)
 {
-	relation->setCardinalityType1(boost::lexical_cast<int>(type));
+	relationship->setCardinalityType1(boost::lexical_cast<int>(type));
 }
 
 /**
-* @fn void A5erParser::setCardinalityType2(Relation *relation, ER *er, std::string type)
-* @brief Relationに多重度(カーディナリティ)を登録する
-* @param relation Relationインスタンス
+* @fn void A5erParser::setCardinalityType2(Relationship *relationship, ER *er, std::string type)
+* @brief Relationshipに多重度(カーディナリティ)を登録する
+* @param relationship Relationshipインスタンス
 * @param er ER情報インスタンス
 * @param type 多重度(カーディナリティ)
-* @details Relationに多重度(カーディナリティ)を登録する<br>Entity2側の多重度(カーディナリティ)を格納しています。
+* @details Relationshipに多重度(カーディナリティ)を登録する<br>Entity2側の多重度(カーディナリティ)を格納しています。
 */
-void A5erParser::setCardinalityType2(Relation *relation, ER *er, std::wstring type)
+void A5erParser::setCardinalityType2(Relationship *relationship, ER *er, std::wstring type)
 {
-	relation->setCardinalityType2(boost::lexical_cast<int>(type));
+	relationship->setCardinalityType2(boost::lexical_cast<int>(type));
 }
 
 /**
-* @fn void A5erParser::setDependenceFlg(Relation *relation, ER *er, std::string type)
-* @brief Relationに依存フラグを登録する
-* @param relation Relationインスタンス
+* @fn void A5erParser::setDependenceFlg(Relationship *relationship, ER *er, std::string type)
+* @brief Relationshipに依存フラグを登録する
+* @param relationship Relationshipインスタンス
 * @param er ER情報インスタンス
 * @param type 依存フラグ
-* @details Relationに依存フラグを登録する<br>
+* @details Relationshipに依存フラグを登録する<br>
 依存フラグとは、対象のEntityは独立Entityか依存Entityかを判別するものです。<br>
 依存が有効であれば、多重度(カーディナリティ)が1または0,1となるEntityが親になります。
 */
-void A5erParser::setDependenceFlg(Relation *relation, ER *er, std::wstring type)
+void A5erParser::setDependenceFlg(Relationship *relationship, ER *er, std::wstring type)
 {
-	relation->setDependenceFlg(boost::lexical_cast<bool>(type));
+	relationship->setDependenceFlg(boost::lexical_cast<bool>(type));
 }

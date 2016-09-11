@@ -100,18 +100,18 @@ void IndexChecker::run(const class AnalysisProjects * const analysisProjects, co
 		}
 	}
 
-	//リレーションの数だけループ処理
-	for (auto relationIt = er->relations.begin(); relationIt != er->relations.end(); relationIt++)
+	//リレーションシップの数だけループ処理
+	for (auto relationshipIt = er->relationships.begin(); relationshipIt != er->relationships.end(); relationshipIt++)
 	{
-		//リレーション情報に登録されたEntity情報の取得
-		auto entityIt = (*relationIt)->getEntityList().begin();
+		//リレーションシップ情報に登録されたEntity情報の取得
+		auto entityIt = (*relationshipIt)->getEntityList().begin();
 		//外部キー制約のカラムがIndexに登録されているかチェック
-		this->checkForeignKeyIsInIndex((*relationIt)->getEntity1DependKeyList(), *entityIt);
+		this->checkForeignKeyIsInIndex((*relationshipIt)->getEntity1DependKeyList(), *entityIt);
 
-		//リレーション情報に登録された二個目のEntity情報に切り替え
+		//リレーションシップ情報に登録された二個目のEntity情報に切り替え
 		entityIt++;
 		//外部キー制約のカラムがIndexに登録されているかチェック
-		this->checkForeignKeyIsInIndex((*relationIt)->getEntity2DependKeyList(), *entityIt);
+		this->checkForeignKeyIsInIndex((*relationshipIt)->getEntity2DependKeyList(), *entityIt);
 	}
 }
 
@@ -157,15 +157,15 @@ bool IndexChecker::isSetColumnInIndex(const std::wstring columnName, const Entit
 }
 
 /**
-* @fn bool IndexChecker::checkForeignKeyIsInIndex(const Relation::DEPEND_KEY_LIST & dependKeyList, const Entity * const entity)
+* @fn bool IndexChecker::checkForeignKeyIsInIndex(const Relationship::DEPEND_KEY_LIST & dependKeyList, const Entity * const entity)
 * @brief 外部キー制約に設定されているカラムがIndexに登録されているかチェック
 * @param dependKeyList 外部キー制約のカラムリスト
 * @param entity Entity情報を格納したインスタンス
 * @details 外部キー制約に設定されているカラムがIndexに登録されているかチェックする関数
 */
-void IndexChecker::checkForeignKeyIsInIndex(const Relation::DEPEND_KEY_LIST & dependKeyList, const Entity * const entity)
+void IndexChecker::checkForeignKeyIsInIndex(const Relationship::DEPEND_KEY_LIST & dependKeyList, const Entity * const entity)
 {
-	//リレーションの依存カラムの数だけループ処理
+	//リレーションシップの依存カラムの数だけループ処理
 	for (auto dependKey = dependKeyList.begin(); dependKey != dependKeyList.end(); dependKey++)
 	{
 		if (!this->isSetColumnInIndex(*dependKey, entity->getPks(), entity->getIndexs()))

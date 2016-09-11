@@ -42,10 +42,10 @@ private:
 	//! Entityに関する処理を文字列と紐付かせるmap情報を格納する変数
 	funcs_type setSectionParamFunc;
 
-	//! Relationに関する処理を文字列と紐付かせるmap変数の定義
-	typedef std::map<std::string, void(*)(Relation *, ER *, std::wstring)> relation_funcs;
-	//! Relationに関する処理を文字列と紐付かせるmap情報を格納する変数
-	relation_funcs setRelationFunc;
+	//! Relationshipに関する処理を文字列と紐付かせるmap変数の定義
+	typedef std::map<std::string, void(*)(Relationship *, ER *, std::wstring)> relationship_funcs;
+	//! Relationshipに関する処理を文字列と紐付かせるmap情報を格納する変数
+	relationship_funcs setRelationshipFunc;
 	
 
 	/* セクションの子要素タグ名リスト */
@@ -62,27 +62,27 @@ private:
 	//! Indexタグ
 	const std::string INDEX = "Entity.Index";
 
-	//! Relation情報に紐づくEntity1のタグ
-	const std::string RELATION_ENTITY1_TAG = "Relation.Entity1";
-	//! Relation情報に紐づくEntity2のタグ
-	const std::string RELATION_ENTITY2_TAG = "Relation.Entity2";
-	//! Relationフィールドのタグ1
-	const std::string RELATION_FIELDS1_TAG = "Relation.Fields1";
-	//! Relationフィールドのタグ2
-	const std::string RELATION_FIELDS2_TAG = "Relation.Fields2";
+	//! Relationship情報に紐づくEntity1のタグ
+	const std::string RELATIONSHIP_ENTITY1_TAG = "Relationship.Entity1";
+	//! Relationship情報に紐づくEntity2のタグ
+	const std::string RELATIONSHIP_ENTITY2_TAG = "Relationship.Entity2";
+	//! Relationshipフィールドのタグ1
+	const std::string RELATIONSHIP_FIELDS1_TAG = "Relationship.Fields1";
+	//! Relationshipフィールドのタグ2
+	const std::string RELATIONSHIP_FIELDS2_TAG = "Relationship.Fields2";
 	//! 多重度(カーディナリティ)タグ1
-	const std::string CARDINALITY_TYPE1_TAG = "Relation.RelationType1";//リレーションタイプとなっているが、実際はカーディナリティ(多重度)を表しているため、定数名を実態とは違う名前にしています。
+	const std::string CARDINALITY_TYPE1_TAG = "Relationship.RelationshipType1";//リレーションシップタイプとなっているが、実際はカーディナリティ(多重度)を表しているため、定数名を実態とは違う名前にしています。
 	//! 多重度(カーディナリティ)タグ2
-	const std::string CARDINALITY_TYPE2_TAG = "Relation.RelationType2";//リレーションタイプとなっているが、実際はカーディナリティ(多重度)を表しているため、定数名を実態とは違う名前にしています。
-	//! Relation依存タグ
-	const std::string RELATION_DEPENDENCE_TAG = "Relation.Dependence";
+	const std::string CARDINALITY_TYPE2_TAG = "Relationship.RelationshipType2";//リレーションシップタイプとなっているが、実際はカーディナリティ(多重度)を表しているため、定数名を実態とは違う名前にしています。
+	//! Relationship依存タグ
+	const std::string RELATIONSHIP_DEPENDENCE_TAG = "Relationship.Dependence";
 
 
 	/* セクション判定の正規表現リスト */
 	//! Entityセクション抽出用正規表現パターン
 	const std::string ENTITY_REGEX = "^Entity.*";
-	//! Relationセクション抽出用正規表現パターン
-	const std::string RELATION_REGEX = "^Relation.*";
+	//! Relationshipセクション抽出用正規表現パターン
+	const std::string RELATIONSHIP_REGEX = "^Relationship.*";
 
 	//! Entityインスタンスに物理テーブル名情報を格納する処理
 	static void setPhysicalTableNameForEntity(Entity *entity, std::wstring name);
@@ -97,18 +97,18 @@ private:
 	//! EntityインスタンスにIndex情報を格納する処理
 	static void setIndexForEntity(Entity *entity, std::wstring index);
 
-	//! RelationにEntity情報を紐付ける処理
-	static void setRelationEntity(Relation *relation, ER *er, std::wstring name);
-	//! Relationに関係依存Column名を登録する
-	static void setEntity1DependKey(Relation *relation, ER *er, std::wstring key);
-	//! Relationに関係依存Column名を登録する
-	static void setEntity2DependKey(Relation *relation, ER *er, std::wstring key);
-	//! Relationに多重度(カーディナリティ)を登録する
-	static void setCardinalityType1(Relation *relation, ER *er, std::wstring type);
-	//! Relationに多重度(カーディナリティ)を登録する
-	static void setCardinalityType2(Relation *relation, ER *er, std::wstring type);
-	//! Relationに依存フラグを登録する
-	static void setDependenceFlg(Relation *relation, ER *er, std::wstring type);
+	//! RelationshipにEntity情報を紐付ける処理
+	static void setRelationshipEntity(Relationship *relationship, ER *er, std::wstring name);
+	//! Relationshipに関係依存Column名を登録する
+	static void setEntity1DependKey(Relationship *relationship, ER *er, std::wstring key);
+	//! Relationshipに関係依存Column名を登録する
+	static void setEntity2DependKey(Relationship *relationship, ER *er, std::wstring key);
+	//! Relationshipに多重度(カーディナリティ)を登録する
+	static void setCardinalityType1(Relationship *relationship, ER *er, std::wstring type);
+	//! Relationshipに多重度(カーディナリティ)を登録する
+	static void setCardinalityType2(Relationship *relationship, ER *er, std::wstring type);
+	//! Relationshipに依存フラグを登録する
+	static void setDependenceFlg(Relationship *relationship, ER *er, std::wstring type);
 
 public:
 	//! コンストラクタ
@@ -123,8 +123,8 @@ public:
 	void setParamFuc();
 	//! Entity情報のセット
 	void setEntity(class ER * er, const boost::program_options::woption & option);
-	//! Relation情報のセット
-	void setRelation(class ER * er, const boost::program_options::woption & option);
+	//! Relationship情報のセット
+	void setRelationship(class ER * er, const boost::program_options::woption & option);
 	//! BOM情報の除去
 	void removeBom(std::wifstream *file);
 };

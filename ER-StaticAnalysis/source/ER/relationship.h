@@ -1,5 +1,5 @@
 ﻿/**
-* @file       relation.h
+* @file       relationship.h
 * @date       2016/01/31
 * @author     Akihiro Sugeno
 * @par        Revision
@@ -11,19 +11,19 @@
 *       -# Initial Version
 */
 
-#ifndef RDS_ER_STATICANALYSIS_SOURCE_ER_RELATION_H_
-#define RDS_ER_STATICANALYSIS_SOURCE_ER_RELATION_H_
+#ifndef RDS_ER_STATICANALYSIS_SOURCE_ER_RELATIONSHIP_H_
+#define RDS_ER_STATICANALYSIS_SOURCE_ER_RELATIONSHIP_H_
 
 #include <string>
 #include <list>
 #include "../ER/entity.h"
 
 /**
-* @class Relation
-* リレーションクラス
-* @brief リレーション情報を格納するクラス
+* @class Relationship
+* リレーションシップクラス
+* @brief リレーションシップ情報を格納するクラス
 */
-class Relation
+class Relationship
 {
 public:
 	typedef std::list <class Entity *> ENTITY_LIST;
@@ -81,25 +81,25 @@ public:
 		return this->entity2DependKeyList;
 	}
 
-	/*! リレーションタイプ1 セット関数 */
+	/*! リレーションシップタイプ1 セット関数 */
 	void setCardinalityType1(int type)
 	{
 		this->cardinalityType1 = type;
 	}
 
-	/*! リレーションタイプ1 ゲット関数 */
+	/*! リレーションシップタイプ1 ゲット関数 */
 	const int getCardinalityType1() const
 	{
 		return this->cardinalityType1;
 	}
 
-	/*! リレーションタイプ2 セット関数 */
+	/*! リレーションシップタイプ2 セット関数 */
 	void setCardinalityType2(int type)
 	{
 		this->cardinalityType2 = type;
 	}
 
-	/*! リレーションタイプ2 ゲット関数 */
+	/*! リレーションシップタイプ2 ゲット関数 */
 	const int getCardinalityType2() const
 	{
 		return this->cardinalityType2;
@@ -117,12 +117,12 @@ public:
 		return this->dependenceFlg;
 	}
 
-	/*! Relationクラスデストラクタ */
-	~Relation()
+	/*! Relationshipクラスデストラクタ */
+	~Relationship()
 	{
 		//entityListはEntityオブジェクトのポインタを格納していますが、実体は別のオブジェクトで管理されるため、
 		//ここではdelete命令を行わない
 	}
 };
 
-#endif //RDS_ER_STATICANALYSIS_SOURCE_ER_RELATION_H_
+#endif //RDS_ER_STATICANALYSIS_SOURCE_ER_RELATIONSHIP_H_
