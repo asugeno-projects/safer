@@ -79,7 +79,7 @@ private:
 	const std::string WORD = "word";
 	const std::string WORD_ID = "word_id";
 	const std::string REFERENCED_COLUMN = "referenced_column";
-	const std::string RELATIONSHIP = "relationship";
+	const std::string RELATIONSHIP = "relation";
 	const std::string NOT_NULL = "not_null";
 	const std::string NULL_STRING = "null";
 	const std::string DEFAULT_VALUE = "default_value";

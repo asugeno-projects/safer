@@ -63,26 +63,26 @@ private:
 	const std::string INDEX = "Entity.Index";
 
 	//! Relationship情報に紐づくEntity1のタグ
-	const std::string RELATIONSHIP_ENTITY1_TAG = "Relationship.Entity1";
+	const std::string RELATIONSHIP_ENTITY1_TAG = "Relation.Entity1";
 	//! Relationship情報に紐づくEntity2のタグ
-	const std::string RELATIONSHIP_ENTITY2_TAG = "Relationship.Entity2";
+	const std::string RELATIONSHIP_ENTITY2_TAG = "Relation.Entity2";
 	//! Relationshipフィールドのタグ1
-	const std::string RELATIONSHIP_FIELDS1_TAG = "Relationship.Fields1";
+	const std::string RELATIONSHIP_FIELDS1_TAG = "Relation.Fields1";
 	//! Relationshipフィールドのタグ2
-	const std::string RELATIONSHIP_FIELDS2_TAG = "Relationship.Fields2";
+	const std::string RELATIONSHIP_FIELDS2_TAG = "Relation.Fields2";
 	//! 多重度(カーディナリティ)タグ1
-	const std::string CARDINALITY_TYPE1_TAG = "Relationship.RelationshipType1";//リレーションシップタイプとなっているが、実際はカーディナリティ(多重度)を表しているため、定数名を実態とは違う名前にしています。
+	const std::string CARDINALITY_TYPE1_TAG = "Relation.RelationType1";//リレーションシップタイプとなっているが、実際はカーディナリティ(多重度)を表しているため、定数名を実態とは違う名前にしています。
 	//! 多重度(カーディナリティ)タグ2
-	const std::string CARDINALITY_TYPE2_TAG = "Relationship.RelationshipType2";//リレーションシップタイプとなっているが、実際はカーディナリティ(多重度)を表しているため、定数名を実態とは違う名前にしています。
+	const std::string CARDINALITY_TYPE2_TAG = "Relation.RelationType2";//リレーションシップタイプとなっているが、実際はカーディナリティ(多重度)を表しているため、定数名を実態とは違う名前にしています。
 	//! Relationship依存タグ
-	const std::string RELATIONSHIP_DEPENDENCE_TAG = "Relationship.Dependence";
+	const std::string RELATIONSHIP_DEPENDENCE_TAG = "Relation.Dependence";
 
 
 	/* セクション判定の正規表現リスト */
 	//! Entityセクション抽出用正規表現パターン
 	const std::string ENTITY_REGEX = "^Entity.*";
 	//! Relationshipセクション抽出用正規表現パターン
-	const std::string RELATIONSHIP_REGEX = "^Relationship.*";
+	const std::string RELATIONSHIP_REGEX = "^Relation.*";
 
 	//! Entityインスタンスに物理テーブル名情報を格納する処理
 	static void setPhysicalTableNameForEntity(Entity *entity, std::wstring name);
