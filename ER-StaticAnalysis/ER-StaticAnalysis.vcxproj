@@ -154,7 +154,7 @@
     <ClCompile Include="source\ER\er.cpp" />
     <ClCompile Include="source\parser\ER\ermErParser.cpp" />
     <ClCompile Include="source\static_analytics\indexChecker.cpp" />
-    <ClCompile Include="source\static_analytics\relationChecker.cpp" />
+    <ClCompile Include="source\static_analytics\relationshipChecker.cpp" />
     <ClCompile Include="source\reporter\reporter.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\static_analytics\spellChecker.cpp" />
@@ -197,11 +197,11 @@
     <ClInclude Include="source\static_analytics\indexChecker.h" />
     <ClInclude Include="source\log\logger.h" />
     <ClInclude Include="source\main.h" />
-    <ClInclude Include="source\er\relation.h" />
+    <ClInclude Include="source\er\relationship.h" />
     <ClInclude Include="source\parser\ER\erParser.h" />
     <ClInclude Include="source\parser\ER\erParserFactory.h" />
     <ClInclude Include="source\reporter\analyticsReport.h" />
-    <ClInclude Include="source\static_analytics\relationChecker.h" />
+    <ClInclude Include="source\static_analytics\relationshipChecker.h" />
     <ClInclude Include="source\reporter\reporter.h" />
     <ClInclude Include="source\static_analytics\spellChecker.h" />
     <ClInclude Include="source\static_analytics\tableChecker.h" />

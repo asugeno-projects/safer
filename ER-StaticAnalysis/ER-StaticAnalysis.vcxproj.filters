@@ -96,7 +96,7 @@
     <ClCompile Include="source\static_analytics\indexChecker.cpp">
       <Filter>ソース ファイル\static_analytics</Filter>
     </ClCompile>
-    <ClCompile Include="source\static_analytics\relationChecker.cpp">
+    <ClCompile Include="source\static_analytics\relationshipChecker.cpp">
       <Filter>ソース ファイル\static_analytics</Filter>
     </ClCompile>
     <ClCompile Include="source\static_analytics\spellChecker.cpp">
@@ -188,7 +188,7 @@
     <ClInclude Include="source\er\er.h">
       <Filter>ヘッダー ファイル\ER</Filter>
     </ClInclude>
-    <ClInclude Include="source\er\relation.h">
+    <ClInclude Include="source\er\relationship.h">
       <Filter>ヘッダー ファイル\ER</Filter>
     </ClInclude>
     <ClInclude Include="source\log\logger.h">
@@ -242,7 +242,7 @@
     <ClInclude Include="source\static_analytics\indexChecker.h">
       <Filter>ヘッダー ファイル\static_analytics</Filter>
     </ClInclude>
-    <ClInclude Include="source\static_analytics\relationChecker.h">
+    <ClInclude Include="source\static_analytics\relationshipChecker.h">
       <Filter>ヘッダー ファイル\static_analytics</Filter>
     </ClInclude>
     <ClInclude Include="source\static_analytics\spellChecker.h">
