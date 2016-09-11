@@ -58,17 +58,17 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)\library\xerces-c-3.1.2\src;$(SolutionDir)\library\SimpleXmlWriter;$(SolutionDir)\library\hunspell-1.3.3\src\hunspell;$(SolutionDir)\library\hunspell-1.3.3\src\win_api;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\library\xerces-c\src;$(SolutionDir)\library\SimpleXmlWriter;$(SolutionDir)\library\libhunspell\src\hunspell;$(SolutionDir)\library\libhunspell\src\win_api;$(IncludePath)</IncludePath>
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)\library\xerces-c-3.1.2\src;$(SolutionDir)\library\SimpleXmlWriter;$(SolutionDir)\library\hunspell-1.3.3\src\hunspell;$(SolutionDir)\library\hunspell-1.3.3\src\win_api;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\library\xerces-c\src;$(SolutionDir)\library\SimpleXmlWriter;$(SolutionDir)\library\libhunspell\src\hunspell;$(SolutionDir)\library\libhunspell\src\win_api;$(IncludePath)</IncludePath>
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)\library\xerces-c-3.1.2\src;$(SolutionDir)\library\SimpleXmlWriter;$(SolutionDir)\library\hunspell-1.3.3\src\hunspell;$(SolutionDir)\library\hunspell-1.3.3\src\win_api;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\library\xerces-c\src;$(SolutionDir)\library\SimpleXmlWriter;$(SolutionDir)\library\libhunspell\src\hunspell;$(SolutionDir)\library\libhunspell\src\win_api;$(IncludePath)</IncludePath>
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
