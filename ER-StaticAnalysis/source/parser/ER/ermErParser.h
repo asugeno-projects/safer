@@ -165,17 +165,17 @@ public:
 	//! 終了処理用関数
 	void finalize();
 	//! DOM Elementから辞書データを抽出し、辞書データとIDをひも付けたマップを作成する
-	void ErmErParser::setWordMap(DOMElement *domElement);
+	void setWordMap(DOMElement *domElement);
 	//! DOM Elementからカラムデータを取得、カラムデータマップを作成する関数
-	void ErmErParser::setFieldsMap(DOMElement *domElement);
+	void setFieldsMap(DOMElement *domElement);
 	//! DOM Elementからカラムデータを取得し、カラム参照情報を元にカラム情報を合成する関数
-	void ErmErParser::mergeFieldsMapAndReferenceField(DOMElement *domElement);
+	void mergeFieldsMapAndReferenceField(DOMElement *domElement);
 	//! Relationship情報を生成関数
-	void ErmErParser::setRelationship(DOMElement *domElement, class ER *er);
+	void setRelationship(DOMElement *domElement, class ER *er);
 	//! カテゴリ(TAG)情報を登録関数
-	void ErmErParser::setTag(DOMElement *domElement);
+	void setTag(DOMElement *domElement);
 	//! Entity情報を生成関数
-	void ErmErParser::setEntity(DOMElement *domElement, ER *er);
+	void setEntity(DOMElement *domElement, ER *er);
 };
 
 #endif //RDS_ER_STATICANALYSIS_SOURCE_PARSER_ER_ERMERPARSER_H_
