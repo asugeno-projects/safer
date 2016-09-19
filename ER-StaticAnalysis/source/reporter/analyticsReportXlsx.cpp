@@ -11,7 +11,7 @@
 *       -# Initial Version
 */
 
-#include "Xlsx/Workbook.h"
+#include <Xlsx/Workbook.h>
 using namespace SimpleXlsx;
 
 #include "analyticsReportXlsx.h"
