@@ -46,9 +46,6 @@
     <Filter Include="test">
       <UniqueIdentifier>{ff4a7fee-cbf5-4863-981b-dbf3f800c887}</UniqueIdentifier>
     </Filter>
-    <Filter Include="xml">
-      <UniqueIdentifier>{091eb279-fad0-4c95-9f3f-5901b9583635}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\common">
       <UniqueIdentifier>{28e9661e-e444-4c84-80e8-354e88ae2898}</UniqueIdentifier>
     </Filter>
@@ -75,21 +72,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\library\SimpleXmlWriter\Zip\zip.cpp">
-      <Filter>xml</Filter>
-    </ClCompile>
-    <ClCompile Include="..\library\SimpleXmlWriter\Xlsx\Chartsheet.cpp">
-      <Filter>xml</Filter>
-    </ClCompile>
-    <ClCompile Include="..\library\SimpleXmlWriter\Xlsx\Workbook.cpp">
-      <Filter>xml</Filter>
-    </ClCompile>
-    <ClCompile Include="..\library\SimpleXmlWriter\Xlsx\Worksheet.cpp">
-      <Filter>xml</Filter>
-    </ClCompile>
-    <ClCompile Include="..\library\SimpleXmlWriter\Xlsx\XlsxHeaders.cpp">
-      <Filter>xml</Filter>
-    </ClCompile>
     <ClCompile Include="source\main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -143,33 +125,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\library\SimpleXmlWriter\tchar.h">
-      <Filter>xml</Filter>
-    </ClInclude>
-    <ClInclude Include="..\library\SimpleXmlWriter\xmlwriter.h">
-      <Filter>xml</Filter>
-    </ClInclude>
-    <ClInclude Include="..\library\SimpleXmlWriter\Zip\zip.h">
-      <Filter>xml</Filter>
-    </ClInclude>
-    <ClInclude Include="..\library\SimpleXmlWriter\Xlsx\Chartsheet.h">
-      <Filter>xml</Filter>
-    </ClInclude>
-    <ClInclude Include="..\library\SimpleXmlWriter\Xlsx\SimpleXlsxDef.h">
-      <Filter>xml</Filter>
-    </ClInclude>
-    <ClInclude Include="..\library\SimpleXmlWriter\Xlsx\Workbook.h">
-      <Filter>xml</Filter>
-    </ClInclude>
-    <ClInclude Include="..\library\SimpleXmlWriter\Xlsx\Worksheet.h">
-      <Filter>xml</Filter>
-    </ClInclude>
-    <ClInclude Include="..\library\SimpleXmlWriter\Xlsx\XlsxHeaders.h">
-      <Filter>xml</Filter>
-    </ClInclude>
     <ClInclude Include="source\main.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
