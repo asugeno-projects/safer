@@ -21,6 +21,11 @@
 
 #include "../../ER/er.h"
 
+#ifndef _WIN32
+typedef std::basic_ifstream<wchar_t, std::char_traits<wchar_t> > wifstream;
+typedef std::basic_string<wchar_t> wstring;
+#endif
+
 /**
 * @class ErParser
 * ER図パーサークラス
@@ -29,8 +34,11 @@
 class ErParser
 {
 private:
-
+	virtual void setParams(){};
 public:
+	ErParser(){};
+	~ErParser(){};
+
 	/*!< ER図ファイルのパース関数 */
 	virtual class ER * parse(void)
 	{

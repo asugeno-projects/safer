@@ -47,16 +47,18 @@ public:
 	//! Cellへ文字列を登録する関数
 	void AddStringCell(class CWorksheet *sheet, std::string str, int style);
 	//! Cellへワイド文字型の文字列を登録する関数
-	void AddTstringCell(class CWorksheet *sheet, const wchar_t *str, int style);
+	void AddWstringCell(class CWorksheet *sheet, const wstring str, int style);
+	//! Cellへ_tstring型の文字列を登録する関数
+	void AddTstringCell(class CWorksheet *sheet, const _tstring str, int style);
 	template<typename T>
 	//! Summaryレポート用レコード登録関数
-	void AddSummaryRow(class CWorksheet *sheet, const wchar_t *str, T num, int style1, int style2);
+	void AddSummaryRow(class CWorksheet *sheet, const _tstring str, T num, int style1, int style2);
 	//! レポート情報生成関数
 	AnalyticsReportXlsx * write(list <AnalyticsRowData> rowData, ER * er);
 	//! xlsxファイルの保存関数
 	bool save(std::string file);
 
-	class CWorksheet * AnalyticsReportXlsx::createCommonSheet(int topStyle, std::vector<class ColumnWidth> colWidths, std::wstring sheetName);
+	class CWorksheet * createCommonSheet(int topStyle, std::vector<class ColumnWidth> colWidths, _tstring sheetName);
 };
 
 #endif //RDS_ER_STATICANALYSIS_SOURCE_REPORTER_ANALYTICSREPORTXLSX_H_

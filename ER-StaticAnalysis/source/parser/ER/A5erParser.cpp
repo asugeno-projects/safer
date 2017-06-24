@@ -29,9 +29,14 @@ class ER * A5erParser::parse()
 	ER *er = new ER();
 	logger::info() << logger::logPrefix("INFO") << "File Open > " << this->erFilePath << std::endl;
 
+#ifdef _WIN32
 	FILE* filePt = fopen(this->erFilePath.c_str(), "r, ccs=UNICODE");
-	std::wifstream file(filePt);
-	try{
+	wifstream file(filePt);
+#else
+	wifstream file(this->erFilePath);
+#endif
+	try
+	{
 		//ファイルオープン
 		if (file.good())
 		{

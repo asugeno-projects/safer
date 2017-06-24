@@ -15,6 +15,8 @@
 using namespace SimpleXlsx;
 
 #include "analyticsReportXlsx.h"
+#include <stdlib.h>
+#include <codecvt>
 
 /**
 * @fn AnalyticsReportXlsx::AnalyticsReportXlsx()
@@ -58,9 +60,13 @@ bool AnalyticsReportXlsx::save(std::string filename)
 	}
 	//ファイルへ保存
 	filename += ".xlsx";
+#ifdef _WIN32
 	wchar_t * filenameWchar = stringToWchar(filename);
 	bool bRes = this->getBookInstance()->Save(filenameWchar);
 	delete filenameWchar;
+#else
+	bool bRes = this->getBookInstance()->Save((_tstring &)filename);
+#endif
 	if (bRes)
 	{
 		cout << "The book has been saved successfully";
@@ -75,7 +81,7 @@ bool AnalyticsReportXlsx::save(std::string filename)
 }
 
 /**
-* @fn void AnalyticsReportXlsx::AddSummaryRow(class CWorksheet *sheet, const wchar_t *str, int num, int style = 0)
+* @fn void AnalyticsReportXlsx::AddSummaryRow(class CWorksheet *sheet, const _tstring *str, int num, int style = 0)
 * @brief Summaryレポート用レコード登録関数
 * @param sheet 表計算シートインスタンス
 * @param *str 数値データのカテゴリ名
@@ -85,7 +91,7 @@ bool AnalyticsReportXlsx::save(std::string filename)
 * @details Summaryレポートに記録するレコードを表計算シートインスタンスに登録する
 */
 template<typename T>
-void AnalyticsReportXlsx::AddSummaryRow(class CWorksheet *sheet, const wchar_t *str, T num, int style1 = 0, int style2 = 0)
+void AnalyticsReportXlsx::AddSummaryRow(class CWorksheet *sheet, const _tstring str, T num, int style1, int style2)
 {
 	if (typeid(T) == typeid(int) ||
 		typeid(T) == typeid(float) ||
@@ -116,16 +122,20 @@ void AnalyticsReportXlsx::AddSummaryRow(class CWorksheet *sheet, const wchar_t *
 void AnalyticsReportXlsx::AddStringCell(class CWorksheet *sheet, std::string str, int style = 0)
 {
 	CellDataStr data;
+#ifdef _WIN32
 	wchar_t *wc;
 	data.style_id = style;
 	wc = stringToWchar(str);
 	data.value = wc;
-	sheet->AddCell(data);
 	delete wc;
+#else
+	data.value = str;
+#endif
+	sheet->AddCell(data);
 }
 
 /**
-* @fn void AnalyticsReportXlsx::AddTstringCell(class CWorksheet *sheet, const wchar_t *str, int style = 0)
+* @fn void AnalyticsReportXlsx::AddWstringCell(class CWorksheet *sheet, const wstring str, int style = 0)
 * @brief Cellへワイド文字型の文字列を登録する関数
 * @param sheet 表計算シートインスタンス
 * @param str 文字列
@@ -133,7 +143,29 @@ void AnalyticsReportXlsx::AddStringCell(class CWorksheet *sheet, std::string str
 * @details レポートに記録するCellを表計算シートインスタンスに登録する<br>
 登録時に使用する文字列情報はワイド文字型を想定
 */
-void AnalyticsReportXlsx::AddTstringCell(class CWorksheet *sheet, const wchar_t *str, int style = 0)
+void AnalyticsReportXlsx::AddWstringCell(class CWorksheet *sheet, const wstring str, int style = 0)
+{
+	CellDataStr cellStr;
+#ifdef _WIN32
+	cellStr.value = str;
+#else
+	std::wstring_convert<std::codecvt_utf8<wchar_t>,wchar_t> cv;
+	cellStr.value = cv.to_bytes(str);
+#endif
+	cellStr.style_id = style;
+	sheet->AddCell(cellStr);
+}
+
+/**
+* @fn void AnalyticsReportXlsx::AddTstringCell(class CWorksheet *sheet, const _tstring str, int style = 0)
+* @brief Cellへワイド文字型の文字列を登録する関数
+* @param sheet 表計算シートインスタンス
+* @param str 文字列
+* @param style Columnに適用するスタイルID
+* @details レポートに記録するCellを表計算シートインスタンスに登録する<br>
+登録時に使用する文字列情報はワイド文字型を想定
+*/
+void AnalyticsReportXlsx::AddTstringCell(class CWorksheet *sheet, const _tstring str, int style = 0)
 {
 	CellDataStr cellStr;
 	cellStr.value = str;
@@ -248,8 +280,8 @@ AnalyticsReportXlsx * AnalyticsReportXlsx::write(list <AnalyticsRowData> rowData
 		this->AddSummaryRow(&sheet, _T("エラーテーブル率"), errorRate, normalStyle, styleId);
 		for (int commandType = CommandTypeList::E_Comparison; commandType < CommandTypeList::E_CommandTypeMax; commandType++)
 		{
-			wstring title = CommandTypeLogicalNameList[(CommandTypeList)commandType] + L"による検出数";
-			this->AddSummaryRow(&sheet, title.c_str(), errorTypeCount[commandType], normalStyle, normalStyle);
+			_tstring title = CommandTypeLogicalNameList[(CommandTypeList)commandType] + _T("による検出数");
+			this->AddSummaryRow(&sheet, title, errorTypeCount[commandType], normalStyle, normalStyle);
 		}
 
 		// グラフ1
@@ -270,7 +302,7 @@ AnalyticsReportXlsx * AnalyticsReportXlsx::write(list <AnalyticsRowData> rowData
 		ser.title = _T("全体評価");
 		
 		//グラフを表示するシートの生成
-		CChartsheet &Errorchart = this->getBookInstance()->AddChart(_T("全体評価"), CHART_PIE);
+		CChartsheet &Errorchart = this->getBookInstance()->AddChart(_T("Pie chart"), CHART_PIE);
 		Errorchart.SetDiagrammName(_T("全体評価"));
 		Errorchart.SetLegendPos(CChartsheet::EPosition::POS_RIGHT);
 		
@@ -316,11 +348,11 @@ AnalyticsReportXlsx * AnalyticsReportXlsx::write(list <AnalyticsRowData> rowData
 			// アラートレベル
 			this->AddStringCell(sheet, AlertLevelToLabel[(*dataIt).alertLevel], alertLevelStyle[(*dataIt).alertLevel]);
 			// テーブルネーム
-			this->AddTstringCell(sheet, (*dataIt).tableName.c_str(), normalStyle);
+			this->AddWstringCell(sheet, (*dataIt).tableName, normalStyle);
 			// 検出対象名
-			this->AddTstringCell(sheet, (*dataIt).targetName.c_str(), normalStyle);
+			this->AddWstringCell(sheet, (*dataIt).targetName, normalStyle);
 			//<! @note メッセージ
-			this->AddTstringCell(sheet, (*dataIt).message.c_str(), normalStyle);
+			this->AddWstringCell(sheet, (*dataIt).message, normalStyle);
 
 			sheet->EndRow();
 		}
@@ -336,7 +368,16 @@ AnalyticsReportXlsx * AnalyticsReportXlsx::write(list <AnalyticsRowData> rowData
 	return this;
 }
 
-CWorksheet * AnalyticsReportXlsx::createCommonSheet(int styleId, std::vector<ColumnWidth> colWidths, std::wstring sheetName)
+/**
+* @fn CWorksheet * AnalyticsReportXlsx::createCommonSheet(int styleId, std::vector<ColumnWidth> colWidths, _tstring sheetName)
+* @brief   汎用検出リスト用シート生成関数
+* @param   styleId スタイルID
+* @param   colWidths カラム幅
+* @param   sheetName シート名
+* @return  シートインスタンス
+* @details 汎用化した検出リスト用シートを生成し呼び出し元に返します。
+*/
+CWorksheet * AnalyticsReportXlsx::createCommonSheet(int styleId, std::vector<ColumnWidth> colWidths, _tstring sheetName)
 {
 	CWorksheet &sheet = this->getBookInstance()->AddSheet(sheetName, colWidths);
 
