@@ -84,8 +84,13 @@ void Reporter::outputConsole()
 	{
 		auto data = (*dataIt);
 		cout << "[" << AlertLevelToLabel[data.alertLevel] << "]";
+#ifdef _WIN32
+		wcout << " " << data.tableName << " ";
+		wcout << " " << data.targetName << " " << data.message << endl;
+#else
 		cout << " " << convert.to_bytes(data.tableName) << " ";
 		cout << " " << convert.to_bytes(data.targetName) << " " << convert.to_bytes(data.message) << endl;
+#endif
 	}
 }
 
