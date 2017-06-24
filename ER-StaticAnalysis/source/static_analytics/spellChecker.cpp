@@ -13,7 +13,9 @@
 
 #include "spellChecker.h"
 #include <hunspell.h>
+#ifdef _WIN32
 #include <hunspelldll.h>
+#endif
 #include <boost/algorithm/string.hpp>
 #include <boost/lexical_cast.hpp>
 #include <string>

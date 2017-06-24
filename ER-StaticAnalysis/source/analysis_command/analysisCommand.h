@@ -20,6 +20,7 @@
 #include <map>
 #include "../common/commonString.h"
 #include "../common/commonXml.h"
+#include "Xlsx/SimpleXlsxDef.h"
 
 using namespace std;
 
@@ -248,16 +249,17 @@ static map<CommandTypeList, std::string> CommandTypeNameList = {
 	CommandTypeName(CommandTypeList::E_TypeCheck, "TypeCheck")
 };
 
-typedef pair<CommandTypeList, std::wstring> CommandTypeLogicalName;
+typedef pair<CommandTypeList, _tstring> CommandTypeLogicalName;
 /*! コマンドタイプ名と定数を紐付ける連想配列 */
-static map<CommandTypeList, std::wstring> CommandTypeLogicalNameList = {
-	CommandTypeLogicalName(CommandTypeList::E_Comparison, L"正規表現"),
-	CommandTypeLogicalName(CommandTypeList::E_TypeCheck, L"データ型チェック"),
-	CommandTypeLogicalName(CommandTypeList::E_SpellCheck, L"スペルチェック"),
-	CommandTypeLogicalName(CommandTypeList::E_RelationshipCheck, L"リレーションシップチェック"),
-	CommandTypeLogicalName(CommandTypeList::E_IndexCheck, L"インデックスチェック"),
-	CommandTypeLogicalName(CommandTypeList::E_ErDesignCheck, L"ER設計チェック")
+static map<CommandTypeList, _tstring> CommandTypeLogicalNameList = {
+	CommandTypeLogicalName(CommandTypeList::E_Comparison, _T("Regex")),
+	CommandTypeLogicalName(CommandTypeList::E_TypeCheck, _T("Data Type")),
+	CommandTypeLogicalName(CommandTypeList::E_SpellCheck, _T("Spell")),
+	CommandTypeLogicalName(CommandTypeList::E_RelationshipCheck, _T("Relationship")),
+	CommandTypeLogicalName(CommandTypeList::E_IndexCheck, _T("Index")),
+	CommandTypeLogicalName(CommandTypeList::E_ErDesignCheck, _T("ER design"))
 };
+/* Mac版にて日本語がどうしても化けてしまうため、シート名を英語表現に変更 */
 
 typedef pair<std::string, AlertLevelList> AlertLevelListItem;
 /*! コマンドタイプ名と定数を紐付ける連想配列 */

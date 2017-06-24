@@ -47,9 +47,9 @@ public:
 	//! 正規表現を用いた比較関数
 	void compString(AnalysisCommand *analysisCommand, std::wstring tableName, std::wstring compString, std::wstring targetName, std::wregex pattern);
 	//! 比較用正規表現変換関数
-	static std::wregex CompRegularExpression::getStringsToWOrPattern(std::list<std::string> values);
+	static std::wregex getStringsToWOrPattern(std::list<std::string> values);
 	//! テーブル比較用正規表現変換関数
-	static std::wregex CompRegularExpression::getExtractPattern(std::list<std::string> targetExtractionParams);
+	static std::wregex getExtractPattern(std::list<std::string> targetExtractionParams);
 };
 
 #endif //RDS_ER_STATICANALYSIS_SOURCE_STATIC_ANALYTICS_COMPREGULAREXPRESSION_H_
