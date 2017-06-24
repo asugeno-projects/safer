@@ -31,7 +31,7 @@ class ER * A5erParser::parse()
 
 #ifdef _WIN32
 	FILE* filePt = fopen(this->erFilePath.c_str(), "r, ccs=UNICODE");
-	wifstream file(filePt);
+	std::wifstream file(filePt);
 #else
 	wifstream file(this->erFilePath);
 #endif
