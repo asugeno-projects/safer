@@ -4,3 +4,7 @@
 [submodule "library/xerces-c"]
 	path = library/xerces-c
 	url = https://apache.googlesource.com/xerces-c
+[submodule "library/SimpleXmlWriter"]
+	path = library/SimpleXmlWriter
+	url = https://github.com/asugeno/simplexlsx.git
+	branch = dev
