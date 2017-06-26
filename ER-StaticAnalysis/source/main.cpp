@@ -16,7 +16,7 @@
 #include<boost/program_options.hpp>
 #include <string>
 #include "./main.h"
-#include "./parser/ER/a5erParser.h"
+#include "./parser/ER/A5erParser.h"
 #include "./parser/ER/erParserFactory.h"
 #include "./parser/command/analysisCommandParserFactory.h"
 #include "./reporter/reporter.h"

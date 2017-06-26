@@ -12,7 +12,7 @@
 */
 
 #include "../ER/er.h"
-#include "../analysis_command/AnalysisProjects.h"
+#include "../analysis_command/analysisProjects.h"
 #include "dBStaticAnalytics.h"
 #include "../static_analytics/compRegularExpression.h"
 #include "columnDataTypeChecker.h"

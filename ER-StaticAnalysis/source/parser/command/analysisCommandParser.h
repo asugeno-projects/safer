@@ -19,7 +19,7 @@
 #include <map>
 #include <string>
 
-#include "../../analysis_command/AnalysisProjects.h"
+#include "../../analysis_command/analysisProjects.h"
 
 /*! AnalysisCommandクラスへのデータ投入関数群 */
 typedef map <std::string, void(*)(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr) > SetAnalysisCommandFuc;

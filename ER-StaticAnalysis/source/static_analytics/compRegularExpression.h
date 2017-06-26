@@ -19,7 +19,7 @@
 #include <string>
 
 #include "../ER/er.h"
-#include "../analysis_command/AnalysisProjects.h"
+#include "../analysis_command/analysisProjects.h"
 #include "../reporter/reporter.h"
 
 /*! @class CompRegularExpression
