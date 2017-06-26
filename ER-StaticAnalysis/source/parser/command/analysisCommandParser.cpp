@@ -15,11 +15,11 @@
 
 /**
 * @fn void AnalysisCommandParser::setCommandType(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
-* @brief ƒRƒ}ƒ“ƒhƒ^ƒCƒv‚ÌƒZƒbƒgŠÖ”
-* @param analysisCommand ‰ğÍ–½—ßƒRƒ}ƒ“ƒhƒCƒ“ƒXƒ^ƒ“ƒX
-* @param value ƒRƒ}ƒ“ƒhƒ^ƒCƒv¯•Êq
-* @param attr ‘®«’l
-* @details ƒRƒ}ƒ“ƒhƒ^ƒCƒv‚ğanalysisCommand‚É“o˜^‚µ‚Ü‚·B
+* @brief ã‚³ãƒãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ã®ã‚»ãƒƒãƒˆé–¢æ•°
+* @param analysisCommand è§£æå‘½ä»¤ã‚³ãƒãƒ³ãƒ‰ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+* @param value ã‚³ãƒãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—è­˜åˆ¥å­
+* @param attr å±æ€§å€¤
+* @details ã‚³ãƒãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ã‚’analysisCommandã«ç™»éŒ²ã—ã¾ã™ã€‚
 */
 void AnalysisCommandParser::setCommandType(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
 {
@@ -28,11 +28,11 @@ void AnalysisCommandParser::setCommandType(AnalysisCommand *analysisCommand, std
 
 /**
 * @fn void AnalysisCommandParser::setCommandName(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
-* @brief ƒRƒ}ƒ“ƒh–¼‚ÌƒZƒbƒgŠÖ”
-* @param analysisCommand ‰ğÍ–½—ßƒRƒ}ƒ“ƒhƒCƒ“ƒXƒ^ƒ“ƒX
-* @param value ƒRƒ}ƒ“ƒh–¼
-* @param attr ‘®«’l
-* @details ƒRƒ}ƒ“ƒh–¼‚ğanalysisCommand‚É“o˜^‚µ‚Ü‚·B
+* @brief ã‚³ãƒãƒ³ãƒ‰åã®ã‚»ãƒƒãƒˆé–¢æ•°
+* @param analysisCommand è§£æå‘½ä»¤ã‚³ãƒãƒ³ãƒ‰ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+* @param value ã‚³ãƒãƒ³ãƒ‰å
+* @param attr å±æ€§å€¤
+* @details ã‚³ãƒãƒ³ãƒ‰åã‚’analysisCommandã«ç™»éŒ²ã—ã¾ã™ã€‚
 */
 void AnalysisCommandParser::setCommandName(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
 {
@@ -41,11 +41,11 @@ void AnalysisCommandParser::setCommandName(AnalysisCommand *analysisCommand, std
 
 /**
 * @fn void AnalysisCommandParser::addTarget(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
-* @brief ŒŸ¸‘ÎÛ‚ÌƒZƒbƒgŠÖ”
-* @param analysisCommand ‰ğÍ–½—ßƒRƒ}ƒ“ƒhƒCƒ“ƒXƒ^ƒ“ƒX
-* @param value ŒŸ¸‘ÎÛ¯•Êq
-* @param attr ‘®«’l
-* @details ŒŸ¸‘ÎÛ‚ğanalysisCommand‚É“o˜^‚µ‚Ü‚·B
+* @brief æ¤œæŸ»å¯¾è±¡ã®ã‚»ãƒƒãƒˆé–¢æ•°
+* @param analysisCommand è§£æå‘½ä»¤ã‚³ãƒãƒ³ãƒ‰ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+* @param value æ¤œæŸ»å¯¾è±¡è­˜åˆ¥å­
+* @param attr å±æ€§å€¤
+* @details æ¤œæŸ»å¯¾è±¡ã‚’analysisCommandã«ç™»éŒ²ã—ã¾ã™ã€‚
 */
 void AnalysisCommandParser::addTarget(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
 {
@@ -54,11 +54,11 @@ void AnalysisCommandParser::addTarget(AnalysisCommand *analysisCommand, std::str
 
 /**
 * @fn void AnalysisCommandParser::addValue(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
-* @brief ŒŸ¸‚Ég—p‚·‚é•¶š—ñ‚ÌƒZƒbƒgŠÖ”
-* @param analysisCommand ‰ğÍ–½—ßƒRƒ}ƒ“ƒhƒCƒ“ƒXƒ^ƒ“ƒX
-* @param value ŒŸ¸‚Ég—p‚·‚é•¶š—ñ
-* @param attr ‘®«’l
-* @details ŒŸ¸‚Ég—p‚·‚é•¶š—ñ‚ğanalysisCommand‚É“o˜^‚µ‚Ü‚·B
+* @brief æ¤œæŸ»ã«ä½¿ç”¨ã™ã‚‹æ–‡å­—åˆ—ã®ã‚»ãƒƒãƒˆé–¢æ•°
+* @param analysisCommand è§£æå‘½ä»¤ã‚³ãƒãƒ³ãƒ‰ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+* @param value æ¤œæŸ»ã«ä½¿ç”¨ã™ã‚‹æ–‡å­—åˆ—
+* @param attr å±æ€§å€¤
+* @details æ¤œæŸ»ã«ä½¿ç”¨ã™ã‚‹æ–‡å­—åˆ—ã‚’analysisCommandã«ç™»éŒ²ã—ã¾ã™ã€‚
 */
 void AnalysisCommandParser::addValue(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
 {
@@ -70,11 +70,11 @@ void AnalysisCommandParser::addValue(AnalysisCommand *analysisCommand, std::stri
 
 /**
 * @fn void AnalysisCommandParser::setOutputMessage(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
-* @brief ŒŸo‚É•\¦‚·‚éƒƒbƒZ[ƒW‚ÌƒZƒbƒgŠÖ”
-* @param analysisCommand ‰ğÍ–½—ßƒRƒ}ƒ“ƒhƒCƒ“ƒXƒ^ƒ“ƒX
-* @param value •\¦ƒƒbƒZ[ƒW
-* @param attr ‘®«’l
-* @details ŒŸo‚É•\¦‚·‚éƒƒbƒZ[ƒW‚ğanalysisCommand‚É“o˜^‚µ‚Ü‚·B
+* @brief æ¤œå‡ºæ™‚ã«è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ã‚»ãƒƒãƒˆé–¢æ•°
+* @param analysisCommand è§£æå‘½ä»¤ã‚³ãƒãƒ³ãƒ‰ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+* @param value è¡¨ç¤ºãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+* @param attr å±æ€§å€¤
+* @details æ¤œå‡ºæ™‚ã«è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’analysisCommandã«ç™»éŒ²ã—ã¾ã™ã€‚
 */
 void AnalysisCommandParser::setOutputMessage(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
 {
@@ -83,11 +83,11 @@ void AnalysisCommandParser::setOutputMessage(AnalysisCommand *analysisCommand, s
 
 /**
 * @fn void AnalysisCommandParser::setAlertLevel(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
-* @brief ŒŸo‚ÌƒAƒ‰[ƒgî•ñ‚ÌƒZƒbƒgŠÖ”
-* @param analysisCommand ‰ğÍ–½—ßƒRƒ}ƒ“ƒhƒCƒ“ƒXƒ^ƒ“ƒX
-* @param value ŒŸo‚ÌƒAƒ‰[ƒgî•ñ¯•Êq
-* @param attr ‘®«’l
-* @details ŒŸo‚ÌƒAƒ‰[ƒgî•ñ‚ğanalysisCommand‚É“o˜^‚µ‚Ü‚·B
+* @brief æ¤œå‡ºæ™‚ã®ã‚¢ãƒ©ãƒ¼ãƒˆæƒ…å ±ã®ã‚»ãƒƒãƒˆé–¢æ•°
+* @param analysisCommand è§£æå‘½ä»¤ã‚³ãƒãƒ³ãƒ‰ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+* @param value æ¤œå‡ºæ™‚ã®ã‚¢ãƒ©ãƒ¼ãƒˆæƒ…å ±è­˜åˆ¥å­
+* @param attr å±æ€§å€¤
+* @details æ¤œå‡ºæ™‚ã®ã‚¢ãƒ©ãƒ¼ãƒˆæƒ…å ±ã‚’analysisCommandã«ç™»éŒ²ã—ã¾ã™ã€‚
 */
 void AnalysisCommandParser::setAlertLevel(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
 {
@@ -96,11 +96,11 @@ void AnalysisCommandParser::setAlertLevel(AnalysisCommand *analysisCommand, std:
 
 /**
 * @fn void AnalysisCommandParser::setEnableFlg(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
-* @brief ‰ğÍ–½—ß—LŒøƒtƒ‰ƒOƒZƒbƒgŠÖ”
-* @param analysisCommand ‰ğÍ–½—ßƒRƒ}ƒ“ƒhƒCƒ“ƒXƒ^ƒ“ƒX
-* @param value ‰ğÍ–½—ß—LŒøƒtƒ‰ƒO
-* @param attr ‘®«’l
-* @details ‰ğÍ–½—ß—LŒø‚ğanalysisCommand‚É“o˜^‚µ‚Ü‚·B
+* @brief è§£æå‘½ä»¤æœ‰åŠ¹ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆé–¢æ•°
+* @param analysisCommand è§£æå‘½ä»¤ã‚³ãƒãƒ³ãƒ‰ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+* @param value è§£æå‘½ä»¤æœ‰åŠ¹ãƒ•ãƒ©ã‚°
+* @param attr å±æ€§å€¤
+* @details è§£æå‘½ä»¤æœ‰åŠ¹ã‚’analysisCommandã«ç™»éŒ²ã—ã¾ã™ã€‚
 */
 void AnalysisCommandParser::setEnableFlg(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
 {
@@ -109,11 +109,11 @@ void AnalysisCommandParser::setEnableFlg(AnalysisCommand *analysisCommand, std::
 
 /**
 * @fn void AnalysisCommandParser::addTargetExtractionParam(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
-* @brief ŒŸ¸ƒe[ƒuƒ‹’Šo—p³‹K•\Œ»ƒpƒ^[ƒ“ƒZƒbƒgŠÖ”
-* @param analysisCommand ‰ğÍ–½—ßƒRƒ}ƒ“ƒhƒCƒ“ƒXƒ^ƒ“ƒX
-* @param value ŒŸ¸ƒe[ƒuƒ‹’Šo—p³‹K•\Œ»ƒpƒ^[ƒ“•¶š—ñ
-* @param attr ‘®«’l
-* @details ŒŸ¸ƒe[ƒuƒ‹’Šo—p³‹K•\Œ»ƒpƒ^[ƒ“‚ğanalysisCommand‚É“o˜^‚µ‚Ü‚·B
+* @brief æ¤œæŸ»ãƒ†ãƒ¼ãƒ–ãƒ«æŠ½å‡ºç”¨æ­£è¦è¡¨ç¾ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚»ãƒƒãƒˆé–¢æ•°
+* @param analysisCommand è§£æå‘½ä»¤ã‚³ãƒãƒ³ãƒ‰ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+* @param value æ¤œæŸ»ãƒ†ãƒ¼ãƒ–ãƒ«æŠ½å‡ºç”¨æ­£è¦è¡¨ç¾ãƒ‘ã‚¿ãƒ¼ãƒ³æ–‡å­—åˆ—
+* @param attr å±æ€§å€¤
+* @details æ¤œæŸ»ãƒ†ãƒ¼ãƒ–ãƒ«æŠ½å‡ºç”¨æ­£è¦è¡¨ç¾ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’analysisCommandã«ç™»éŒ²ã—ã¾ã™ã€‚
 */
 void AnalysisCommandParser::addTargetExtractionParam(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
 {
@@ -128,11 +128,11 @@ void AnalysisCommandParser::addTargetExtractionParam(AnalysisCommand *analysisCo
 
 /**
 * @fn void AnalysisCommandParser::addTableOptionParam(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
-* @brief ƒe[ƒuƒ‹ƒIƒvƒVƒ‡ƒ“”»’è³‹K•\Œ»ƒpƒ^[ƒ“ƒZƒbƒgŠÖ”
-* @param analysisCommand ‰ğÍ–½—ßƒRƒ}ƒ“ƒhƒCƒ“ƒXƒ^ƒ“ƒX
-* @param value ƒe[ƒuƒ‹ƒIƒvƒVƒ‡ƒ“”»’è•¶š—ñ
-* @param attr ‘®«’l
-* @details ƒe[ƒuƒ‹ƒIƒvƒVƒ‡ƒ“”»’è—p³‹K•\Œ»ƒpƒ^[ƒ“‚ğanalysisCommand‚É“o˜^‚µ‚Ü‚·B
+* @brief ãƒ†ãƒ¼ãƒ–ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³åˆ¤å®šæ­£è¦è¡¨ç¾ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚»ãƒƒãƒˆé–¢æ•°
+* @param analysisCommand è§£æå‘½ä»¤ã‚³ãƒãƒ³ãƒ‰ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+* @param value ãƒ†ãƒ¼ãƒ–ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³åˆ¤å®šæ–‡å­—åˆ—
+* @param attr å±æ€§å€¤
+* @details ãƒ†ãƒ¼ãƒ–ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³åˆ¤å®šç”¨æ­£è¦è¡¨ç¾ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’analysisCommandã«ç™»éŒ²ã—ã¾ã™ã€‚
 */
 void AnalysisCommandParser::addTableOptionParam(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
 {
@@ -144,11 +144,11 @@ void AnalysisCommandParser::addTableOptionParam(AnalysisCommand *analysisCommand
 
 /**
 * @fn void AnalysisCommandParser::addDataTypeParam(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
-* @brief ƒf[ƒ^Œ^”»’è—p³‹K•\Œ»ƒpƒ^[ƒ“ƒZƒbƒgŠÖ”
-* @param analysisCommand ‰ğÍ–½—ßƒRƒ}ƒ“ƒhƒCƒ“ƒXƒ^ƒ“ƒX
-* @param value ƒf[ƒ^Œ^”»’è—p•¶š—ñ
-* @param attr ‘®«’l
-* @details ƒf[ƒ^Œ^”»’è—p³‹K•\Œ»ƒpƒ^[ƒ“‚ğanalysisCommand‚É“o˜^‚µ‚Ü‚·B
+* @brief ãƒ‡ãƒ¼ã‚¿å‹åˆ¤å®šç”¨æ­£è¦è¡¨ç¾ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚»ãƒƒãƒˆé–¢æ•°
+* @param analysisCommand è§£æå‘½ä»¤ã‚³ãƒãƒ³ãƒ‰ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+* @param value ãƒ‡ãƒ¼ã‚¿å‹åˆ¤å®šç”¨æ–‡å­—åˆ—
+* @param attr å±æ€§å€¤
+* @details ãƒ‡ãƒ¼ã‚¿å‹åˆ¤å®šç”¨æ­£è¦è¡¨ç¾ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’analysisCommandã«ç™»éŒ²ã—ã¾ã™ã€‚
 */
 void AnalysisCommandParser::addDataTypeParam(AnalysisCommand *analysisCommand, std::string value, AttributeMap attr)
 {
@@ -160,8 +160,8 @@ void AnalysisCommandParser::addDataTypeParam(AnalysisCommand *analysisCommand, s
 
 /**
 * @fn void AnalysisCommandParser::setParams()
-* @brief ‰ğÍ–½—ßƒCƒ“ƒXƒ^ƒ“ƒXƒpƒ‰ƒ[ƒ^ƒZƒbƒgŠÖ”‚Ìmapî•ñ¶¬ŠÖ”
-* @details ‰ğÍ–½—ßƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒpƒ‰ƒ[ƒ^ƒZƒbƒgŠÖ”‚ğmap•Ï”‚É“o˜^‚µ‚Ü‚·B
+* @brief è§£æå‘½ä»¤ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆé–¢æ•°ã®mapæƒ…å ±ç”Ÿæˆé–¢æ•°
+* @details è§£æå‘½ä»¤ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆé–¢æ•°ã‚’mapå¤‰æ•°ã«ç™»éŒ²ã—ã¾ã™ã€‚
 */
 void AnalysisCommandParser::setParams()
 {

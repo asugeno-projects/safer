@@ -20,63 +20,63 @@
 
 /**
 * @fn void ColumnDataTypeChecker::run(AnalysisCommandTypeCheck *analysisCommand, ER *er)
-* @brief ‰ğÍˆ—ÀsŠÖ”(Column‚Ìƒf[ƒ^Œ^”»’è)
-* @param analysisCommand ‰ğÍ–½—ßƒCƒ“ƒXƒ^ƒ“ƒX
-* @param er ERî•ñŠi”[ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^•Ï”
-* @details ‰ğÍˆ—‚ÌÀs‚ğs‚¤B<br>ƒf[ƒ^Œ^‚ªŒŸo‘ÎÛ‚Ì‚à‚Ì‚©‚ğ”»’è‚µAŒŸo‘ÎÛ‚Å‚ ‚ê‚Îrepoter‚É•ñî•ñ‚ğ’Ç‰Á‚·‚é
+* @brief è§£æå‡¦ç†å®Ÿè¡Œé–¢æ•°(Columnã®ãƒ‡ãƒ¼ã‚¿å‹åˆ¤å®š)
+* @param analysisCommand è§£æå‘½ä»¤ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+* @param er ERæƒ…å ±æ ¼ç´ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿å¤‰æ•°
+* @details è§£æå‡¦ç†ã®å®Ÿè¡Œã‚’è¡Œã†ã€‚<br>ãƒ‡ãƒ¼ã‚¿å‹ãŒæ¤œå‡ºå¯¾è±¡ã®ã‚‚ã®ã‹ã‚’åˆ¤å®šã—ã€æ¤œå‡ºå¯¾è±¡ã§ã‚ã‚Œã°repoterã«å ±å‘Šæƒ…å ±ã‚’è¿½åŠ ã™ã‚‹
 */
 void ColumnDataTypeChecker::run(AnalysisCommandTypeCheck *analysisCommand, ER *er)
 {
-	//”»’è—pƒf[ƒ^Œ^ƒŠƒXƒg‚ğæ“¾
+	//åˆ¤å®šç”¨ãƒ‡ãƒ¼ã‚¿å‹ãƒªã‚¹ãƒˆã‚’å–å¾—
 	std::list<DataType> dataTypes = analysisCommand->getDataTypes();
-	//”»’è—pƒe[ƒuƒ‹ƒIƒvƒVƒ‡ƒ“ƒŠƒXƒg‚ğæ“¾
+	//åˆ¤å®šç”¨ãƒ†ãƒ¼ãƒ–ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒªã‚¹ãƒˆã‚’å–å¾—
 	std::list<TableOption> tableOptions = analysisCommand->getTableOptions();
 	
-	//‘ÎÛƒe[ƒuƒ‹”»’è—p³‹K•\Œ»ƒpƒ^[ƒ“ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì¶¬
+	//å¯¾è±¡ãƒ†ãƒ¼ãƒ–ãƒ«åˆ¤å®šç”¨æ­£è¦è¡¨ç¾ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ç”Ÿæˆ
 	std::wregex extractPatternForTable = CompRegularExpression::getExtractPattern(analysisCommand->getTargetExtractionParams(SECTION_TABLE));
 	std::wregex extractPatternForTab = CompRegularExpression::getExtractPattern(analysisCommand->getTargetExtractionParams(SECTION_TAG));
-	//ColumnŒŸo³‹K•\Œ»ƒpƒ^[ƒ“ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì¶¬
+	//Columnæ¤œå‡ºæ­£è¦è¡¨ç¾ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ç”Ÿæˆ
 	std::wregex columnPattern = CompRegularExpression::getStringsToWOrPattern(analysisCommand->getValues());
 
-	//Entity‚Ì”‚¾‚¯ƒ‹[ƒvˆ—
+	//Entityã®æ•°ã ã‘ãƒ«ãƒ¼ãƒ—å‡¦ç†
 	for (std::list<Entity *>::iterator entityIt = er->entitys.begin(); entityIt != er->entitys.end(); entityIt++)
 	{
-		//ŒŸo‘ÎÛ‚Ìƒe[ƒuƒ‹‚©”»’è
+		//æ¤œå‡ºå¯¾è±¡ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‹åˆ¤å®š
 		if (!regex_match((*entityIt)->getPhysicalTableName().c_str(), extractPatternForTable) &&
 			!regex_match((*entityIt)->getTagName().c_str(), extractPatternForTab))
 		{
-			//‘ÎÛƒe[ƒuƒ‹‚Å‚È‚¢ê‡Aˆ—‚ğƒXƒLƒbƒv
+			//å¯¾è±¡ãƒ†ãƒ¼ãƒ–ãƒ«ã§ãªã„å ´åˆã€å‡¦ç†ã‚’ã‚¹ã‚­ãƒƒãƒ—
 			continue;
 		}
 
-		//Entity‚©‚çColumnî•ñ‚ğæ“¾
+		//Entityã‹ã‚‰Columnæƒ…å ±ã‚’å–å¾—
 		auto fields = (*entityIt)->getfields();
 
-		//Column‚Ì”‚¾‚¯ƒ‹[ƒvˆ—
+		//Columnã®æ•°ã ã‘ãƒ«ãƒ¼ãƒ—å‡¦ç†
 		for (auto fieldIt = fields.begin(); fieldIt != fields.end(); fieldIt++)
 		{
-			//ŒŸo‘ÎÛƒJƒ‰ƒ€”»’è
+			//æ¤œå‡ºå¯¾è±¡ã‚«ãƒ©ãƒ åˆ¤å®š
 			if (!regex_match((*fieldIt).name.physicalName.c_str(), columnPattern))
 			{
-				//‘ÎÛColumn‚¶‚á‚È‚¢ê‡‚Í”ò‚Î‚·
+				//å¯¾è±¡Columnã˜ã‚ƒãªã„å ´åˆã¯é£›ã°ã™
 				continue;
 			}
 
-			//ƒf[ƒ^ƒJƒ‰ƒ€‚Ì”»’èˆ—
+			//ãƒ‡ãƒ¼ã‚¿ã‚«ãƒ©ãƒ ã®åˆ¤å®šå‡¦ç†
 			if (!this->chackForDataTypeList(dataTypes, (*fieldIt).type))
 			{
-				//ŒŸo‘ÎÛ‚Å‚È‚¯‚ê‚Îˆ—I—¹
+				//æ¤œå‡ºå¯¾è±¡ã§ãªã‘ã‚Œã°å‡¦ç†çµ‚äº†
 				continue;
 			}
 
-			//Table Option”»’è
+			//Table Optionåˆ¤å®š
 			if (!this->chackFoTableOptionList(tableOptions, (*fieldIt).DDLOptions))
 			{
-				//ŒŸo‘ÎÛ‚Å‚È‚¯‚ê‚Îˆ—I—¹
+				//æ¤œå‡ºå¯¾è±¡ã§ãªã‘ã‚Œã°å‡¦ç†çµ‚äº†
 				continue;
 			}
 
-			//‚±‚±‚É“’B‚µ‚½“_‚ÅAŒŸo‘ÎÛ‚Æ‚İ‚È‚µAƒŒƒ|[ƒgî•ñ‚Ö’~Ï‚·‚é
+			//ã“ã“ã«åˆ°é”ã—ãŸæ™‚ç‚¹ã§ã€æ¤œå‡ºå¯¾è±¡ã¨ã¿ãªã—ã€ãƒ¬ãƒãƒ¼ãƒˆæƒ…å ±ã¸è“„ç©ã™ã‚‹
 			Reporter::getInstance()->addRecord(analysisCommand, CommandTypeList::E_TypeCheck, (*entityIt)->getPhysicalTableName(), (*fieldIt).name.physicalName);
 		}
 	}
@@ -84,37 +84,37 @@ void ColumnDataTypeChecker::run(AnalysisCommandTypeCheck *analysisCommand, ER *e
 
 /**
 * @fn bool ColumnDataTypeChecker::checkForJudgment(int *commandCount, int *hitCount)
-* @brief ƒRƒ}ƒ“ƒhÀs‰ñ”‚Æƒqƒbƒg‰ñ”‚ğ”äŠr‚µAŒŸo‘ÎÛ‚©”»’è‚·‚éŠÖ”
-* @param commandCount –½—ßÀs‰ñ”‚ÌƒJƒEƒ“ƒ^[—p”z—ñ
-* @param hitCount ”»’è‰ñ”‚ÌƒJƒEƒ“ƒ^[—p”z—ñ
-* @return –½—ßÀs‰ñ”ƒJƒEƒ“ƒ^[‚Æ”»’è‰ñ”ƒJƒEƒ“ƒ^[‚ğ”äŠr‚µA<br>ˆ—‚³‚ê‚½ƒf[ƒ^‚ªŒŸo‘ÎÛ‚¾‚Á‚½‚à‚Ì‚©”»’è‚µŒ‹‰Ê‚ğboolŒ^‚Å•Ô‚·
+* @brief ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œå›æ•°ã¨ãƒ’ãƒƒãƒˆå›æ•°ã‚’æ¯”è¼ƒã—ã€æ¤œå‡ºå¯¾è±¡ã‹åˆ¤å®šã™ã‚‹é–¢æ•°
+* @param commandCount å‘½ä»¤å®Ÿè¡Œå›æ•°ã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ç”¨é…åˆ—
+* @param hitCount åˆ¤å®šå›æ•°ã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ç”¨é…åˆ—
+* @return å‘½ä»¤å®Ÿè¡Œå›æ•°ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã¨åˆ¤å®šå›æ•°ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚’æ¯”è¼ƒã—ã€<br>å‡¦ç†ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ãŒæ¤œå‡ºå¯¾è±¡ã ã£ãŸã‚‚ã®ã‹åˆ¤å®šã—çµæœã‚’boolå‹ã§è¿”ã™
 * @details 
 */
 bool ColumnDataTypeChecker::checkForJudgment(int *commandCount, int *hitCount)
 {
-	//”»’èŠm”F
+	//åˆ¤å®šç¢ºèª
 	if (commandCount[LogicalOperationTypeList::E_And] != hitCount[LogicalOperationTypeList::E_And])
 	{
-		//ANDğŒ”»’ès‰ñ”‚Æ”»’è”‚ªˆê’v‚µ‚È‚¢ê‡AğŒ–¢’B(false)
+		//ANDæ¡ä»¶åˆ¤å®šè©¦è¡Œå›æ•°ã¨åˆ¤å®šæ•°ãŒä¸€è‡´ã—ãªã„å ´åˆã€æ¡ä»¶æœªé”(false)
 		return false;
 	}
 	if (commandCount[LogicalOperationTypeList::E_NotAnd] != hitCount[LogicalOperationTypeList::E_NotAnd])
 	{
-		//NOT ANDğŒ”»’ès‰ñ”‚Æ”»’è”‚ªˆê’v‚µ‚È‚¢ê‡AğŒ–¢’B(false)
+		//NOT ANDæ¡ä»¶åˆ¤å®šè©¦è¡Œå›æ•°ã¨åˆ¤å®šæ•°ãŒä¸€è‡´ã—ãªã„å ´åˆã€æ¡ä»¶æœªé”(false)
 		return false;
 	}
 	if (commandCount[LogicalOperationTypeList::E_Or] > 0 &&
 		hitCount[LogicalOperationTypeList::E_Or] == 0)
 	{
-		//OR”»’èğŒ‚É‚ÄA”»’ès‰ñ”‚ª1ˆÈã‚©‚Â”»’è‰ñ”‚ª1ˆÈã‚Å‚Í–³‚¢‚Æ‚«A
-		//ğŒ–¢’B(false)
+		//ORåˆ¤å®šæ¡ä»¶ã«ã¦ã€åˆ¤å®šè©¦è¡Œå›æ•°ãŒ1ä»¥ä¸Šã‹ã¤åˆ¤å®šå›æ•°ãŒ1ä»¥ä¸Šã§ã¯ç„¡ã„ã¨ãã€
+		//æ¡ä»¶æœªé”(false)
 		return false;
 	}
 	if (commandCount[LogicalOperationTypeList::E_NotOr] > 0 &&
 		hitCount[LogicalOperationTypeList::E_NotOr] != 0)
 	{
-		//OR”»’èğŒ‚É‚ÄA”»’ès‰ñ”‚ª1ˆÈã‚©‚Â”»’è‰ñ”‚ª1ˆÈã‚Å‚ ‚é‚Æ‚«A
-		//ğŒ–¢’B‚É‚ÄAŸ‚Ìƒ‹[ƒvˆ—‚ğŠJn(false)
+		//ORåˆ¤å®šæ¡ä»¶ã«ã¦ã€åˆ¤å®šè©¦è¡Œå›æ•°ãŒ1ä»¥ä¸Šã‹ã¤åˆ¤å®šå›æ•°ãŒ1ä»¥ä¸Šã§ã‚ã‚‹ã¨ãã€
+		//æ¡ä»¶æœªé”ã«ã¦ã€æ¬¡ã®ãƒ«ãƒ¼ãƒ—å‡¦ç†ã‚’é–‹å§‹(false)
 		return false;
 	}
 	return true;
@@ -122,44 +122,44 @@ bool ColumnDataTypeChecker::checkForJudgment(int *commandCount, int *hitCount)
 
 /**
 * @fn void ColumnDataTypeChecker::execMatchForColumnType(int *commandCount, int *hitCount, std::string patternString, LogicalOperationTypeList logicalOperationType, std::wstring value)
-* @brief Column‚Ìƒf[ƒ^“à—e‚ğ³‹K•\Œ»‚Å”äŠr‚Æ˜_—‰‰Zqî•ñ‚©‚ç¬”Û‚ğ”»’è‚·‚éŠÖ”
-* @param commandCount –½—ßÀs‰ñ”‚ÌƒJƒEƒ“ƒ^[—p”z—ñ
-* @param hitCount ”»’è‰ñ”‚ÌƒJƒEƒ“ƒ^[—p”z—ñ
-* @param patternString ”»’è—p³‹K•\Œ»‚ğ’è‹`‚µ‚½•¶š—ñ
-* @param logicalOperationType ”»’è—p˜_—‰‰Zƒpƒ‰ƒ[ƒ^
-* @param value ŒŸo‘ÎÛ•¶š—ñ
-* @details Column‚Ìƒf[ƒ^“à—e‚ğ³‹K•\Œ»‚Å”äŠr‚Æ˜_—‰‰Zqî•ñ‚©‚ç¬”Û‚ğ”»’è‚µƒJƒEƒ“ƒ^[•Ï”‚ğƒJƒEƒ“ƒgƒAƒbƒv‚³‚¹‚Ü‚·
+* @brief Columnã®ãƒ‡ãƒ¼ã‚¿å†…å®¹ã‚’æ­£è¦è¡¨ç¾ã§æ¯”è¼ƒã¨è«–ç†æ¼”ç®—å­æƒ…å ±ã‹ã‚‰æˆå¦ã‚’åˆ¤å®šã™ã‚‹é–¢æ•°
+* @param commandCount å‘½ä»¤å®Ÿè¡Œå›æ•°ã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ç”¨é…åˆ—
+* @param hitCount åˆ¤å®šå›æ•°ã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ç”¨é…åˆ—
+* @param patternString åˆ¤å®šç”¨æ­£è¦è¡¨ç¾ã‚’å®šç¾©ã—ãŸæ–‡å­—åˆ—
+* @param logicalOperationType åˆ¤å®šç”¨è«–ç†æ¼”ç®—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+* @param value æ¤œå‡ºå¯¾è±¡æ–‡å­—åˆ—
+* @details Columnã®ãƒ‡ãƒ¼ã‚¿å†…å®¹ã‚’æ­£è¦è¡¨ç¾ã§æ¯”è¼ƒã¨è«–ç†æ¼”ç®—å­æƒ…å ±ã‹ã‚‰æˆå¦ã‚’åˆ¤å®šã—ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼å¤‰æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ã•ã›ã¾ã™
 */
 void ColumnDataTypeChecker::execMatchForColumnType(int *commandCount, int *hitCount, std::string patternString, LogicalOperationTypeList logicalOperationType, std::wstring value)
 {
-	//ó‚¯æ‚Á‚½³‹K•\Œ»—p•¶š—ñ‚ğ³‹K•\Œ»ƒCƒ“ƒXƒ^ƒ“ƒX‚Ö•ÏŠ·
+	//å—ã‘å–ã£ãŸæ­£è¦è¡¨ç¾ç”¨æ–‡å­—åˆ—ã‚’æ­£è¦è¡¨ç¾ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¸å¤‰æ›
 	wstring ws;
 	stringToWString(ws, patternString);
 	std::wregex pattern(ws);
 
-	//‘ÎÛ‚Ìƒf[ƒ^‚ªğŒ‚Éƒ}ƒbƒ`‚·‚é‚©”»’è
+	//å¯¾è±¡ã®ãƒ‡ãƒ¼ã‚¿ãŒæ¡ä»¶ã«ãƒãƒƒãƒã™ã‚‹ã‹åˆ¤å®š
 	bool flg = regex_match(value.c_str(), pattern);
 
-	//³‹K•\Œ»‚Åƒ}ƒbƒ`‚·‚é‚©‚Ç‚¤‚©‚ğ”»’è‚µ‚½ƒtƒ‰ƒO‚Æ
-	//˜_—‰‰Z‚Ì”»’è‚ğ‘g‚İ‡‚í‚¹—¼ğŒ‚Éˆê’v‚µ‚½‚à‚Ì‚ğ
-	//ŒŸo‚Æ”»’è‚³‚ê‚½‚à‚Ì‚Æ‚µ‰ñ”‚ğƒJƒEƒ“ƒg‚·‚é
+	//æ­£è¦è¡¨ç¾ã§ãƒãƒƒãƒã™ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤å®šã—ãŸãƒ•ãƒ©ã‚°ã¨
+	//è«–ç†æ¼”ç®—ã®åˆ¤å®šã‚’çµ„ã¿åˆã‚ã›ä¸¡æ¡ä»¶ã«ä¸€è‡´ã—ãŸã‚‚ã®ã‚’
+	//æ¤œå‡ºã¨åˆ¤å®šã•ã‚ŒãŸã‚‚ã®ã¨ã—å›æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹
 	switch (logicalOperationType)
 	{
-	case LogicalOperationTypeList::E_And://ANDğŒˆ—
-	case LogicalOperationTypeList::E_Or://ORğŒˆ—
+	case LogicalOperationTypeList::E_And://ANDæ¡ä»¶å‡¦ç†
+	case LogicalOperationTypeList::E_Or://ORæ¡ä»¶å‡¦ç†
 		commandCount[logicalOperationType]++;
 		if (flg)
 		{
-			//ğŒ‚Åtrue‚ªo‚½ê‡”»’è‰ÁZ
+			//æ¡ä»¶ã§trueãŒå‡ºãŸå ´åˆåˆ¤å®šåŠ ç®—
 			hitCount[logicalOperationType]++;
 		}
 		break;
-	case LogicalOperationTypeList::E_NotAnd://NOT ANDˆ—
-	case LogicalOperationTypeList::E_NotOr://NOT ORˆ—
+	case LogicalOperationTypeList::E_NotAnd://NOT ANDå‡¦ç†
+	case LogicalOperationTypeList::E_NotOr://NOT ORå‡¦ç†
 		commandCount[logicalOperationType]++;
 		if (!flg)
 		{
-			//NOTğŒ‚Åfalse‚ªo‚½ê‡”»’è‰ÁZ
+			//NOTæ¡ä»¶ã§falseãŒå‡ºãŸå ´åˆåˆ¤å®šåŠ ç®—
 			hitCount[logicalOperationType]++;
 		}
 		break;
@@ -168,23 +168,23 @@ void ColumnDataTypeChecker::execMatchForColumnType(int *commandCount, int *hitCo
 
 /**
 * @fn bool ColumnDataTypeChecker::chackForDataTypeList(std::list<DataType> dataTypeList, std::wstring targetString)
-* @brief ‘ÎÛ‚Ìƒf[ƒ^Œ^‚ÌŒŸo‘ÎÛ‚©ƒ`ƒFƒbƒN‚ğs‚¤ŠÖ”
-* @param dataTypeList ”»’è—pƒf[ƒ^Œ^ƒŠƒXƒg
-* @param targetString ŒŸ¸‘ÎÛƒf[ƒ^Œ^
-* @return ŒŸo‘ÎÛ‚©”»’è‚µ‚½Œ‹‰Ê‚ğbool‚Å•Ô‚·
-* @details ‘ÎÛ‚Ìƒf[ƒ^Œ^‚ÌŒŸo‘ÎÛ‚©ƒ`ƒFƒbƒN‚ğs‚¤ŠÖ”
+* @brief å¯¾è±¡ã®ãƒ‡ãƒ¼ã‚¿å‹ã®æ¤œå‡ºå¯¾è±¡ã‹ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†é–¢æ•°
+* @param dataTypeList åˆ¤å®šç”¨ãƒ‡ãƒ¼ã‚¿å‹ãƒªã‚¹ãƒˆ
+* @param targetString æ¤œæŸ»å¯¾è±¡ãƒ‡ãƒ¼ã‚¿å‹
+* @return æ¤œå‡ºå¯¾è±¡ã‹åˆ¤å®šã—ãŸçµæœã‚’boolã§è¿”ã™
+* @details å¯¾è±¡ã®ãƒ‡ãƒ¼ã‚¿å‹ã®æ¤œå‡ºå¯¾è±¡ã‹ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†é–¢æ•°
 */
 bool ColumnDataTypeChecker::chackForDataTypeList(std::list<DataType> dataTypeList, std::wstring targetString)
 {
-	//ƒtƒ‰ƒO‰Šú‰»
+	//ãƒ•ãƒ©ã‚°åˆæœŸåŒ–
 	int hitCount[LogicalOperationTypeList::E_LogicalOperationTypeMax] = { 0 };
 	int exeCount[LogicalOperationTypeList::E_LogicalOperationTypeMax] = { 0 };
 
 
-	//ƒf[ƒ^Œ^ƒŠƒXƒg‚Ì”‚¾‚¯ƒ‹[ƒvˆ—
+	//ãƒ‡ãƒ¼ã‚¿å‹ãƒªã‚¹ãƒˆã®æ•°ã ã‘ãƒ«ãƒ¼ãƒ—å‡¦ç†
 	for (auto dataType = dataTypeList.begin(); dataType != dataTypeList.end(); dataType++)
 	{
-		//‘ÎÛ‚Ìƒf[ƒ^Œ^‚ÌŒŸo‘ÎÛ‚©ƒ`ƒFƒbƒN‚ğs‚¤
+		//å¯¾è±¡ã®ãƒ‡ãƒ¼ã‚¿å‹ã®æ¤œå‡ºå¯¾è±¡ã‹ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†
 		this->execMatchForColumnType(exeCount,
 			hitCount,
 			(*dataType).dataType,
@@ -192,10 +192,10 @@ bool ColumnDataTypeChecker::chackForDataTypeList(std::list<DataType> dataTypeLis
 			targetString);
 	}
 
-	//”»’èŠm”F
+	//åˆ¤å®šç¢ºèª
 	if (!this->checkForJudgment(exeCount, hitCount))
 	{
-		//ŒŸo‘ÎÛo‚È‚©‚Á‚½ê‡ŒÄ‚Ño‚µŒ³‚Éfalse‚ğ•Ô‚·
+		//æ¤œå‡ºå¯¾è±¡å‡ºãªã‹ã£ãŸå ´åˆå‘¼ã³å‡ºã—å…ƒã«falseã‚’è¿”ã™
 		return false;
 	}
 	return true;
@@ -203,25 +203,25 @@ bool ColumnDataTypeChecker::chackForDataTypeList(std::list<DataType> dataTypeLis
 
 /**
 * @fn bool ColumnDataTypeChecker::chackFoTableOptionList(std::list<TableOption> tableOptions, std::list<std::wstring> DdlOptions)
-* @brief ‘ÎÛ‚ÌColumn‚Ìƒe[ƒuƒ‹ƒIƒvƒVƒ‡ƒ“‚ªŒŸ¸ƒŠƒXƒg‚Æˆê’v‚·‚é‚©ƒ`ƒFƒbƒN‚ğs‚¤ŠÖ”
-* @param tableOptions ”»’è—pƒe[ƒuƒ‹ƒIƒvƒVƒ‡ƒ“ƒŠƒXƒg
-* @param DdlOptions DDLƒIƒvƒVƒ‡ƒ“
-* @return ŒŸo‘ÎÛ‚©”»’è‚µ‚½Œ‹‰Ê‚ğbool‚Å•Ô‚·
-* @details ‘ÎÛ‚ÌColumn‚Ìƒe[ƒuƒ‹ƒIƒvƒVƒ‡ƒ“‚ªŒŸ¸ƒŠƒXƒg‚Æˆê’v‚·‚é‚©ƒ`ƒFƒbƒN‚ğs‚¤ŠÖ”
+* @brief å¯¾è±¡ã®Columnã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãŒæ¤œæŸ»ãƒªã‚¹ãƒˆã¨ä¸€è‡´ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†é–¢æ•°
+* @param tableOptions åˆ¤å®šç”¨ãƒ†ãƒ¼ãƒ–ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒªã‚¹ãƒˆ
+* @param DdlOptions DDLã‚ªãƒ—ã‚·ãƒ§ãƒ³
+* @return æ¤œå‡ºå¯¾è±¡ã‹åˆ¤å®šã—ãŸçµæœã‚’boolã§è¿”ã™
+* @details å¯¾è±¡ã®Columnã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãŒæ¤œæŸ»ãƒªã‚¹ãƒˆã¨ä¸€è‡´ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†é–¢æ•°
 */
 bool ColumnDataTypeChecker::chackFoTableOptionList(std::list<TableOption> tableOptions, std::list<std::wstring> DdlOptions)
 {
-	//ƒtƒ‰ƒO‰Šú‰»
+	//ãƒ•ãƒ©ã‚°åˆæœŸåŒ–
 	int tableOptionHitCount[LogicalOperationTypeList::E_LogicalOperationTypeMax] = { 0 };
 	int tableOptionExeCount[LogicalOperationTypeList::E_LogicalOperationTypeMax] = { 0 };
 
-	//DDLƒIƒvƒVƒ‡ƒ“‚Ì”‚¾‚¯ƒ‹[ƒvˆ—
+	//DDLã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®æ•°ã ã‘ãƒ«ãƒ¼ãƒ—å‡¦ç†
 	for (auto ddlOptionIt = DdlOptions.begin(); ddlOptionIt != DdlOptions.end(); ddlOptionIt++)
 	{
-		//ƒe[ƒuƒ‹‚ÉƒZƒbƒg‚³‚ê‚½ƒIƒvƒVƒ‡ƒ“‚Ì”‚¾‚¯ƒ‹[ƒvˆ—
+		//ãƒ†ãƒ¼ãƒ–ãƒ«ã«ã‚»ãƒƒãƒˆã•ã‚ŒãŸã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®æ•°ã ã‘ãƒ«ãƒ¼ãƒ—å‡¦ç†
 		for (auto tableOptionIt = tableOptions.begin(); tableOptionIt != tableOptions.end(); tableOptionIt++)
 		{
-			//‘ÎÛ‚Ìƒe[ƒuƒ‹ƒIƒvƒVƒ‡ƒ“‚ªŒŸo‘ÎÛ‚Ì‚à‚Ì‚©ƒ`ƒFƒbƒN‚ğs‚¤
+			//å¯¾è±¡ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãŒæ¤œå‡ºå¯¾è±¡ã®ã‚‚ã®ã‹ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†
 			this->execMatchForColumnType(tableOptionExeCount,
 				tableOptionHitCount,
 				TableOptionToLabel[(*tableOptionIt).tableOption],
@@ -230,10 +230,10 @@ bool ColumnDataTypeChecker::chackFoTableOptionList(std::list<TableOption> tableO
 		}
 	}
 
-	//”»’èŠm”F
+	//åˆ¤å®šç¢ºèª
 	if (!this->checkForJudgment(tableOptionExeCount, tableOptionHitCount))
 	{
-		//ŒŸo‘ÎÛo‚È‚©‚Á‚½ê‡ˆ—AŒÄ‚Ño‚µŒ³‚Éfalse‚ğ•Ô‚·
+		//æ¤œå‡ºå¯¾è±¡å‡ºãªã‹ã£ãŸå ´åˆå‡¦ç†ã€å‘¼ã³å‡ºã—å…ƒã«falseã‚’è¿”ã™
 		return false;
 	}
 	return true;
