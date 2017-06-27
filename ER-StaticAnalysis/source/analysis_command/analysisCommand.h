@@ -20,7 +20,7 @@
 #include <map>
 #include "../common/commonString.h"
 #include "../common/commonXml.h"
-#include "Xlsx/SimpleXlsxDef.h"
+#include <Xlsx/SimpleXlsxDef.h>
 
 using namespace std;
 
