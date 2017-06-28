@@ -29,7 +29,7 @@ ELSE()
 ENDIF()
 
 # set CXX FLAG
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -Wall -Wextra -Wmismatched-new-delete")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -Wextra -Wmismatched-new-delete")
 
 # Find Source
 FILE(GLOB_RECURSE Sources "${SaferPath}/*.cpp" "${SaferPath}/*/*.cpp")
@@ -37,6 +37,14 @@ FILE(GLOB_RECURSE SWXList "${SwxPath}/*.cpp")
 
 # add executable
 ADD_EXECUTABLE(safer ER-StaticAnalysis/source/main.cpp ${Sources} ${SWXList}) 
+
+# Per OS setting
+IF(WIN32)
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D=_WIN32")
+ELSEIF(APPLE)
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D=_MACOSX")
+  SET(LibrarySearchDir "/usr/local")
+ENDIF()
 
 # find boost
 FIND_PACKAGE(Boost REQUIRED COMPONENTS program_options system filesystem regex date_time)
@@ -46,10 +54,14 @@ IF(Boost_FOUND)
 ENDIF()
 
 # find Xerces-c
-FIND_LIBRARY(XercesLibrary NAMES xerces-c
+FIND_LIBRARY(
+  XercesLibrary
+  NAMES xerces-c
   PATHS
-    /usr/local/
+    ${LibrarySearchDir}
 )
+
+# LINK for Xerces-c
 IF(NOT XercesLibrary)
   MESSAGE(FATAL_ERROR "Failed to find the Xerces library.")
 ELSE()
@@ -57,15 +69,26 @@ ELSE()
 ENDIF()
 
 # find Hunspell
-FIND_LIBRARY(HunspellLibrary NAMES ${HunspellVersion} PATH_SUFFIXES hunspell PATHS /usr/local/)
+FIND_LIBRARY(
+  HunspellLibrary REQUIRED
+  NAMES ${HunspellVersion}
+  PATH_SUFFIXES
+    hunspell
+  PATHS
+    ${LibrarySearchDir}
+)
+
+# Link and Include for Hunspell
 IF(NOT HunspellLibrary)
   message(FATAL_ERROR "Failed to find the Hunspell library.")
 ELSE()
-  FIND_PATH(HunspellLibraryPath NAMES "hunspell.h"
+  FIND_PATH(
+    HunspellLibraryPath
+    NAMES "hunspell.h"
     PATH_SUFFIXES
       hunspell
     PATHS
-      /usr/local
+      ${LibrarySearchDir}
   )
   TARGET_LINK_LIBRARIES(safer LINK_PUBLIC ${HunspellLibrary})
   TARGET_INCLUDE_DIRECTORIES(safer PUBLIC ${HunspellLibraryPath})
@@ -73,3 +96,22 @@ ENDIF()
 
 # outher
 TARGET_INCLUDE_DIRECTORIES(safer PUBLIC "${SwxPath}")
+
+# build setting
+IF(NOT CMAKE_BUILD_TYPE)
+  SET(CMAKE_BUILD_TYPE "Debug")
+ENDIF()
+SET(CMAKE_CXX_FLAGS_DEBUG "-g3 -O0 -Wall")
+SET(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG -march=native")
+
+# output dir
+SET(outdir ${CMAKE_CURRENT_SOURCE_DIR}/out/${CMAKE_BUILD_TYPE}/bin/)
+SET(EXECUTABLE_OUTPUT_PATH ${outdir} CACHE PATH "Build directory" FORCE)
+SET(LIBRARY_OUTPUT_PATH ${outdir} CACHE PATH "Build directory" FORCE)
+SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${outdir})
+SET(CMAKE_BUILD_FILES_DIRECTORY ${outdir})
+SET(CMAKE_BUILD_DIRECTORY ${outdir})
+SET(CMAKE_BINARY_DIR  ${outdir})
+SET(EXECUTABLE_OUTPUT_PATH ${outdir})
+SET(LIBRARY_OUTPUT_PATH ${outdir}lib)
+SET(CMAKE_CACHEFILE_DIR ${dir})
