@@ -117,7 +117,7 @@
     <ClCompile Include="source\common\commonXerces.cpp">
       <Filter>ソース ファイル\common</Filter>
     </ClCompile>
-    <ClCompile Include="source\parser\command\analysisCommandPaser.cpp">
+    <ClCompile Include="source\parser\command\analysisCommandParser.cpp">
       <Filter>ソース ファイル\parser\command</Filter>
     </ClCompile>
     <ClCompile Include="source\parser\command\analysisCommandXmlParser.cpp">

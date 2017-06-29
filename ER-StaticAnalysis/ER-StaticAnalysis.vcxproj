@@ -143,7 +143,7 @@
     <ClCompile Include="..\library\SimpleXmlWriter\Xlsx\XlsxHeaders.cpp" />
     <ClCompile Include="..\library\SimpleXmlWriter\Zip\zip.cpp" />
     <ClCompile Include="source\parser\ER\A5erParser.cpp" />
-    <ClCompile Include="source\parser\command\analysisCommandPaser.cpp" />
+    <ClCompile Include="source\parser\command\analysisCommandParser.cpp" />
     <ClCompile Include="source\parser\command\analysisCommandXmlParser.cpp" />
     <ClCompile Include="source\analysis_command\analysisProjects.cpp" />
     <ClCompile Include="source\reporter\analyticsReportXlsx.cpp" />
