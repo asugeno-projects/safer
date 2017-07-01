@@ -4,6 +4,12 @@ Overview
 
 * Static Analysis engine for ER
 
+Build Status(branch dev)
+
+| Windows(dev) |
+|:------------:|
+|[![Build status](https://ci.appveyor.com/api/projects/status/ryetcyxmwhvh85ag/branch/dev?svg=true)](https://ci.appveyor.com/project/AkihiroSugeno/safer/branch/dev)|
+
 ## Description
 
 * This application is static analysis for ER file.(このアプリケーションはERファイルを静的解析するアプリケーションです)
