@@ -13,7 +13,6 @@ install:
 
     git submodule update
 
-
     cd C:\projects\safer\library\SimpleXmlWriter
 
     git checkout -b dev
@@ -22,6 +21,7 @@ install:
 
     cd C:\projects\safer\
 
+    nuget restore
 
     appveyor DownloadFile http://owncloud.sharuru07.jp/index.php/s/fDZG2ZpVJkCscaF/download -FileName C:\projects\safer\safer.sln
 
