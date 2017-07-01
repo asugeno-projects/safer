@@ -2,8 +2,10 @@ version: 1.0.{build}
 branches:
   only:
   - dev
-image: Visual Studio 2015
-configuration: Debug
+image: Visual Studio 2013
+configuration:
+- Debug
+- Release
 platform: Mixed Platforms
 install:
 - cmd: >-
