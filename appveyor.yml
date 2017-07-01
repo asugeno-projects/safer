@@ -1,0 +1,56 @@
+version: 1.0.{build}
+branches:
+  only:
+  - dev
+image: Visual Studio 2015
+configuration: Debug
+platform: Mixed Platforms
+install:
+- cmd: >-
+    git submodule init
+
+    git submodule update
+
+
+    cd C:\projects\safer\library\SimpleXmlWriter
+
+    git checkout -b dev
+
+    git pull origin dev
+
+    cd C:\projects\safer\
+
+
+    appveyor DownloadFile http://owncloud.sharuru07.jp/index.php/s/fDZG2ZpVJkCscaF/download -FileName C:\projects\safer\safer.sln
+
+
+    appveyor DownloadFile http://owncloud.sharuru07.jp/index.php/s/b4asxr60II25X4D/download -FileName C:\projects\safer\ER-StaticAnalysis\ER-StaticAnalysis.vcxproj
+
+
+
+    appveyor DownloadFile http://owncloud.sharuru07.jp/index.php/s/W3Pkzn5Gm45sbph/download -FileName C:\projects\safer\ER-StaticAnalysis\ER-StaticAnalysis.vcxproj.filters
+
+
+    appveyor DownloadFile http://owncloud.sharuru07.jp/index.php/s/0cMjO0PYGr2Z3me/download -FileName C:\projects\safer\library\xerces-c\projects\Win32\VC12\xerces-all\XercesLib\XercesLib.vcxproj
+
+
+    appveyor DownloadFile http://owncloud.sharuru07.jp/index.php/s/MjKE36zvOlKkACn/download -FileName C:\projects\safer\library\libhunspell\src\win_api\libhunspell.vcxproj
+
+
+    appveyor DownloadFile http://owncloud.sharuru07.jp/index.php/s/1TT2Uy8ydxTLC3n/download -FileName C:\projects\safer\library\libhunspell\src\win_api\libhunspell.vcxproj.filters
+
+
+    appveyor DownloadFile http://owncloud.sharuru07.jp/index.php/s/jhFcisUwEEAPkLq/download -FileName C:\projects\safer\library\SimpleXmlWriter\simplexlsx.sln
+
+
+    move "C:\projects\safer\library\libhunspell\src\hunspell\hunvisapi.h.in" "C:\projects\safer\library\libhunspell\src\hunspell\hunvisapi.h"
+cache:
+- packages
+- library
+build:
+  project: C:\projects\safer\safer.sln
+  publish_nuget: true
+  publish_nuget_symbols: true
+  include_nuget_references: true
+  verbosity: detailed
+test: off
