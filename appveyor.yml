@@ -5,7 +5,6 @@ branches:
 image: Visual Studio 2013
 configuration:
 - Debug
-- Release
 platform: Mixed Platforms
 install:
 - cmd: >-
@@ -48,11 +47,10 @@ install:
     move "C:\projects\safer\library\libhunspell\src\hunspell\hunvisapi.h.in" "C:\projects\safer\library\libhunspell\src\hunspell\hunvisapi.h"
 cache:
 - packages
-- library
 build:
   project: C:\projects\safer\safer.sln
-  publish_nuget: true
-  publish_nuget_symbols: true
-  include_nuget_references: true
+  publish_nuget: false
+  publish_nuget_symbols: false
+  include_nuget_references: false
   verbosity: detailed
 test: off
