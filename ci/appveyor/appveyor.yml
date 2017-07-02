@@ -24,10 +24,15 @@ install:
     nuget restore
 
     move ci\appveyor\safer.sln C:\projects\safer\safer.sln 
+
     move ci\appveyor\ER-StaticAnalysis.vcxproj C:\projects\safer\ER-StaticAnalysis\ER-StaticAnalysis.vcxproj 
+
     move ci\appveyor\XercesLib.vcxproj C:\projects\safer\library\xerces-c\projects\Win32\VC12\xerces-all\XercesLib\XercesLib.vcxproj
+
     move ci\appveyor\libhunspell.vcxproj C:\projects\safer\library\libhunspell\src\win_api\libhunspell.vcxproj
+
     move ci\appveyor\simplexlsx.sln C:\projects\safer\library\SimpleXmlWriter\simplexlsx.sln
+
     move "C:\projects\safer\library\libhunspell\src\hunspell\hunvisapi.h.in" "C:\projects\safer\library\libhunspell\src\hunspell\hunvisapi.h"
 cache:
 - packages
