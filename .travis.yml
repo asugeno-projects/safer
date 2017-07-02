@@ -1,0 +1,13 @@
+language: c++
+
+# Compiler selection
+compiler:
+  - clang
+
+osx_image: xcode9
+
+before_install:
+  - brew install xerces-c
+  - brew install hunspell
+  - brew install boost 
+
