@@ -1,14 +1,14 @@
 # safer
 
-Overview
+## Overview
 
 * Static Analysis engine for ER
 
-Build Status(branch dev)
+### Build Status
 
-| Windows(dev) |
-|:------------:|
-|[![Build status](https://ci.appveyor.com/api/projects/status/ryetcyxmwhvh85ag/branch/dev?svg=true)](https://ci.appveyor.com/project/AkihiroSugeno/safer/branch/dev)|
+| Windows(master) | Windows(dev) |
+|:------------:|:------------:|
+|[![Build status](https://ci.appveyor.com/api/projects/status/ryetcyxmwhvh85ag/branch/master?svg=true)](https://ci.appveyor.com/project/AkihiroSugeno/safer/branch/master)|[![Build status](https://ci.appveyor.com/api/projects/status/ryetcyxmwhvh85ag/branch/dev?svg=true)](https://ci.appveyor.com/project/AkihiroSugeno/safer/branch/dev)|
 
 ## Description
 
