@@ -26,7 +26,7 @@
 #include "../../analysis_command/analysisCommand.h"
 #include "./analysisCommandParser.h"
 #include "../../log/logger.h"
-#include "../../analysis_command/AnalysisProjects.h"
+#include "../../analysis_command/analysisProjects.h"
 #include "../../common/commonXml.h"
 using namespace xercesc;
 

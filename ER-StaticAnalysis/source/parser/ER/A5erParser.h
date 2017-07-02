@@ -23,6 +23,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <fstream>
 
 #include "erParser.h"
 #include "../../log/logger.h"

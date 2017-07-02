@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -57,30 +57,19 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>$(SolutionDir)\library\SimpleXmlWriter\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)\library\xerces-c\src;$(SolutionDir)\library\SimpleXmlWriter\;$(SolutionDir)\library\libhunspell\src\hunspell;$(SolutionDir)\library\libhunspell\src\win_api;$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\library\xerces-c\src;$(SolutionDir)\library\SimpleXmlWriter;$(SolutionDir)\library\libhunspell\src\hunspell;$(SolutionDir)\library\libhunspell\src\win_api;$(IncludePath)</IncludePath>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <SourcePath>$(VC_SourcePath);</SourcePath>
-    <ReferencePath>$(VC_ReferencesPath_x86);$(SolutionDir)\library\SimpleXmlWriter\</ReferencePath>
-    <ExcludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(MSBuild_ExecutablePath);$(VC_LibraryPath_x86);$(SolutionDir)\library\SimpleXmlWriter\</ExcludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)\library\xerces-c\src;$(SolutionDir)\library\SimpleXmlWriter\;$(SolutionDir)\library\libhunspell\src\hunspell;$(SolutionDir)\library\libhunspell\src\win_api;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\library\xerces-c\src;$(SolutionDir)\library\SimpleXmlWriter;$(SolutionDir)\library\libhunspell\src\hunspell;$(SolutionDir)\library\libhunspell\src\win_api;$(IncludePath)</IncludePath>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <SourcePath>$(VC_SourcePath);</SourcePath>
-    <ReferencePath>$(VC_ReferencesPath_x86);$(SolutionDir)\library\SimpleXmlWriter\</ReferencePath>
-    <LibraryPath>$(SolutionDir)\library\SimpleXmlWriter\;$(LibraryPath)</LibraryPath>
-    <ExcludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(MSBuild_ExecutablePath);$(VC_LibraryPath_x86);$(SolutionDir)\library\SimpleXmlWriter\</ExcludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)\library\xerces-c\src;$(SolutionDir)\library\SimpleXmlWriter\;$(SolutionDir)\library\libhunspell\src\hunspell;$(SolutionDir)\library\libhunspell\src\win_api;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\library\xerces-c\src;$(SolutionDir)\library\SimpleXmlWriter;$(SolutionDir)\library\libhunspell\src\hunspell;$(SolutionDir)\library\libhunspell\src\win_api;$(IncludePath)</IncludePath>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <SourcePath>$(VC_SourcePath);</SourcePath>
-    <ReferencePath>$(VC_ReferencesPath_x86);$(SolutionDir)\library\SimpleXmlWriter\</ReferencePath>
-    <LibraryPath>$(SolutionDir)\library\SimpleXmlWriter\;$(LibraryPath)</LibraryPath>
-    <ExcludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(MSBuild_ExecutablePath);$(VC_LibraryPath_x86);$(SolutionDir)\library\SimpleXmlWriter\</ExcludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -91,15 +80,12 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
       <EnablePREfast>false</EnablePREfast>
-      <AdditionalIncludeDirectories>$(SolutionDir)library\SimpleXmlWriter\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)library\SimpleXmlWriter\;$(SolutionDir)\packages\boost.1.58.0.0\lib\native\include\boost;%(AdditionalLibraryDirectories);$(SolutionDir)library\SimpleXmlWriter</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies);</AdditionalDependencies>
-      <ForceSymbolReferences>
-      </ForceSymbolReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)\packages\boost.1.58.0.0\lib\native\include\boost;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference>
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
@@ -117,17 +103,14 @@
       <SDLCheck>false</SDLCheck>
       <EnablePREfast>false</EnablePREfast>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)library\SimpleXmlWriter\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)library\SimpleXmlWriter\;%(AdditionalLibraryDirectories);$(SolutionDir)library\SimpleXmlWriter</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies);</AdditionalDependencies>
-      <ForceSymbolReferences>
-      </ForceSymbolReferences>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">
@@ -140,7 +123,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_TEST;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)library\SimpleXmlWriter\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\packages\gtest.1.7.0.1\build\native\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <EnablePREfast>false</EnablePREfast>
     </ClCompile>
@@ -149,15 +132,18 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)library\SimpleXmlWriter\;$(SolutionDir)\packages\gtest.1.7.0.1\build\native\lib\static\Release;%(AdditionalLibraryDirectories);$(SolutionDir)library\SimpleXmlWriter</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies);</AdditionalDependencies>
-      <ForceSymbolReferences>
-      </ForceSymbolReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)\packages\gtest.1.7.0.1\build\native\lib\static\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\library\SimpleXmlWriter\Xlsx\Chartsheet.cpp" />
+    <ClCompile Include="..\library\SimpleXmlWriter\Xlsx\Workbook.cpp" />
+    <ClCompile Include="..\library\SimpleXmlWriter\Xlsx\Worksheet.cpp" />
+    <ClCompile Include="..\library\SimpleXmlWriter\Xlsx\XlsxHeaders.cpp" />
+    <ClCompile Include="..\library\SimpleXmlWriter\Zip\zip.cpp" />
     <ClCompile Include="source\parser\ER\A5erParser.cpp" />
-    <ClCompile Include="source\parser\command\analysisCommandPaser.cpp" />
+    <ClCompile Include="source\parser\command\analysisCommandParser.cpp" />
     <ClCompile Include="source\parser\command\analysisCommandXmlParser.cpp" />
     <ClCompile Include="source\analysis_command\analysisProjects.cpp" />
     <ClCompile Include="source\reporter\analyticsReportXlsx.cpp" />
@@ -175,6 +161,17 @@
     <ClCompile Include="test\testMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\library\SimpleXmlWriter\tchar.h" />
+    <ClInclude Include="..\library\SimpleXmlWriter\Xlsx\Chartsheet.h" />
+    <ClInclude Include="..\library\SimpleXmlWriter\Xlsx\SimpleXlsxDef.h" />
+    <ClInclude Include="..\library\SimpleXmlWriter\Xlsx\Workbook.h" />
+    <ClInclude Include="..\library\SimpleXmlWriter\Xlsx\Worksheet.h" />
+    <ClInclude Include="..\library\SimpleXmlWriter\Xlsx\XlsxHeaders.h" />
+    <ClInclude Include="..\library\SimpleXmlWriter\xmlwriter.h" />
+    <ClInclude Include="..\library\SimpleXmlWriter\Zip\zip.h" />
     <ClInclude Include="source\config\spellCheckConfigh.h" />
     <ClInclude Include="source\parser\ER\A5erParser.h" />
     <ClInclude Include="source\analysis_command\analysisCommand.h" />
@@ -212,32 +209,6 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="test-command.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\library\libhunspell\src\win_api\libhunspell.vcxproj">
-      <Project>{53609bb3-d874-465c-af7b-df626db0d89b}</Project>
-      <Private>false</Private>
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
-    </ProjectReference>
-    <ProjectReference Include="..\library\SimpleXmlWriter\simplexlsx\simplexlsx.vcxproj">
-      <Project>{c9715574-dc15-43ac-aa58-4405fc15a438}</Project>
-      <Private>true</Private>
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
-    </ProjectReference>
-    <ProjectReference Include="..\library\xerces-c\projects\Win32\VC12\xerces-all\XercesLib\XercesLib.vcxproj">
-      <Project>{152ce948-f659-4206-a50a-1d2b9658ef96}</Project>
-      <Private>false</Private>
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

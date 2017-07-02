@@ -62,7 +62,7 @@ public:
 class Entity
 {
 public:
-	typedef std::list<std::list<std::wstring>> INDEXS_LIST_TYPE;
+	typedef std::list<std::list<std::wstring> > INDEXS_LIST_TYPE;
 	typedef std::list <class fieldParam> FIELD_LIST_TYPE;
 	typedef std::map <int, std::wstring> PK_MAP_TYPE;
 private:

@@ -14,7 +14,7 @@
 #include "relationshipChecker.h"
 
 #include "../ER/er.h"
-#include "../analysis_command/AnalysisProjects.h"
+#include "../analysis_command/analysisProjects.h"
 #include <map>
 #include <vector>
 #include "../reporter/reporter.h"

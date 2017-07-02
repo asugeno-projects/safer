@@ -12,7 +12,7 @@
 */
 #include <string>
 #include <list>
-#include "../analysis_command/AnalysisProjects.h"
+#include "../analysis_command/analysisProjects.h"
 #include "../static_analytics/dBStaticAnalytics.h"
 
 /**

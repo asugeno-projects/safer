@@ -239,7 +239,7 @@ void AnalysisCommandXmlParser::setProject(AnalysisProjects *analysisProjects, DO
 		{
 			//想定外エラー
 			logger::error() << logger::logPrefix("ERROR") << "解析中にプロジェクトデータの生成・取得時に問題が発生しました。" << endl;
-			throw exception("解析中にプロジェクトデータの生成・取得時に問題が発生しました。");
+			throw std::logic_error("解析中にプロジェクトデータの生成・取得時に問題が発生しました。");
 			return;
 		}
 		//XML Planの子要素の取得
