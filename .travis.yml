@@ -10,9 +10,9 @@ compiler:
 osx_image: xcode9
 
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; brew install xerces-c; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; brew install hunspell; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; brew install boost;    fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install xerces-c; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install hunspell; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install boost;    fi
   - git submodule init
   - git submodule update
   - cd library/SimpleXmlWriter/
