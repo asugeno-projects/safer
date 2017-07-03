@@ -1,0 +1,24 @@
+language: c++
+
+os:
+  - osx
+
+# Compiler selection
+compiler:
+  - clang
+
+osx_image: xcode9
+
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install xerces-c; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install hunspell; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install boost;    fi
+  - cd library/SimpleXmlWriter/
+  - git branch dev
+  - git checkout dev
+  - git pull origin dev
+  - cd ../../ 
+
+script:
+  - cmake .
+  - make 
