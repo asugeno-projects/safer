@@ -7,9 +7,6 @@ PROJECT(safer)
 SET(SwxPath "library/SimpleXmlWriter/")
 SET(SaferPath "ER-StaticAnalysis/source")
 
-# hunspell version
-SET(HunspellVersion "hunspell-1.6")
-
 # define for cmake
 ADD_DEFINITIONS(
     -DCMAKE_CXX_COMPILER=clang++
@@ -69,13 +66,24 @@ ELSE()
 ENDIF()
 
 # find Hunspell
+IF(APPLE AND NOT HunspellVersion)
+  EXECUTE_PROCESS(
+    COMMAND brew list hunspell
+    COMMAND sort -r
+    COMMAND head -n 1
+    COMMAND grep -o -e "[0-9]\\+.[0-9]\\+"
+    COMMAND awk "{print \"hunspell-\"$0}"
+    COMMAND tr -d "\n"
+    OUTPUT_VARIABLE HunspellVersion
+  )
+  MESSAGE(STATUS "Found hunspell Library : ${HunspellVersion}")
+ENDIF()
+
 FIND_LIBRARY(
   HunspellLibrary REQUIRED
-  NAMES ${HunspellVersion}
-  PATH_SUFFIXES
-    hunspell
+  NAMES "${HunspellVersion}"
   PATHS
-    ${LibrarySearchDir}
+    "${LibrarySearchDir}"
 )
 
 # Link and Include for Hunspell
@@ -88,7 +96,7 @@ ELSE()
     PATH_SUFFIXES
       hunspell
     PATHS
-      ${LibrarySearchDir}
+      "${LibrarySearchDir}"
   )
   TARGET_LINK_LIBRARIES(safer LINK_PUBLIC ${HunspellLibrary})
   TARGET_INCLUDE_DIRECTORIES(safer PUBLIC ${HunspellLibraryPath})
