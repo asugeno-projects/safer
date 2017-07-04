@@ -1,14 +1,9 @@
-# safer
+# safer 
+[![Build status](https://ci.appveyor.com/api/projects/status/ryetcyxmwhvh85ag/branch/master?svg=true)](https://ci.appveyor.com/project/AkihiroSugeno/safer/branch/master) [![Build Status](https://travis-ci.org/asugeno/safer.svg?branch=master)](https://travis-ci.org/asugeno/safer)
 
 ## Overview
 
 * Static Analysis engine for ER
-
-### Build Status
-
-| Windows(master) | Windows(dev) | Mac(dev) |
-|:------------:|:------------:|:------------:|
-|[![Build status](https://ci.appveyor.com/api/projects/status/ryetcyxmwhvh85ag/branch/master?svg=true)](https://ci.appveyor.com/project/AkihiroSugeno/safer/branch/master)|[![Build status](https://ci.appveyor.com/api/projects/status/ryetcyxmwhvh85ag/branch/dev?svg=true)](https://ci.appveyor.com/project/AkihiroSugeno/safer/branch/dev)|[![Build Status](https://travis-ci.org/asugeno/safer.svg?branch=dev)](https://travis-ci.org/asugeno/safer)|
 
 ## Description
 
@@ -94,6 +89,11 @@ safer.exe --erfile=./sample/bad-test.a5er --cofile=./sample/test-command.xml --o
   1. In "XercesLib Properties" window, Click "General" under the "Configuration Properties". And change the "Output Directory" value to "$(SolutionDir)$(Configuration)".
   ![XercesProjectSetting2](image/XercesProjectSetting2.png)
 
+## Build Status
+
+| Windows(master) | Windows(dev) | Mac(master) | Mac(dev) |
+|:------------:|:------------:|:------------:|:------------:|
+|[![Build status](https://ci.appveyor.com/api/projects/status/ryetcyxmwhvh85ag/branch/master?svg=true)](https://ci.appveyor.com/project/AkihiroSugeno/safer/branch/master)|[![Build status](https://ci.appveyor.com/api/projects/status/ryetcyxmwhvh85ag/branch/dev?svg=true)](https://ci.appveyor.com/project/AkihiroSugeno/safer/branch/dev)|[![Build Status](https://travis-ci.org/asugeno/safer.svg?branch=master)](https://travis-ci.org/asugeno/safer)|[![Build Status](https://travis-ci.org/asugeno/safer.svg?branch=dev)](https://travis-ci.org/asugeno/safer)|
 
 ## Licence
 
