@@ -6,6 +6,7 @@ branches:
 image: Visual Studio 2013
 configuration:
 - Debug
+- Release
 platform: Mixed Platforms
 install:
 - cmd: >-
