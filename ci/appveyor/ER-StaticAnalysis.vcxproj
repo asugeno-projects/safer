@@ -213,6 +213,11 @@
   <ItemGroup>
     <ProjectReference Include="..\library\libhunspell\src\win_api\libhunspell.vcxproj">
       <Project>{53609bb3-d874-465c-af7b-df626db0d89b}</Project>
+      <Private>true</Private>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
     </ProjectReference>
     <ProjectReference Include="..\library\SimpleXmlWriter\simplexlsx\simplexlsx.vcxproj">
       <Project>{c9715574-dc15-43ac-aa58-4405fc15a438}</Project>
