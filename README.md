@@ -21,7 +21,7 @@
 
 ## Demo
 
-![Demo](https://github.com/asugeno/safer_binary/blob/master/demo.gif)
+![Demo](./image/demo.gif)
 
 ## Requirement
 
