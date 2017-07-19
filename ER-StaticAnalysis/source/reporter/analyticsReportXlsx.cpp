@@ -17,6 +17,8 @@ using namespace SimpleXlsx;
 #include "analyticsReportXlsx.h"
 #include <stdlib.h>
 #include <codecvt>
+#include <locale>
+
 
 /**
 * @fn AnalyticsReportXlsx::AnalyticsReportXlsx()
@@ -93,21 +95,16 @@ bool AnalyticsReportXlsx::save(std::string filename)
 template<typename T>
 void AnalyticsReportXlsx::AddSummaryRow(class CWorksheet *sheet, const _tstring str, T num, int style1, int style2)
 {
-	if (typeid(T) == typeid(int) ||
-		typeid(T) == typeid(float) ||
-		typeid(T) == typeid(double))
-	{
-		CellDataStr cellStr;
-		CellDataDbl cellDbl;
-		cellStr.value = str;
-		cellStr.style_id = style1;
-		cellDbl.value = num;
-		cellDbl.style_id = style2;
-		sheet->BeginRow();
-		sheet->AddCell(cellStr);
-		sheet->AddCell(cellDbl);
-		sheet->EndRow();
-	}
+	CellDataStr cellStr;
+	CellDataDbl cellDbl;
+	cellStr.value = str;
+	cellStr.style_id = style1;
+	cellDbl.value = num;
+	cellDbl.style_id = style2;
+	sheet->BeginRow();
+	sheet->AddCell(cellStr);
+	sheet->AddCell(cellDbl);
+	sheet->EndRow();
 }
 
 /**

@@ -15,6 +15,7 @@
 #define RDS_ER_STATICANALYSIS_SOURCE_COMMON_COMMONSTRING_H_
 
 #include <string>
+#include <string.h>
 
 
 static int stringToWString(std::wstring &ws, const std::string &s)
@@ -54,3 +55,4 @@ static void stringToWstringForUtf8(std::wstring *ws, std::string s)
 }
 
 #endif //RDS_ER_STATICANALYSIS_SOURCE_COMMON_COMMONSTRING_H_
+
