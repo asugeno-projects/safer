@@ -2,7 +2,7 @@
 
 ## Overview
 
-* Mac Build Instructions
+* Ubuntu Build Instructions
 
 ## Compatible
 

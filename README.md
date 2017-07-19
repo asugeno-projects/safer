@@ -63,6 +63,8 @@ safer.exe --erfile=./sample/bad-test.a5er --cofile=./sample/test-command.xml --o
   * [Windows build instructions](./Doc/build/windows.md)
 * for Mac OSX
   * [Mac Build Instructions](./Doc/build/macos.md)
+* for Ubuntu
+  * [Ubuntu Build Instructions](./Doc/build/ubuntu.md)
 
 ## Build Status
 
