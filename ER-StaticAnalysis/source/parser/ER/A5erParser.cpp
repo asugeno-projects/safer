@@ -135,7 +135,7 @@ void A5erParser::removeBom(std::wifstream *file)
 	fpos_t pos = file->tellg();
 	if (pos > 0)
 		file->seekg(pos - 1);
-#elif _UNIX
+#elif defined(_UNIX)
 	file->imbue(std::locale(file->getloc(), new std::codecvt_utf16<wchar_t, 0x10ffff, std::consume_header>));
 #else
 	file->imbue(std::locale(file->getloc(), new std::codecvt_utf8_utf16<wchar_t, 0x10ffff, std::consume_header>()));
