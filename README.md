@@ -1,5 +1,5 @@
 # safer 
-[![Build status](https://ci.appveyor.com/api/projects/status/ryetcyxmwhvh85ag/branch/master?svg=true)](https://ci.appveyor.com/project/AkihiroSugeno/safer/branch/master) [![Build Status](https://travis-ci.org/asugeno/safer.svg?branch=master)](https://travis-ci.org/asugeno/safer)
+[![Build status](https://ci.appveyor.com/api/projects/status/ryetcyxmwhvh85ag/branch/master?svg=true)](https://ci.appveyor.com/project/AkihiroSugeno/safer/branch/master) [![Build Status](https://travis-ci.org/asugeno/safer.svg?branch=master)](https://travis-ci.org/asugeno/safer)[![CircleCI](https://circleci.com/gh/asugeno-projects/safer/tree/master.svg?style=svg)](https://circleci.com/gh/asugeno-projects/safer/tree/master)
 
 ## Overview
 
@@ -68,9 +68,9 @@ safer.exe --erfile=./sample/bad-test.a5er --cofile=./sample/test-command.xml --o
 
 ## Build Status
 
-| Windows(master) | Windows(dev) | Mac(master) | Mac(dev) |
-|:------------:|:------------:|:------------:|:------------:|
-|[![Build status](https://ci.appveyor.com/api/projects/status/ryetcyxmwhvh85ag/branch/master?svg=true)](https://ci.appveyor.com/project/AkihiroSugeno/safer/branch/master)|[![Build status](https://ci.appveyor.com/api/projects/status/ryetcyxmwhvh85ag/branch/dev?svg=true)](https://ci.appveyor.com/project/AkihiroSugeno/safer/branch/dev)|[![Build Status](https://travis-ci.org/asugeno/safer.svg?branch=master)](https://travis-ci.org/asugeno/safer)|[![Build Status](https://travis-ci.org/asugeno/safer.svg?branch=dev)](https://travis-ci.org/asugeno/safer)|
+| Windows(master) | Windows(dev) | Mac(master) | Mac(dev) | Ubuntu(master) | Ubuntu(dev) |
+|:------------:|:------------:|:------------:|:------------:|:------------:|:------------:|
+|[![Build status](https://ci.appveyor.com/api/projects/status/ryetcyxmwhvh85ag/branch/master?svg=true)](https://ci.appveyor.com/project/AkihiroSugeno/safer/branch/master)|[![Build status](https://ci.appveyor.com/api/projects/status/ryetcyxmwhvh85ag/branch/dev?svg=true)](https://ci.appveyor.com/project/AkihiroSugeno/safer/branch/dev)|[![Build Status](https://travis-ci.org/asugeno/safer.svg?branch=master)](https://travis-ci.org/asugeno/safer)|[![Build Status](https://travis-ci.org/asugeno/safer.svg?branch=dev)](https://travis-ci.org/asugeno/safer)|[![CircleCI](https://circleci.com/gh/asugeno-projects/safer/tree/master.svg?style=svg)](https://circleci.com/gh/asugeno-projects/safer/tree/master)|[![CircleCI](https://circleci.com/gh/asugeno-projects/safer/tree/dev.svg?style=svg)](https://circleci.com/gh/asugeno-projects/safer/tree/dev)|
 
 ## Licence
 
