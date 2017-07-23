@@ -5,7 +5,7 @@ dependencies:
     - sudo apt-get install clang
     - sudo apt-get install libhunspell-1.3.0 libhunspell-dev
     - sudo apt-get install libxerces-c3-dev
-    - sudo apt-get install libboost1.58-dev libboost-system1.58.0 libboost-program-options1.58-dev libboost-filesystem1.58-dev libboost-date-time1.58-dev libboost-regex1.58-dev
+    - sudo apt-get install libboost-all-dev
     - sudo update-alternatives --install /usr/bin/cpp cpp /usr/bin/clang++ 10
     - sudo update-alternatives --install /usr/bin/cc cc /usr/bin/clang++ 10
     - sudo update-alternatives --set cpp /usr/bin/clang++
