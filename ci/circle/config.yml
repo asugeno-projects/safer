@@ -1,4 +1,3 @@
-version: 2
 version: 2.0
 jobs:
   build:
@@ -7,47 +6,47 @@ jobs:
     steps:
       - checkout
       - run:
-        name: update.
-        command: sudo apt-get update
+          name: update.
+          command: sudo apt-get update
       - run:
-        name: Install make,cmake.
-        command: sudo apt-get install make cmake
+          name: Install make,cmake.
+          command: sudo apt-get install make cmake
       - run:
-        name: Install clang
-        command: sudo apt-get install clang
+          name: Install clang
+          command: sudo apt-get install clang
       - run:
-        name: Install libhunspell
-        command: sudo apt-get install libhunspell-1.3.0 libhunspell-dev
+          name: Install libhunspell
+          command: sudo apt-get install libhunspell-1.3.0 libhunspell-dev
       - run:
-        name: Install libxerces
-        command: sudo apt-get install libxerces-c3-dev
+          name: Install libxerces
+          command: sudo apt-get install libxerces-c3-dev
       - run:
-        name: Install boost
-        command: sudo apt-get install libboost1.58-dev libboost-system1.58.0 libboost-program-options1.58-dev libboost-filesystem1.58-dev libboost-date-time1.58-dev libboost-regex1.58-dev
+          name: Install boost
+          command: sudo apt-get install libboost1.58-dev libboost-system1.58.0 libboost-program-options1.58-dev libboost-filesystem1.58-dev libboost-date-time1.58-dev libboost-regex1.58-dev
       - run:
-        name: change c++.
-        command: sudo update-alternatives --set c++ /usr/bin/clang++
+          name: change c++.
+          command: sudo update-alternatives --set c++ /usr/bin/clang++
       - run:
-        name: change cc.
-        command: sudo update-alternatives --set cc /usr/bin/clang
+          name: change cc.
+          command: sudo update-alternatives --set cc /usr/bin/clang
       - run:
-        name: submodule init.
-        command: git submodule init
+          name: submodule init.
+          command: git submodule init
       - run:
-        name: submodule update.
-        command: git submodule update
+          name: submodule update.
+          command: git submodule update
       - run:
-        name: change dir.
-        command: cd library/SimpleXmlWriter/
+          name: change dir.
+          command: cd library/SimpleXmlWriter/
       - run:
-        name: update.
-        command: git pull origin dev
+          name: update.
+          command: git pull origin dev
       - run:
-        name: change dir.
-        command: cd ../../
+          name: change dir.
+          command: cd ../../
       - run:
-        name: run cmake
-        command: cmake .
+          name: run cmake
+          command: cmake .
       - run:
-        name: run make.
-        command: make
+          name: run make.
+          command: make
