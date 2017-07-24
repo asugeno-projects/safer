@@ -42,6 +42,9 @@ jobs:
           name: change dir.
           command: cd library/SimpleXmlWriter/
       - run:
+          name: mkdir .ssh
+          command: mkdir -p ~/.ssh && chmod 700 ~/.ssh
+      - run:
           name: add ssh_config
           command: echo "host *" >> ~/.ssh/config
       - run:
