@@ -43,8 +43,10 @@ jobs:
           command: cd library/SimpleXmlWriter/
       - run:
           name: add ssh_config
-          command: echo "host *
-    StrictHostKeyChecking no" >> ~/.ssh/config
+          command: echo "host *" >> ~/.ssh/config
+      - run:
+          name: add ssh_config
+          command: echo "      StrictHostKeyChecking no" >> ~/.ssh/config
       - run:
           name: update.
           command: git pull origin dev
