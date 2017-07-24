@@ -9,6 +9,9 @@ jobs:
           name: update.
           command: apt-get update
       - run:
+          name: Install git.
+          command: apt-get install -y git
+      - run:
           name: Install make,cmake.
           command: apt-get install -y make cmake
       - run:
