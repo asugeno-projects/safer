@@ -13,6 +13,7 @@
 
 #include "A5erParser.h"
 #include "../../common/commonString.h"
+#include <codecvt>
 
 /**
 * @fn class ER * A5erParser::parse()
@@ -125,14 +126,20 @@ class ER * A5erParser::parse()
 void A5erParser::removeBom(std::wifstream *file)
 {
 	//skip BOM
+#ifdef _WIN32
 	wchar_t buffer[8];
 	buffer[0] = 255;
 	while (file->good() && buffer[0] > 127)
 		file->read((wchar_t *)buffer, 1);
 
-	std::fpos_t pos = file->tellg();
+	fpos_t pos = file->tellg();
 	if (pos > 0)
 		file->seekg(pos - 1);
+#elif defined(_UNIX)
+	file->imbue(std::locale(file->getloc(), new std::codecvt_utf16<wchar_t, 0x10ffff, std::consume_header>));
+#else
+	file->imbue(std::locale(file->getloc(), new std::codecvt_utf8_utf16<wchar_t, 0x10ffff, std::consume_header>()));
+#endif
 }
 
 /**

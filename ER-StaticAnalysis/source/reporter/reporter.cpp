@@ -12,7 +12,9 @@
 */
 
 #include "../reporter/reporter.h"
+#include <string>
 #include <codecvt>
+#include <locale>
 
 //! レポーターインスタンスの生成
 Reporter * Reporter::instance = new Reporter();
@@ -79,7 +81,9 @@ void Reporter::addRecord(AnalyticsRowData _data)
 */
 void Reporter::outputConsole()
 {
+#if defined(_MACOSX) || defined(_UNIX) 
 	std::wstring_convert<std::codecvt_utf8<wchar_t>,wchar_t> convert;
+#endif
 	for (auto dataIt = this->rowData.begin(); dataIt != this->rowData.end(); dataIt++)
 	{
 		auto data = (*dataIt);
@@ -137,3 +141,4 @@ void Reporter::addRecord(AlertLevelList alertLevel, CommandTypeList commandType,
 	reportData.message = message;
 	this->addRecord(reportData);
 }
+

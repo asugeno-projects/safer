@@ -19,6 +19,7 @@
 * boost_filesystem
 * boost_system
 * boost_date_time
+* C++11 compiler
 
 ## Tutorial for build (for Windows)
 

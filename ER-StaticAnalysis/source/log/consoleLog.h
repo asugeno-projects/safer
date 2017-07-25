@@ -50,3 +50,4 @@ private:
 };
 
 #endif //RDS_ER_STATICANALYSIS_SOURCE_LOG_CONSOLELOG_H_
+
