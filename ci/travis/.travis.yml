@@ -22,3 +22,7 @@ before_install:
 script:
   - cmake .
   - make 
+
+cache:
+  directories:
+    - $HOME/Library/Caches/Homebrew
