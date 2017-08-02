@@ -26,7 +26,7 @@ jobs:
       - run:
           name: run make.
           command: make
-  test1:
+  test:
     docker:
       - image: codeclimate/codeclimate
     steps:
@@ -34,3 +34,9 @@ jobs:
       - run:
           name: Run code climate analyze
           command: codeclimate analyze
+workflows:
+  version: 2
+  build_and_test:
+    jobs: 
+      - build
+      - test
