@@ -1,0 +1,17 @@
+engines:
+  cppcheck:
+    enabled: true
+    config:
+      check: all
+      project: ER-StaticAnalysis/ER-StaticAnalysis.vcxproj
+      language: c++
+      stds:
+        - c++11
+      platform: Win32
+      defines:
+      - "DEBUG"
+      - "__cplusplus"
+      includes:
+      - ER-StaticAnalysis/source/
+      max_configs: 42
+      inconclusive: false

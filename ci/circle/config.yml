@@ -26,3 +26,11 @@ jobs:
       - run:
           name: run make.
           command: make
+  test1:
+    docker:
+      - image: codeclimate/codeclimate
+    steps:
+      - checkout
+      - run:
+          name: Run code climate analyze
+          command: codeclimate analyze
