@@ -3,15 +3,17 @@ engines:
     enabled: true
     config:
       check: all
-      project: ER-StaticAnalysis/ER-StaticAnalysis.vcxproj
+      project: "ER-StaticAnalysis/ER-StaticAnalysis.vcxproj"
       language: c++
       stds:
         - c++11
-      platform: Win32
-      defines:
+      platform: unix64
+      defines: 
       - "DEBUG"
       - "__cplusplus"
-      includes:
-      - ER-StaticAnalysis/source/
       max_configs: 42
-      inconclusive: false
+#      inconclusive: false
+      xml: true
+      xml-version: 2
+    include_paths:
+    - "ER-StaticAnalysis/source/"

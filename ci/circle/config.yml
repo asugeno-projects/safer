@@ -28,12 +28,30 @@ jobs:
           command: make
   test:
     docker:
-      - image: codeclimate/codeclimate
+      - image: docker
     steps:
       - checkout
       - run:
-          name: Run code climate analyze
-          command: codeclimate analyze
+        name: get docker imange
+        command: docker pull codeclimate/codeclimate
+      - run:
+        name: get docker imange
+        command: docker pull gesuno/codeclimate-cppcheck
+      - run:
+        name: Get cc-test-reporter
+        command: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+      - run:
+        name: chmod +x ./cc-test-reporter
+        command: chmod +x ./cc-test-reporter
+      - run:
+        name: Start reporter
+        command: ./cc-test-reporter befor-build
+      - run:
+        name: Run code climate analyze
+        command: /usr/src/app/bin/codeclimate analyze --dev -f json > codeclimate.json
+      - run:
+        name: Upload report
+        command: ./cc-test-reporter after-build
 workflows:
   version: 2
   build_and_test:
