@@ -113,6 +113,23 @@ ENDIF()
 # outher
 TARGET_INCLUDE_DIRECTORIES(safer PUBLIC "${SwxPath}")
 
+# test
+IF(NOT without-test)
+  ENABLE_TESTING()
+  find_package(GTest REQUIRED)
+  IF(NOT GTest_FOUND)
+    message(FATAL_ERROR "Failed to find the Google Test.")
+  ENDIF()
+  include_directories(${GTEST_INCLUDE_DIRS})
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D=_TEST -fprofile-arcs -ftest-coverage")
+  SET(CMAKE_EXE_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
+  TARGET_LINK_LIBRARIES(safer LINK_PUBLIC ${GTEST_BOTH_LIBRARIES} pthread)
+  IF(UNIX AND NOT APPLE)
+    target_link_libraries(safer gcov)
+  ENDIF()
+  ADD_TEST(NAME safer COMMAND safer -e ../test.a5er -c ../test-command.xml)
+ENDIF()
+
 # build setting
 IF(NOT CMAKE_BUILD_TYPE)
   SET(CMAKE_BUILD_TYPE "Debug")
