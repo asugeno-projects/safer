@@ -37,8 +37,31 @@ brew install boost
 
 Build 
 ```
-cmake . 
+cmake -Dwithout-test=on . 
 make
+```
+
+## Tutorial for Test (for Mac)
+
+Install Google test
+```
+mkdir work_dir
+cd work_dir
+wget https://github.com/google/googletest/archive/release-1.8.0.zip
+unzip gtest-1.8.0.zip
+cd gtest-1.8.0
+./configure
+make
+make install
+```
+*** Install from source code.
+
+Test
+```
+cd <checkout_dir>
+cmake .
+make
+make test
 ```
 
 ## Licence

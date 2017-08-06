@@ -21,7 +21,7 @@
 * boost_date_time
 * C++11 compiler
 
-## Tutorial for build (for Mac)
+## Tutorial for build (for Ubuntu)
 
 Get source code
 ```
@@ -48,8 +48,27 @@ apt-get install libboost1.58-dev libboost-system1.58.0 libboost-program-options1
 
 Build 
 ```
-cmake . 
+cmake -Dwithout-test=on . 
 make
+```
+
+## Tutorial for test (for Ubuntu)
+
+Install Google test
+```
+apt-get install libgtest-dev
+cd /usr/src/gtest
+cmake .
+make
+cp libgtest* /usr/local/lib/
+```
+
+Test
+```
+cd <checkout_dir>
+cmake .
+make
+make test
 ```
 
 ## Licence
