@@ -50,7 +50,10 @@ jobs:
           name: run cmake
           command: cmake .
       - run:
-          name: run make.
+          name: run make
+          command: make 
+      - run:
+          name: run make test
           command: make test
 workflows:
   version: 2
