@@ -1,14 +1,14 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 # ソリューションファイルの名前を指定する
-PROJECT(safer)
+PROJECT(safer_test)
 
 # define for project
-SET(SwxPath "library/SimpleXmlWriter/")
-SET(SaferPath "ER-StaticAnalysis/source")
+SET(SwxPath "../library/SimpleXmlWriter/")
+SET(SaferPath "../ER-StaticAnalysis/source")
 
 # Add module path
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+LIST(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
 # Set define
 INCLUDE(define)
 
@@ -19,8 +19,24 @@ INCLUDE(compiler)
 FILE(GLOB_RECURSE Sources "${SaferPath}/*.cpp" "${SaferPath}/*/*.cpp")
 FILE(GLOB_RECURSE SWXList "${SwxPath}/*.cpp")
 
-# add executable
-ADD_EXECUTABLE(${PROJECT_NAME} ER-StaticAnalysis/source/main.cpp ${Sources} ${SWXList}) 
+# test
+ADD_EXECUTABLE(${PROJECT_NAME} testMain.cpp ${Sources} ${SWXList})
+ENABLE_TESTING()
+
+FIND_PACKAGE(GTest REQUIRED)
+IF(NOT GTest_FOUND)
+  MESSAGE(FATAL_ERROR "Failed to find the Google Test.")
+ENDIF()
+
+include_directories(${GTEST_INCLUDE_DIRS})
+SET(CMAKE_EXE_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} LINK_PUBLIC ${GTEST_BOTH_LIBRARIES} pthread)
+IF(UNIX AND NOT APPLE)
+  TARGET_LINK_LIBRARIES(${PROJECT_NAME} LINK_PUBLIC gcov)
+ENDIF()
+
+SET(CMAKE_CXX_FLAGS_COVERAGE "-g -O0 --coverage -D=_TEST")
+ADD_TEST(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME} -e ../test.a5er -c ../test-command.xml)
 
 # Include boost
 INCLUDE(boost)
@@ -35,7 +51,7 @@ INCLUDE(hunspell)
 TARGET_INCLUDE_DIRECTORIES(${PROJECT_NAME} PUBLIC "${SwxPath}")
 
 # output dir
-SET(Outdir ${CMAKE_CURRENT_SOURCE_DIR}/out/${CMAKE_BUILD_TYPE}/bin/)
+SET(Outdir ${CMAKE_CURRENT_SOURCE_DIR}../../../out/${CMAKE_BUILD_TYPE}/bin/)
 SET(EXECUTABLE_OUTPUT_PATH ${Outdir} CACHE PATH "Build directory" FORCE)
 SET(LIBRARY_OUTPUT_PATH ${Outdir} CACHE PATH "Build directory" FORCE)
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${Outdir})
@@ -45,9 +61,3 @@ SET(CMAKE_BINARY_DIR  ${Outdir})
 SET(EXECUTABLE_OUTPUT_PATH ${Outdir})
 SET(LIBRARY_OUTPUT_PATH ${Outdir}lib)
 SET(CMAKE_CACHEFILE_DIR ${dir})
-
-# test
-IF(NOT without-test)
-  ENABLE_TESTING()
-  ADD_SUBDIRECTORY(ER-StaticAnalysis/test)
-ENDIF()
