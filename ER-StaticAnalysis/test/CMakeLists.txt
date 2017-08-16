@@ -20,8 +20,8 @@ FILE(GLOB_RECURSE Sources "${SaferPath}/*.cpp" "${SaferPath}/*/*.cpp")
 FILE(GLOB_RECURSE SWXList "${SwxPath}/*.cpp")
 
 # test
-ADD_EXECUTABLE(${PROJECT_NAME} testMain.cpp ${Sources} ${SWXList})
 ENABLE_TESTING()
+ADD_EXECUTABLE(${PROJECT_NAME} testMain.cpp ${Sources} ${SWXList})
 
 FIND_PACKAGE(GTest REQUIRED)
 IF(NOT GTest_FOUND)
@@ -35,7 +35,7 @@ IF(UNIX AND NOT APPLE)
   TARGET_LINK_LIBRARIES(${PROJECT_NAME} LINK_PUBLIC gcov)
 ENDIF()
 
-SET(CMAKE_CXX_FLAGS_COVERAGE "-g -O0 --coverage -D=_TEST")
+SET(CMAKE_CXX_FLAGS "-g -O0 --coverage")
 ADD_TEST(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME} -e ../test.a5er -c ../test-command.xml)
 
 # Include boost
