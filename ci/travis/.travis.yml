@@ -20,7 +20,7 @@ before_install:
   - cd ../../ 
 
 script:
-  - cmake .
+  - cmake -Dwithout-test=on .
   - make 
 
 cache:
