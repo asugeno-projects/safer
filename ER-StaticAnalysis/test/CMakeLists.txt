@@ -4,8 +4,8 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 PROJECT(safer_test)
 
 # define for project
-SET(SwxPath "../library/SimpleXmlWriter/")
-SET(SaferPath "../ER-StaticAnalysis/source")
+SET(SwxPath "../../library/SimpleXmlWriter/")
+SET(SaferPath "../source")
 
 # Add module path
 LIST(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")

@@ -11,6 +11,7 @@ SET(SaferPath "ER-StaticAnalysis/source")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 # Set define
 INCLUDE(define)
+INCLUDE(define)
 
 # Set compiler
 INCLUDE(compiler)
