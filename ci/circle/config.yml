@@ -2,7 +2,33 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: gesuno/ubuntu:v0.0.1
+      - image: gesuno/ubuntu:v0.0.2
+    steps:
+      - checkout
+      - run:
+          name: submodule init.
+          command: git submodule init
+      - run:
+          name: submodule update.
+          command: git submodule update
+      - run:
+          name: mkdir .ssh
+          command: mkdir -p ~/.ssh && chmod 700 ~/.ssh
+      - run:
+          name: add ssh_config
+          command: echo "host *" >> ~/.ssh/config
+      - run:
+          name: add ssh_config
+          command: echo "      StrictHostKeyChecking no" >> ~/.ssh/config
+      - run:
+          name: run cmake
+          command: cmake -Dwithout-test=on .
+      - run:
+          name: run make.
+          command: make
+  test:
+    docker:
+      - image: gesuno/ubuntu:v0.0.2
     steps:
       - checkout
       - run:
@@ -24,5 +50,14 @@ jobs:
           name: run cmake
           command: cmake .
       - run:
-          name: run make.
-          command: make
+          name: run make
+          command: make 
+      - run:
+          name: run make test
+          command: make test
+workflows:
+  version: 2
+  build_and_test:
+    jobs: 
+      - build
+      - test

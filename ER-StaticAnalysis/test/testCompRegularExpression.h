@@ -2,7 +2,7 @@
 #include "gtest/gtest.h"
 #include<boost/program_options.hpp>
 
-#include "../source/parser/ER/a5erParser.h"
+#include "../source/parser/ER/A5erParser.h"
 #include "../source/parser/ER/erParserFactory.h"
 #include "../source/parser/command/analysisCommandParserFactory.h"
 #include "../source/reporter/reporter.h"
