@@ -2,7 +2,7 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: gesuno/ubuntu:v0.0.2
+      - image: gesuno/ubuntu:v0.0.3
     steps:
       - checkout
       - run:
@@ -28,7 +28,7 @@ jobs:
           command: make
   test:
     docker:
-      - image: gesuno/ubuntu:v0.0.2
+      - image: gesuno/ubuntu:v0.0.3
     steps:
       - checkout
       - run:
@@ -55,6 +55,9 @@ jobs:
       - run:
           name: run make test
           command: make test
+      - run:
+          name: upload coverage data
+          command: bash <(curl -s https://codecov.io/bash)
 workflows:
   version: 2
   build_and_test:
