@@ -68,7 +68,7 @@ safer.exe --erfile=./sample/bad-test.a5er --cofile=./sample/test-command.xml --o
 
 ## Build Status
 
-| Windows(master) | Windows(dev) | Mac(master) | Mac(dev) | Ubuntu(master) | Ubuntu(dev) | coverage(master) | overage(dev) |
+| Windows | Windows(dev) | Mac | Mac(dev) | Ubuntu | Ubuntu(dev) | coverage | overage(dev) |
 |:------------:|:------------:|:------------:|:------------:|:------------:|:------------:|:------------:|:------------:|
 |[![Build status](https://ci.appveyor.com/api/projects/status/ryetcyxmwhvh85ag/branch/master?svg=true)](https://ci.appveyor.com/project/AkihiroSugeno/safer/branch/master)|[![Build status](https://ci.appveyor.com/api/projects/status/ryetcyxmwhvh85ag/branch/dev?svg=true)](https://ci.appveyor.com/project/AkihiroSugeno/safer/branch/dev)|[![Build Status](https://travis-ci.org/asugeno-projects/safer.svg?branch=master)](https://travis-ci.org/asugeno-projects/safer)|[![Build Status](https://travis-ci.org/asugeno-projects/safer.svg?branch=dev)](https://travis-ci.org/asugeno-projects/safer)|[![CircleCI](https://circleci.com/gh/asugeno-projects/safer/tree/master.svg?style=shield&circle-token=a5b1a296f350aed8dd4b98e40b9b33ce860f558e)](https://circleci.com/gh/asugeno-projects/safer/tree/master)|[![CircleCI](https://circleci.com/gh/asugeno-projects/safer/tree/dev.svg?style=shield&circle-token=a5b1a296f350aed8dd4b98e40b9b33ce860f558e)](https://circleci.com/gh/asugeno-projects/safer/tree/dev)|[![codecov](https://codecov.io/gh/asugeno-projects/safer/branch/master/graph/badge.svg)](https://codecov.io/gh/asugeno-projects/safer)|[![codecov](https://codecov.io/gh/asugeno-projects/safer/branch/dev/graph/badge.svg)](https://codecov.io/gh/asugeno-projects/safer)|
 
