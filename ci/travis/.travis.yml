@@ -19,6 +19,7 @@ before_install:
   - git checkout dev
   - git pull origin dev
   - cd ../../ 
+  - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
 
 script:
   - cmake -Dwithout-test=on .
@@ -27,3 +28,18 @@ script:
 cache:
   directories:
     - $HOME/Library/Caches/Homebrew
+
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "Ljr5unDl717Vma86H83ERfAmTqUjiyKDFsOv/SUCzYFvVBjKijvVyKgztYqfOj2otLAqkb6X9W0Txv2CH0Zped9zO1dgqiai4QeBvNfCIDBnrsMdynWDc2r6CdgL1JZbq9X2qxzE4HaAF7S9FKd+S6I+87sbXcNqFilPruJi4QTnpefbNSqzWOQrUVPKDIbtR4JkCSguBuXNwKbCahFoXZftpcoATzuCSZZo+96SZWHk7D7bVkHnoFmmnehSoYWuDByTPjKw1tGhP1TyLFb22kxpkDQEB17aH8RrEECgay/ssigjkxNTcQtjLgWGxBnY2lCF7jt29oRTetVF5MixCm+3bIVO1Nt7T/ZHlG/s/mkFyeWzUsciEJyfchEys5jTSUrV7+TeNX9xQCMR+cFZeN6qWzk+SVtuuWgvLMo0EX9k4BNzijubZn4YbHlV4WZj7oaxPHitvb/ChITOFS+07GmQCu34Pow/mom/Eg6iTK4RazBkhhbUiIjbwfXDWoJMyK+b7RewZtQwJUUTadbjPUzTD0xAxEHalncMH0xyScLLKNezbdK0SC6Bl8EeJ0BTKMaRc5fiq8evRUTOpUaQ+j2ArFRu1AZxsI2HWstOwMwWy6FdJe3DsWBc6Zk96J90odvX7WKIL1lmrQa6Nc4RQ16Jz09+Jbz3z24s8CZ/k3g="
+
+addons:
+  coverity_scan:
+    project:
+      name: "asugeno-projects/safer"
+      description: "Build submitted via Travis CI"
+    build_command_prepend: "./configure; make clean"
+    build_command:   "cmake -Dwithout-test=on . && make -j 4"
+    branch_pattern: coverity_scan
